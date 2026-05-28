@@ -1,0 +1,32 @@
+aid: clarifai
+name: Clarifai
+description: "Computer Vision"
+url: https://docs.clarifai.com/api-guide/api-overview
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Machine Learning"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Machine Learning
+  - Public APIs
+apis:
+  - name: Clarifai
+    description: "Computer Vision"
+    humanURL: https://docs.clarifai.com/api-guide/api-overview
+    baseURL: https://docs.clarifai.com/api-guide/api-overview
+    tags:
+      - Machine Learning
+    properties:
+      - type: Documentation
+        url: https://docs.clarifai.com/api-guide/api-overview
+common:
+  - type: Website
+    url: https://docs.clarifai.com/api-guide/api-overview
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
