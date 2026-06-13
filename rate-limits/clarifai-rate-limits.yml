@@ -1,0 +1,30 @@
+name: Clarifai API Rate Limits
+description: Rate limiting policies for the Clarifai REST and gRPC APIs across all pricing tiers.
+url: https://docs.clarifai.com/resources/api-overview/rate-limits/
+limits:
+  - name: Default Request Rate
+    description: Default rate limit applied to all users regardless of pricing plan.
+    value: 15
+    unit: requests per second
+    scope: all tiers
+    notes: Contact Clarifai to request a customized rate limit for higher throughput needs.
+  - name: Response Size Limit
+    description: Maximum size for API response payloads.
+    value: 128
+    unit: MB
+    scope: all tiers
+    notes: Binary outputs exceeding this limit receive FAILURE status with data cleared. Text outputs are truncated.
+throttling:
+  error_code: CONN_THROTTLED
+  status_code: 11005
+  error_message: exceeded limit of 15 requests per second
+  retry_strategy: Back-off strategy recommended — wait approximately 15 seconds before retrying throttled requests.
+  retry_examples:
+    - language: Python
+      notes: Catch CONN_THROTTLED error and implement retry logic with delays.
+    - language: Node.js
+      notes: Catch CONN_THROTTLED error and implement retry logic with delays.
+customization:
+  available: true
+  contact: sales@clarifai.com
+  notes: Enterprise plans can negotiate custom rate limits based on usage requirements.

@@ -1,32 +1,81 @@
 aid: clarifai
 name: Clarifai
-description: "Computer Vision"
-url: https://docs.clarifai.com/api-guide/api-overview
-specificationVersion: '0.20'
-created: '2026-05-28'
-modified: '2026-05-28'
-x-source: public-apis/public-apis
-x-category: "Machine Learning"
-x-tier: 3
-x-tier-reason: bulk-registered-from-public-apis
+description: >
+  Clarifai is an AI computer vision and NLP platform providing REST and gRPC APIs for image recognition,
+  object detection, text analysis, visual search, and custom model training. The platform enables teams
+  to build, deploy, and manage AI across shared cloud, on-premise, and edge infrastructure with support
+  for model inference, workflow orchestration, vector search, and dataset management.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+type: Index
 tags:
+  - AI
+  - Computer Vision
+  - NLP
+  - Image Recognition
+  - Object Detection
+  - Text Analysis
+  - Visual Search
   - Machine Learning
-  - Public APIs
+  - Custom Model Training
+  - gRPC
 apis:
-  - name: Clarifai
-    description: "Computer Vision"
-    humanURL: https://docs.clarifai.com/api-guide/api-overview
-    baseURL: https://docs.clarifai.com/api-guide/api-overview
+  - aid: clarifai:clarifai-api
+    name: Clarifai API
+    description: >
+      The Clarifai API provides REST and gRPC endpoints for AI-powered computer vision and NLP capabilities
+      including image recognition, object detection, text classification, visual search, and custom model
+      training and deployment. Authentication uses Personal Access Tokens (PAT).
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.clarifai.com
+    baseURL: https://api.clarifai.com/v2
     tags:
-      - Machine Learning
+      - AI
+      - Computer Vision
+      - NLP
+      - Image Recognition
+      - Object Detection
+      - REST
+      - gRPC
     properties:
       - type: Documentation
-        url: https://docs.clarifai.com/api-guide/api-overview
+        url: https://docs.clarifai.com
+      - type: OpenAPI
+        url: https://api.clarifai.com/api-doc/?url=https://api.clarifai.com/v2/swagger.json
+      - type: Postman
+        url: https://docs.clarifai.com
+      - type: Authentication
+        url: https://docs.clarifai.com/getting-started/quickstart/
+    contact:
+      - FN: Clarifai Support
+        url: https://www.clarifai.com/contact
+        email: sales@clarifai.com
 common:
   - type: Website
-    url: https://docs.clarifai.com/api-guide/api-overview
-  - type: PublicAPIsListing
-    url: https://github.com/public-apis/public-apis
+    url: https://www.clarifai.com
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: GitHubOrg
+    url: https://github.com/Clarifai
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/clarifai
+  - type: Blog
+    url: https://www.clarifai.com/blog
+  - type: Pricing
+    url: https://www.clarifai.com/pricing
+  - type: StatusPage
+    url: https://status.clarifai.com/
+  - type: X
+    url: https://x.com/clarifai
+  - type: Plans
+    url: plans/clarifai-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/clarifai-rate-limits.yml
+  - type: FinOps
+    url: finops/clarifai-finops.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,0 +1,55 @@
+name: Clarifai Plans and Pricing
+description: Pricing tiers for the Clarifai AI platform, covering computer vision, NLP, and custom model deployment.
+url: https://www.clarifai.com/pricing
+plans:
+  - name: Community
+    description: Free tier for individual developers and hobbyists exploring the Clarifai platform.
+    price: 0
+    currency: USD
+    period: monthly
+    features:
+      - 1000 free operations per month
+      - Access to pre-built AI models
+      - Image recognition and object detection
+      - REST and gRPC API access
+      - Personal Access Token (PAT) authentication
+      - Python and Node.js SDK support
+  - name: Essential
+    description: Entry-level paid tier for developers building production applications with moderate usage.
+    price: 30
+    currency: USD
+    period: monthly
+    features:
+      - 30000 operations per month
+      - All Community features
+      - Higher usage limits
+      - Access to Clarifai model hub
+      - Custom model training
+      - Postman and Swagger API reference
+  - name: Professional
+    description: Advanced tier for teams and businesses with high-volume AI inference needs.
+    price: 300
+    currency: USD
+    period: monthly
+    features:
+      - 100000 operations per month
+      - All Essential features
+      - Priority support
+      - Advanced model management
+      - Workflow orchestration
+      - Vector search functionality
+      - Dataset and artifact management
+  - name: Enterprise
+    description: Custom pricing for large organizations requiring unlimited operations, dedicated infrastructure, and enterprise support.
+    price: custom
+    currency: USD
+    period: monthly
+    features:
+      - Unlimited API calls
+      - Hybrid-cloud and on-premise deployment
+      - Dedicated compute environments
+      - Custom rate limits (contact sales)
+      - SLA guarantees
+      - Enterprise security and governance
+      - Committed volume discounts
+      - Custom integrations

@@ -1,0 +1,33 @@
+name: Clarifai FinOps
+description: Financial operations guidance for managing costs and optimizing spend on the Clarifai AI platform.
+url: https://www.clarifai.com/pricing
+overview: >
+  Clarifai charges based on the number of monthly operations (API calls) for predictions, training, and data
+  storage. Each pricing tier includes a monthly credit that can be applied toward various operations.
+  Additional charges apply when usage exceeds the included credit for the tier.
+cost_drivers:
+  - name: API Predictions
+    description: Each inference call to a model (image recognition, object detection, NLP, etc.) counts as an operation.
+    unit: per operation
+  - name: Model Training
+    description: Training custom models consumes operations from the monthly allotment.
+    unit: per training run
+  - name: Data Storage
+    description: Storing inputs, datasets, and artifacts may consume operations or incur additional storage costs.
+    unit: per GB or operation
+  - name: Compute Resources
+    description: Enterprise and dedicated compute environments are billed based on resource consumption.
+    unit: per compute hour
+optimization:
+  - tip: Use the Community tier (1,000 free operations) for development and testing before scaling to paid plans.
+  - tip: Batch API requests where possible to maximize operations per request and reduce overhead.
+  - tip: Cache model responses for repeated identical inputs to avoid redundant operations.
+  - tip: Monitor usage via the Clarifai control plane dashboard to track operations and avoid unexpected overages.
+  - tip: Use pre-built Clarifai models instead of custom training when accuracy requirements permit, to reduce training costs.
+  - tip: Implement back-off retry logic to handle CONN_THROTTLED errors without burning unnecessary operations.
+  - tip: Contact sales@clarifai.com for committed volume discounts on Enterprise plans to reduce per-operation costs.
+billing:
+  cycle: monthly
+  overage: Additional charges apply when monthly operations exceed plan limits.
+  enterprise_discounts: Committed volume discounts available for Enterprise customers.
+  contact: sales@clarifai.com
