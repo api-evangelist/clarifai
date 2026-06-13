@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiModelVersion.json",
+  "title": "apiModelVersion",
+  "description": "Clarifai apiModelVersion schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the version was created."
+    },
+    "status": {
+      "$ref": "#/definitions/apistatusStatus",
+      "description": "The status of the version (whether it's untrained, training, trained, etc.)."
+    },
+    "active_concept_count": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "metrics": {
+      "$ref": "#/definitions/apiEvalMetrics"
+    },
+    "total_input_count": {
+      "type": "integer",
+      "format": "int64",
+      "title": "number of inputs in the model version"
+    },
+    "pretrained_model_config": {
+      "$ref": "#/definitions/apiPretrainedModelConfig",
+      "title": "When a model has already been trained externally, you can upload\nit directly to the platform as a model version directly by\nsetting the PretrainedModelConfig"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When training of this version was completed."
+    },
+    "description": {
+      "type": "string",
+      "title": "Description about this version"
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "app_id": {
+      "type": "string",
+      "description": "The app the model version belongs to."
+    },
+    "user_id": {
+      "type": "string",
+      "description": "The user the model version belongs to."
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When this model version was last modified"
+    },
+    "metadata": {
+      "type": "object",
+      "title": "To handle arbitrary json metadata you can use a struct field:\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto"
+    },
+    "license": {
+      "type": "string"
+    },
+    "output_info": {
+      "$ref": "#/definitions/apiOutputInfo",
+      "description": "Info about the model's output. Besides `output_info.data`, these fields should\nbe reserved for parameters that affect the models outputs when inferencing.\n`output_info.data` is used to specify the training concepts for this model version."
+    },
+    "input_info": {
+      "$ref": "#/definitions/apiInputInfo",
+      "description": "Info about preprocessing the models inputs, before they are sent to this model for training or inferencing.\nE.g.: `input_info.base_embed_model` lets us know inputs should be ran through a base model before being sent to an embedding-classifier."
+    },
+    "train_info": {
+      "$ref": "#/definitions/apiTrainInfo",
+      "description": "Configuration for the training process of this model version."
+    },
+    "import_info": {
+      "$ref": "#/definitions/apiImportInfo",
+      "title": "Configuration used to import model from third-party toolkits\nDEPRECATED: no longer support importing models from third party toolkits"
+    },
+    "train_log": {
+      "type": "string",
+      "title": "Contains the training logs if available"
+    },
+    "inference_compute_info": {
+      "$ref": "#/definitions/apiComputeInfo",
+      "description": "The minimum required compute resource for this model for inference."
+    },
+    "build_info": {
+      "$ref": "#/definitions/apiBuildInfo",
+      "title": "Build information for the model version"
+    },
+    "method_signatures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/apiMethodSignature"
+      },
+      "title": "Model signature information for the model version"
+    },
+    "special_handling": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/apiSpecialHandling"
+      },
+      "description": "List of special handling instructions for this model version."
+    },
+    "num_threads": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of threads to use for this model version."
+    }
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "path": "/v2/models",
+  "method": "GET",
+  "summary": "List all the models.",
+  "description": "",
+  "operationId": "V2_ListModels3",
+  "tags": [
+    "V2"
+  ],
+  "parameters": [
+    {
+      "name": "user_app_id.user_id",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Note user_id 'me' is reserved - it is the alias for the id of authorized user"
+    },
+    {
+      "name": "user_app_id.app_id",
+      "in": "query",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "description": "(optional URL parameter) The page number. Pagination is used to split the results into chunks.\nDefaults to 1."
+    },
+    {
+      "name": "per_page",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "description": "(optional URL parameter) The number of results that will be contained in each page. Defaults\nto 128."
+    },
+    {
+      "name": "additional_fields",
+      "in": "query",
+      "required": false,
+      "type": "array",
+      "description": "(optional URL parameter) List of additional fields to be included in the response. Currently supported: all, stars, outputs, presets, counts"
+    },
+    {
+      "name": "show_replicas",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "If true, show replica counts for models."
+    },
+    {
+      "name": "sort_ascending",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "Sorting options:\nWhether to sort in ascending order. If false, will order in descending order."
+    },
+    {
+      "name": "sort_by_name",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether to order by the name"
+    },
+    {
+      "name": "sort_by_num_inputs",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether to order by the number of training inputs"
+    },
+    {
+      "name": "sort_by_modified_at",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether to order by the modified_at time of the latest model version.\nIf none of the sort options is set to true, will sort by modified_at."
+    },
+    {
+      "name": "sort_by_created_at",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether to order by the created_at"
+    },
+    {
+      "name": "sort_by_star_count",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether to order by count of stars"
+    },
+    {
+      "name": "sort_by_relevance",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "Whether to order by search query relevance. Can only be used if search is not empty."
+    },
+    {
+      "name": "model_type_id",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Filtering options:\nFilter models by the specific model_type_id. See ListModelTypes for the list of ModelType.Id's\nsupported."
+    },
+    {
+      "name": "trained_only",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "If true, we only return models that have the status MODEL_TRAINED, which includes non-trainable model types."
+    },
+    {
+      "name": "input_fields",
+      "in": "query",
+      "required": false,
+      "type": "array",
+      "description": "The list of input fields to the model.\nFor example, you can specify 'image', which will return models that make inferences on images like visual-classifier models."
+    },
+    {
+      "name": "output_fields",
+      "in": "query",
+      "required": false,
+      "type": "array",
+      "description": "The list of output fields to the model.\nFor example, you can specify 'regions[...].data.concepts', which will return visual-detector models."
+    },
+    {
+      "name": "license",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Filter by the license of the model version"
+    },
+    {
+      "name": "featured_only",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "If true, we only return models that are handpicked by clarifai staff"
+    },
+    {
+      "name": "starred_only",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "If true, we only return models that are starred by the requesting user"
+    },
+    {
+      "name": "toolkits",
+      "in": "query",
+      "required": false,
+      "type": "array",
+      "description": "List of toolkit tags to filter by"
+    },
+    {
+      "name": "use_cases",
+      "in": "query",
+      "required": false,
+      "type": "array",
+      "description": "List of use_case tags to filter by"
+    },
+    {
+      "name": "languages",
+      "in": "query",
+      "required": false,
+      "type": "array",
+      "description": "List of language tags to filter by"
+    },
+    {
+      "name": "dont_fetch_from_main",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "Old API behavior resulted in returning clarifai main models when calling ListModels while scoped to an app. While we transition\naway from that, we can use this flag to not always fetch clarifai main models, unless that is the app we are explicitly listing for.\n\n@exclude TODO (EAGLE-4447): Remove this field"
+    },
+    {
+      "name": "bookmark",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "Filter models by bookmark. If set, only return bookmarked models. Otherwise none bookmarked models only.\nNote: you can not filter `trained_only` and bookmark at the same time.\nWhen filter by bookmark, we will return trained and untrained models."
+    },
+    {
+      "name": "model_version_ids",
+      "in": "query",
+      "required": false,
+      "type": "array",
+      "description": "Filter by the model version ids. If set, only return the model of these versions."
+    },
+    {
+      "name": "license_type",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Filter by LicenseType"
+    },
+    {
+      "name": "source",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "description": "Filter by Source"
+    },
+    {
+      "name": "creator",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Filter by Creator"
+    },
+    {
+      "name": "min_replicas",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "description": "Filter by model versions runners with replicas >= min_replicas."
+    },
+    {
+      "name": "visibility.gettable",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": " - UNKNOWN_VISIBILITY: Default value not allowed.\n - PRIVATE: PRIVATE requires collaborator or team permissions in order to GET this resource.\n - ORG: ORG requires you to be in the same org in order to GET this resource, but don't have to be a\nteammate or collaborator.\n - PUBLIC: PUBLIC opens up GET access to the resource to any user on the platform even if they are not\na teammate or collaborator."
+    },
+    {
+      "name": "search",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Searching options:\nSpecify a search parameter in order to perform keyword search on the\nfollowing fields of the model:\n  - id\n  - name\n  - description\n  - notes\n  - user_id (unless user_app_id.user_id is already set)\n\nKeywords are both normalized for search (so searching for \"satisfy\" matches \"satisfied\")\nand used for partial prefix-matching (so searching for \"clari\" matches \"clarifai\").\n\nNOTE: Both the list of fields searched and the exact keyword matching\nrules are subject to change and not guaranteed to be backwards-compatible."
+    },
+    {
+      "name": "query",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Query name, description and id fields, that can contain the words in the query string. Does NOT support wildcards - full words only. Supports operators \"OR\" and \"-\" as NOT.\nDeprecated: use search instead."
+    },
+    {
+      "name": "name",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Filter by the description and id of the model. This supports wildcard queries like \"gen*\" to match \"general\" as an example.\nDeprecated: use search instead."
+    },
+    {
+      "name": "filter_by_user_id",
+      "in": "query",
+      "required": false,
+      "type": "boolean",
+      "description": "Extends the name filter to include the user_id of the application owner that the model belongs to.\nDeprecated: use search instead of name."
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/definitions/apiMultiModelResponse"
+      }
+    },
+    "default": {
+      "description": "An unexpected error response.",
+      "schema": {
+        "$ref": "#/definitions/googlerpcStatus"
+      }
+    }
+  }
+}

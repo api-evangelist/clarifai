@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiPostModelOutputsRequest.json",
+  "title": "apiPostModelOutputsRequest",
+  "description": "//////////////////////////////////////////////////\nModel prediction related stuff needs inputs and produces outputs.\n//////////////////////////////////////////////////\nModel prediction.",
+  "type": "object",
+  "properties": {
+    "user_app_id": {
+      "$ref": "#/definitions/apiUserAppIDSet"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "version_id": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/apiInput"
+      }
+    },
+    "model": {
+      "$ref": "#/definitions/apiModel",
+      "description": "This allows you to specify config options for the model such as\nthe language which appear's in the model's output_info."
+    },
+    "runner_selector": {
+      "$ref": "#/definitions/apiRunnerSelector",
+      "title": "Allow filtering of prediction requests down to specific Nodepools, Deployments or Runners"
+    },
+    "use_predict_cache": {
+      "type": "boolean",
+      "title": "Configure the prediction cache to avoid expensive compute for predict requests"
+    },
+    "enable_log_summary_on_error": {
+      "type": "boolean",
+      "title": "Configuration to provide logs summarization when request errors out"
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiDataset.json",
+  "title": "apiDataset",
+  "description": "Clarifai apiDataset schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "The ID for the dataset"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the dataset was created.\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the dataset was modified.\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "app_id": {
+      "type": "string",
+      "description": "The app the dataset belongs to."
+    },
+    "user_id": {
+      "type": "string",
+      "description": "The user the dataset belongs to."
+    },
+    "description": {
+      "type": "string",
+      "title": "Description of the dataset"
+    },
+    "metadata": {
+      "type": "object",
+      "title": "To handle arbitrary json metadata you can use a struct field:\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto"
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "default_annotation_filter": {
+      "$ref": "#/definitions/apiAnnotationFilter",
+      "description": "Default annotation filter used for this dataset."
+    },
+    "default_processing_info": {
+      "$ref": "#/definitions/apiDatasetVersionProcessingInfo",
+      "description": "Default processing info used for this dataset."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes for the dataset\nThis field should be used for in-depth notes and supports up to 64Kbs."
+    },
+    "version": {
+      "$ref": "#/definitions/apiDatasetVersion",
+      "description": "Dataset version associated with this dataset. This is used in listing Datasets\nand including the latest version."
+    },
+    "is_starred": {
+      "type": "boolean",
+      "description": "Whether the dataset is starred by the requesting user."
+    },
+    "star_count": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of users that starred this dataset."
+    },
+    "bookmark_origin": {
+      "$ref": "#/definitions/apiBookmarkOrigin",
+      "description": "bookmark info. When set, this dataset is a bookmarked dataset of this app.\nInfo in this field will allow you to find/access original dataset."
+    },
+    "image": {
+      "$ref": "#/definitions/apiImage",
+      "title": "Representative image for this dataset"
+    }
+  }
+}

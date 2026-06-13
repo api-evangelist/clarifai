@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiPostInputsRequest.json",
+  "title": "apiPostInputsRequest",
+  "description": "Clarifai apiPostInputsRequest schema",
+  "type": "object",
+  "properties": {
+    "user_app_id": {
+      "$ref": "#/definitions/apiUserAppIDSet"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/apiInput"
+      },
+      "title": "List of inputs to post.\nFor each input, the following fields are used:\n* id\n* data\n* dataset_ids"
+    },
+    "inputs_add_job_id": {
+      "type": "string",
+      "description": "Collect statistics about created inputs in job with given ID.\n* If job ID is empty, then job is not created.\n* If job ID is non-empty and doesn't already exist, then a new job will be created with given ID.\n* If job ID does already exist, then new inputs statistics are merged with previous inputs statistics."
+    },
+    "input_id_conflict_resolution": {
+      "$ref": "#/definitions/apiInputIDConflictResolution",
+      "description": "How to handle input ID conflicts."
+    }
+  }
+}

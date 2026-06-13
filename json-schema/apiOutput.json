@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiOutput.json",
+  "title": "apiOutput",
+  "description": "Clarifai apiOutput schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "One of these outputs per Input"
+    },
+    "status": {
+      "$ref": "#/definitions/apistatusStatus"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the object was created. We follow the XXXX timestamp\nformat. We use https://www.ietf.org/rfc/rfc3339.txt format:\n\"2006-01-02T15:04:05.999999Z\" so you can expect results like\nthe following from the API:\n\"2017-04-11T21:50:50.223962Z\""
+    },
+    "model": {
+      "$ref": "#/definitions/apiModel",
+      "description": "The model that created this Output."
+    },
+    "input": {
+      "$ref": "#/definitions/apiInput",
+      "description": "The input that was passed to the model to create this Output. For example if we have an image\nmodel then it will take as input here an Input object with Image filled in."
+    },
+    "data": {
+      "$ref": "#/definitions/apiData",
+      "description": "The output data for this Output. For example if we have a concept model then the predicted\nconcepts will appear here."
+    },
+    "prompt_tokens": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Number of prompt tokens as reported by the model or third-party API."
+    },
+    "completion_tokens": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Number of completion tokens as reported by the model or third-party API."
+    },
+    "cached_tokens": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Number of cached prompt tokens as reported by the model (subset of prompt_tokens).\nCached tokens are prompt tokens served from the model's KV cache rather than recomputed."
+    }
+  }
+}

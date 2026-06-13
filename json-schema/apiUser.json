@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiUser.json",
+  "title": "apiUser",
+  "description": "Clarifai apiUser schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "primary_email": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "company_name": {
+      "type": "string"
+    },
+    "job_title": {
+      "type": "string"
+    },
+    "job_role": {
+      "type": "string"
+    },
+    "intention": {
+      "type": "string",
+      "title": "This specifies user intent when registering on clarifai"
+    },
+    "referral_source": {
+      "type": "string",
+      "title": "This specifies how one got to know about clarifai"
+    },
+    "bill_type": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the user was created. We follow the XXXX timestamp\nformat. We use https://www.ietf.org/rfc/rfc3339.txt format:\n\"2006-01-02T15:04:05.999999Z\" so you can expect results like\nthe following from the API:\n\"2017-04-11T21:50:50.223962Z\""
+    },
+    "date_gdpr_consent": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "date_tos_consent": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "date_marketing_consent": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "date_pii_consent": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "metadata": {
+      "type": "object",
+      "title": "To handle arbitrary json metadata you can use a struct field:\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto"
+    },
+    "email_addresses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/apiEmailAddress"
+      }
+    },
+    "two_factor_auth_enabled": {
+      "type": "boolean"
+    },
+    "teams_count": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "is_starred": {
+      "type": "boolean",
+      "title": "Is starred by the requesting user (only showed on get/list requests)\nPlease use PostUserStars/DeleteUserStars endpoints to star/unstar an user"
+    },
+    "star_count": {
+      "type": "integer",
+      "format": "int32",
+      "title": "How many users have starred the user (only showed on get/list requests)\nComputed value, not editable"
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "user_detail": {
+      "$ref": "#/definitions/apiUserDetail",
+      "description": "This is all the personal information of a user. GetUser/ListUsers will not return this\ninformation unless the caller has the UserAccounts_Get scope on their key or is the user\nthemselves."
+    },
+    "image": {
+      "$ref": "#/definitions/apiImage",
+      "title": "Representative image for this User (a.k.a. Profile or cover photo)"
+    }
+  }
+}

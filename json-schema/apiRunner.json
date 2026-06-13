@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiRunner.json",
+  "title": "apiRunner",
+  "description": "Clarifai apiRunner schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A unique ID for this runner.\nThis is a UUID since runners can be automatically orchestrated."
+    },
+    "description": {
+      "type": "string",
+      "description": "short description about the runner."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the runner was created."
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the runner was last modified."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "To handle arbitrary json metadata you can use a struct field:\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto\nThis is an optional arg."
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Labels to match in order to find work."
+    },
+    "worker": {
+      "$ref": "#/definitions/apiWorker",
+      "description": "Instead of just matching on labels we might want to have more explicit matching of what\nwork this runner is looking for.\nThe thing that the autoscaling config applies to for this nodepool."
+    },
+    "nodepool": {
+      "$ref": "#/definitions/apiNodepool",
+      "description": "Runners are defined within nodepools so this field needs the id and user_id of the nodepool\nto be provided when creating a Runner.\nThis nodepool must be accessible to you or an org you are part of."
+    },
+    "compute_info": {
+      "$ref": "#/definitions/apiComputeInfo",
+      "description": "//////////////////////////\nNeed resources on the runner so we can schedule this Runner into the Nodepool.\nIf this runner is being orchestrated for a model then the orchestrator will set this to the\nmodel resource requirements. If a workflow then it'll compute those requirements and set\npopulate this resource field.\nHaving this on the underlying object like Model and Workflow allows us to represent the minimum\nrequirements on those object, which may be less than what the Runner allocates (as a safety\nmargin for the runner to for sure run the resource)."
+    },
+    "num_replicas": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Number of replicas that this runner should have up.\nWe keep it separate from ComputeInfo which defines how many resources each replica needs."
+    },
+    "special_handling": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/apiSpecialHandling"
+      },
+      "description": "List of special handling instructions for this runner."
+    },
+    "runner_metrics": {
+      "$ref": "#/definitions/apiRunnerMetrics",
+      "description": "Metrics and status for the underlying k8s deployment.\nEach Runner is 1:1 with a k8s deployment, so this field tracks deployment health and metrics."
+    },
+    "min_replicas": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Hard minimum replicas from the deployment's autoscale config.\nThe agent uses this to determine how many replicas are non-preemptable."
+    },
+    "priority": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The scheduling priority for this runner's k8s deployment.\nValid values are 0-9, where higher values indicate higher priority.\nThis value comes from the deployment nodepool's priority setting."
+    }
+  }
+}

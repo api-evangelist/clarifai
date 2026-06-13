@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiConcept.json",
+  "title": "apiConcept",
+  "description": "Clarifai apiConcept schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The concept's unique id."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the concept in the given language."
+    },
+    "value": {
+      "type": "number",
+      "format": "float",
+      "description": "Used to indicate presence (1.0) or not (0.0) of this concept when making a request.\nThis is also the prediction probability when returning predictions from our API.\nFor convenience we use the default of 1.0 when making requests so the concept you provide is\nis treated as a positive (1.0) and not a negative (which would be value == 0.0)."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the concept was created. The format is https://www.ietf.org/rfc/rfc3339.txt .\nExample: \"2006-01-02T15:04:05.999999Z\". This field is used only in a response."
+    },
+    "language": {
+      "type": "string",
+      "description": "The language in which the concept name is in. This is *ONLY* used in the response and setting\nit in a request is ignored since the default language of your app is used when creating\nor patching a Concept. To set other languages for your concept use the ConceptLanguage object\nand its corresponding endpoints."
+    },
+    "app_id": {
+      "type": "string",
+      "description": "The application id that this concept is within. This can be ignored by most users."
+    },
+    "definition": {
+      "type": "string",
+      "description": "The definition for the concept. Similar to name. This can be ignored by most users."
+    },
+    "vocab_id": {
+      "type": "string",
+      "description": "The vocabulary that this concept belongs to. This is useful if you have different unique sets\nof concepts that you can separate out based on this field. For example \"age_appearance\" vs\n\"gender_appearance\" in a list of concept returned from the demographics model."
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "user_id": {
+      "type": "string",
+      "description": "The user the concept belongs to."
+    },
+    "keypoint_info": {
+      "$ref": "#/definitions/apiKeypointInfo",
+      "title": "Information about keypoints for this concept"
+    },
+    "extra_info": {
+      "$ref": "#/definitions/apiConceptExtraInfo",
+      "description": "Optional extra info."
+    },
+    "metadata": {
+      "type": "object",
+      "title": "To handle arbitrary json metadata:\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto"
+    },
+    "image": {
+      "$ref": "#/definitions/apiImage",
+      "title": "Representative image for the concept"
+    }
+  }
+}

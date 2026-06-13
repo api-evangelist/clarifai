@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiSearch.json",
+  "title": "apiSearch",
+  "description": "This is the new Search object used in saved searches.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "$ref": "#/definitions/apiQuery",
+      "description": "Search query."
+    },
+    "id": {
+      "type": "string",
+      "description": "Customer facing, external ID for search to be saved. Provided by the user, e.g. \"saved-search-1.\nIt is unique per application."
+    },
+    "application_id": {
+      "type": "string",
+      "description": "Application that owns this saved search."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human readable display name of the saved search."
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time",
+      "description": "\"As of\" timestamp, indicating a time in the past as of which we want to\nretrieve the annotations satisfying the query."
+    },
+    "git_hash": {
+      "type": "string",
+      "description": "Git hash of the code that ran the filter."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the saved search was created."
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the saved search was updated."
+    },
+    "algorithm": {
+      "type": "string",
+      "title": "The search algorithm to be used.\nOptions are are 'nearest_neighbor', 'brute_force', and 'avg_concept_brute_force'\nThe last two perform a brute force search visual search instead of a more scalable distributed\nnearest neighbor search and should be used by advanced users only.\nIf not specified we default to nearest neighbor"
+    },
+    "save": {
+      "type": "boolean",
+      "title": "If true, save this search, and exit without executing the search.\nIf false execute the query"
+    },
+    "min_value": {
+      "type": "number",
+      "format": "float",
+      "description": "Minimum value of confidence threshold score in result.\nDefaults to 0.0 which means we won't do any thresholding as all probabilities will\nlikely be > 0.0."
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "metric": {
+      "$ref": "#/definitions/SearchMetric"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "path": "/v2/models/{model_id}/outputs",
+  "method": "POST",
+  "summary": "Get predicted outputs from the model.",
+  "description": "",
+  "operationId": "V2_PostModelOutputs4",
+  "tags": [
+    "V2"
+  ],
+  "parameters": [
+    {
+      "name": "model_id",
+      "in": "path",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "required": true,
+      "type": "V2PostModelOutputsBody"
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/definitions/apiMultiOutputResponse"
+      }
+    },
+    "default": {
+      "description": "An unexpected error response.",
+      "schema": {
+        "$ref": "#/definitions/googlerpcStatus"
+      }
+    }
+  }
+}

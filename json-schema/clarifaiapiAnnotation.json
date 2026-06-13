@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/clarifaiapiAnnotation.json",
+  "title": "Annotation",
+  "description": "Clarifai Annotation schema - represents an annotation on an input",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "The ID for the annotation"
+    },
+    "input_id": {
+      "type": "string",
+      "title": "ID of the input this annotation is tied to"
+    },
+    "data": {
+      "$ref": "#/definitions/apiData",
+      "description": "The data passed along in this annotation."
+    },
+    "annotation_info": {
+      "type": "object",
+      "title": "task_id is deprecated in annotation_info. Use task_id"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "DEPRECATED: Use worker.user.id instead."
+    },
+    "model_version_id": {
+      "type": "string",
+      "title": "DEPRECATED: Use worker.model.model_version.id instead"
+    },
+    "embed_model_version_id": {
+      "type": "string",
+      "description": "DEPRECATED."
+    },
+    "status": {
+      "$ref": "#/definitions/apistatusStatus",
+      "title": "Annotation Status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the annotation was created. We follow the XXXX timestamp\nformat. We use https://www.ietf.org/rfc/rfc3339.txt format:\n\"2006-01-02T15:04:05.999999Z\" so you can expect results like\nthe following from the API:\n\"2017-04-11T21:50:50.223962Z\""
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the annotation was modified."
+    },
+    "trusted": {
+      "type": "boolean",
+      "title": "Whether or not this annotation is trusted\nWill be deprecated"
+    },
+    "input_level": {
+      "type": "boolean",
+      "description": "Is this the input level annotation."
+    },
+    "consensus_info": {
+      "type": "object",
+      "title": "Consensus review related information, e.g.\n* annotation group\n* id of annotation parent, in case the annotation was split from another annotation"
+    },
+    "task_id": {
+      "type": "string",
+      "title": "The id of the task annotation belongs to"
+    },
+    "worker": {
+      "$ref": "#/definitions/apiWorker",
+      "description": "Worker is the worker that created the annotation."
+    }
+  }
+}

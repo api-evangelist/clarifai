@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiWorkflowVersion.json",
+  "title": "apiWorkflowVersion",
+  "description": "Clarifai apiWorkflowVersion schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Id of this version."
+    },
+    "workflow_id": {
+      "type": "string",
+      "description": "Workflow id for this version."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the version was created.\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Most recent time when the version was updated.\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/apiWorkflowNode"
+      },
+      "description": "The list of nodes that make up the workflow version. Each node can specify an input node\nthat it connects to in order to define the graph."
+    },
+    "metadata": {
+      "type": "object",
+      "title": "To handle arbitrary json metadata you can use a struct field:\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto"
+    },
+    "app_id": {
+      "type": "string",
+      "description": "The app the workflow version belongs to."
+    },
+    "user_id": {
+      "type": "string",
+      "description": "The user the workflow version belongs to."
+    },
+    "description": {
+      "type": "string",
+      "title": "Short description about this workflow version"
+    },
+    "license": {
+      "type": "string",
+      "title": "License associated to this workflow version"
+    },
+    "is_deprecated": {
+      "type": "boolean",
+      "description": "If a model version associated with the workflow version is deleted, the workflow version\nwill be marked as deprecated."
+    }
+  }
+}

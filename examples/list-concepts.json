@@ -1,0 +1,60 @@
+{
+  "path": "/v2/concepts",
+  "method": "GET",
+  "summary": "List all the concepts.",
+  "description": "",
+  "operationId": "V2_ListConcepts2",
+  "tags": [
+    "V2"
+  ],
+  "parameters": [
+    {
+      "name": "user_app_id.user_id",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Note user_id 'me' is reserved - it is the alias for the id of authorized user"
+    },
+    {
+      "name": "user_app_id.app_id",
+      "in": "query",
+      "required": false,
+      "type": "string"
+    },
+    {
+      "name": "page",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "description": "(optional URL parameter) The page number. Pagination is used to split the results into chunks.\nDefaults to 1."
+    },
+    {
+      "name": "per_page",
+      "in": "query",
+      "required": false,
+      "type": "integer",
+      "description": "(optional URL parameter) The number of results that will be contained in each page. Defaults\nto 128."
+    },
+    {
+      "name": "id",
+      "in": "query",
+      "required": false,
+      "type": "string",
+      "description": "Fuzzy match on concept ID"
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/definitions/apiMultiConceptResponse"
+      }
+    },
+    "default": {
+      "description": "An unexpected error response.",
+      "schema": {
+        "$ref": "#/definitions/googlerpcStatus"
+      }
+    }
+  }
+}

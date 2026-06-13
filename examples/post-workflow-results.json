@@ -1,0 +1,39 @@
+{
+  "path": "/v2/workflows/{workflow_id}/results",
+  "method": "POST",
+  "summary": "Predict using a workflow.",
+  "description": "",
+  "operationId": "V2_PostWorkflowResults3",
+  "tags": [
+    "V2"
+  ],
+  "parameters": [
+    {
+      "name": "workflow_id",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "description": "Workflow ID to retrieve\nIf no ID is specified we return default workflow of the application\nIf an ID is specified by default we first looks into Clarifai workflows for a Workflow ID"
+    },
+    {
+      "name": "body",
+      "in": "body",
+      "required": true,
+      "type": "V2PostWorkflowResultsBody"
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/definitions/apiPostWorkflowResultsResponse"
+      }
+    },
+    "default": {
+      "description": "An unexpected error response.",
+      "schema": {
+        "$ref": "#/definitions/googlerpcStatus"
+      }
+    }
+  }
+}

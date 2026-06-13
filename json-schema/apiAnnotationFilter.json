@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiAnnotationFilter.json",
+  "title": "apiAnnotationFilter",
+  "description": "AnnotationFilter is used to create a new dataset version.\nFor now, the filter is simply a wrapper over a Search.\nIn the future, we may add extra fields to customize the filtering.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "The ID for the annotation filter"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the annotation filter was created.\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the annotation filter was modified.\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "user_id": {
+      "type": "string",
+      "description": "The user the annotation filter belongs to."
+    },
+    "app_id": {
+      "type": "string",
+      "description": "The app the annotation filter belongs to."
+    },
+    "search": {
+      "$ref": "#/definitions/apiSearch",
+      "description": "The search that this filter uses."
+    }
+  }
+}

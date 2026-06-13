@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiWorkflow.json",
+  "title": "apiWorkflow",
+  "description": "Clarifai apiWorkflow schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The workflows's unique id."
+    },
+    "app_id": {
+      "type": "string",
+      "title": "The app the workflow belongs to"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the workflow was created. We follow the XXXX timestamp\nformat. We use https://www.ietf.org/rfc/rfc3339.txt format:\n\"2006-01-02T15:04:05.999999Z\" so you can expect results like\nthe following from the API:\n\"2017-04-11T21:50:50.223962Z\""
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/apiWorkflowNode"
+      },
+      "description": "The list of nodes retrieved from latest workflow version.\nEach node can specify an input node that it connects to in order to define the graph."
+    },
+    "metadata": {
+      "type": "object",
+      "title": "To handle arbitrary json metadata you can use a struct field:\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto"
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "user_id": {
+      "type": "string",
+      "title": "The user the workflow belongs to"
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the workflow was last modified"
+    },
+    "version": {
+      "$ref": "#/definitions/apiWorkflowVersion",
+      "description": "Info about the workflow version used to return the latest version when listing Workflows."
+    },
+    "is_starred": {
+      "type": "boolean",
+      "title": "Is starred by the requesting user (only showed on get/list requests)\nPlease use PostWorkflowStars/DeleteWorkflowStars endpoints to star/unstar a workflow"
+    },
+    "star_count": {
+      "type": "integer",
+      "format": "int32",
+      "title": "How many users have starred the workflow (only showed on get/list requests)\nComputed value, not editable"
+    },
+    "description": {
+      "type": "string",
+      "title": "Short description about this workflow"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes for the workflow\nThis field should be used for in-depth notes and supports up to 64Kbs."
+    },
+    "use_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags from use_cases category"
+    },
+    "check_consents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags for check consents"
+    },
+    "bookmark_origin": {
+      "$ref": "#/definitions/apiBookmarkOrigin",
+      "description": "bookmark info. When set, this workflow is a bookmarked workflow of this app.\nInfo in this field will allow you to find/access original workflow."
+    },
+    "image": {
+      "$ref": "#/definitions/apiImage",
+      "title": "Representative image for this workflow"
+    }
+  }
+}

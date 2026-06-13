@@ -1,0 +1,32 @@
+{
+  "path": "/v2/searches",
+  "method": "POST",
+  "summary": "Execute a new search and optionally save it.",
+  "description": "Deprecated: Use PostInputsSearches or PostAnnotationsSearches instead.\n The server may refuse to accept requests to this endpoint.",
+  "operationId": "V2_PostSearches2",
+  "tags": [
+    "V2"
+  ],
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "required": true,
+      "type": "apiPostSearchesRequest"
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/definitions/apiMultiSearchResponse"
+      }
+    },
+    "default": {
+      "description": "An unexpected error response.",
+      "schema": {
+        "$ref": "#/definitions/googlerpcStatus"
+      }
+    }
+  }
+}

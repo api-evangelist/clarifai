@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiModel.json",
+  "title": "apiModel",
+  "description": "This is the Model object which represents a created model in the platform.\nEach model has a particular type denoted by the model_type_id.\nWhen creating a Model with PostModels the following happens:\n - if the ModelType is trainable, then a new ModelVersion is created that is\n   - UNTRAINED status by default\n   - TRAINED status if a ModelVersion was included with PretrainedModelConfig in PostModels\n - if the ModelType is not trainable, then a new ModelVersion is created with TRAINED status.\nTo modify config settings like OutputInfo for the Model you an use PatchModels. This will\nalso create a new ModelVersion, potentially UNTRAINED following the same rules as above.\nThe fields that are patchable include Model.name, Model.display_name and Model.output_info\n(except the Model.output_info.type and Model.output_info.type_ext).",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The model's ID. Must be unique within a particular app and URL-friendly."
+    },
+    "name": {
+      "type": "string",
+      "description": "DEPRECATED: Please use the model id to name the model."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the model was created. We follow the XXXX timestamp\nformat. We use https://www.ietf.org/rfc/rfc3339.txt format:\n\"2006-01-02T15:04:05.999999Z\" so you can expect results like\n the following from the API:\n \"2017-04-11T21:50:50.223962Z\""
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When was the most recent model version created at"
+    },
+    "app_id": {
+      "type": "string",
+      "description": "The app the model belongs to."
+    },
+    "output_info": {
+      "$ref": "#/definitions/apiOutputInfo",
+      "title": "Info about the model's output and configuration.\nDEPRECATED: Will be moved to model version"
+    },
+    "model_version": {
+      "$ref": "#/definitions/apiModelVersion",
+      "description": "A particular version of the model, e.g., to specify the version when creating a workflow or\nwhen listing Models to include the latest ModelVersion of the model in the response."
+    },
+    "display_name": {
+      "type": "string",
+      "description": "DEPRECATED: Please use the model id to name the model."
+    },
+    "user_id": {
+      "type": "string",
+      "description": "The user id that the model belongs to."
+    },
+    "default_eval_info": {
+      "$ref": "#/definitions/apiEvalInfo",
+      "description": "The default evaluation info. Can be overwritten by eval request."
+    },
+    "model_type_id": {
+      "type": "string",
+      "description": "The ModelType.Id that is used for this model. This is used for all versions and you cannot\nchange model_type_id between versions of the same model."
+    },
+    "task": {
+      "type": "string",
+      "title": "The task the model was trained to do"
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "description": {
+      "type": "string",
+      "title": "Short description about this model"
+    },
+    "metadata": {
+      "type": "object",
+      "title": "To handle arbitrary json metadata you can use a struct field:\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto"
+    },
+    "presets": {
+      "type": "object"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes for the model\nThis field should be used for in-depth notes and supports up to 64Kbs."
+    },
+    "toolkits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags from toolkits category"
+    },
+    "use_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags from use_cases category"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags from languages category."
+    },
+    "languages_full": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/apiFullTag"
+      },
+      "description": "Tags from languages category with names, only used in responses."
+    },
+    "check_consents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "is_starred": {
+      "type": "boolean",
+      "title": "Is starred by the requesting user (only showed on get/list requests)\nPlease use PostModelStars/DeleteModelStars endpoints to star/unstar a model"
+    },
+    "star_count": {
+      "type": "integer",
+      "format": "int32",
+      "title": "How many users have starred the model (only showed on get/list requests)\nComputed value, not editable"
+    },
+    "workflow_recommended": {
+      "type": "boolean",
+      "title": "Whether it's recommended that this model is used within a workflow"
+    },
+    "bookmark_origin": {
+      "$ref": "#/definitions/apiBookmarkOrigin",
+      "description": "bookmark info. When set, this model is a bookmarked model of this app.\nInfo in this field will allow you to find/access original model."
+    },
+    "image": {
+      "$ref": "#/definitions/apiImage",
+      "title": "Representative image for this model"
+    },
+    "license_type": {
+      "$ref": "#/definitions/apiLicenseType",
+      "title": "License Type"
+    },
+    "source": {
+      "$ref": "#/definitions/ModelSource"
+    },
+    "creator": {
+      "type": "string",
+      "title": "Creator of Model"
+    },
+    "version_count": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "billing_type": {
+      "$ref": "#/definitions/ModelBillingType"
+    },
+    "featured_order": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Whether the model should be featured, and if so, the order in which it should be featured.\nThe order is relative to other models that are also featured.\nModels with a higher order will be featured first."
+    },
+    "deploy_restriction": {
+      "$ref": "#/definitions/apiDeployRestriction",
+      "description": "Deploy restriction for the model."
+    },
+    "replica_count": {
+      "type": "integer",
+      "format": "int64",
+      "description": "replica_count indicates the number of deployed model replicas.\nThis field is populated when `show_replicas` is true in ListModelsRequest."
+    },
+    "open_router_info": {
+      "$ref": "#/definitions/apiOpenRouterInfo",
+      "title": "OpenRouter Info for the model"
+    }
+  }
+}

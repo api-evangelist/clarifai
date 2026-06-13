@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiInput.json",
+  "title": "apiInput",
+  "description": "Clarifai apiInput schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "The ID for the input"
+    },
+    "data": {
+      "$ref": "#/definitions/apiData",
+      "description": "The data passed along in this input."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the input was created. We follow the XXXX timestamp\nformat. We use https://www.ietf.org/rfc/rfc3339.txt format:\n\"2006-01-02T15:04:05.999999Z\" so you can expect results like\nthe following from the API:\n\"2017-04-11T21:50:50.223962Z\""
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the input was modified."
+    },
+    "status": {
+      "$ref": "#/definitions/apistatusStatus",
+      "description": "This is the status at a per Input level which allows for\npartial failures."
+    },
+    "dataset_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of dataset IDs that this input is part of\nCurrently, this field is ONLY used to\n* search inputs part of dataset(s), e.g. in `PostSearches`, `PostInputsSearches` and `PostAnnotationsSearches` endpoints, and\n* to add inputs to dataset(s) in `PostInputs` endpoint.\nNote that this field is ignored for other endpoints, e.g. `GetInput`, `ListInputs` and `PatchInputs`."
+    },
+    "settings": {
+      "$ref": "#/definitions/apiInputSettings",
+      "description": "Global settings for annotation tracks."
+    }
+  }
+}

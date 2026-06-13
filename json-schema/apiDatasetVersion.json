@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiDatasetVersion.json",
+  "title": "apiDatasetVersion",
+  "description": "Clarifai apiDatasetVersion schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "The ID for the dataset version"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the dataset version was created.\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the dataset version was modified.\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "app_id": {
+      "type": "string",
+      "description": "The app the dataset version belongs to."
+    },
+    "user_id": {
+      "type": "string",
+      "description": "The user the dataset version belongs to."
+    },
+    "dataset_id": {
+      "type": "string",
+      "description": "The dataset the dataset version belongs to."
+    },
+    "annotation_filter_config": {
+      "$ref": "#/definitions/apiAnnotationFilterConfig",
+      "description": "The dataset version will be generated based on a single annotation filter."
+    },
+    "model_predict_config": {
+      "$ref": "#/definitions/apiModelPredictConfig",
+      "description": "The dataset version will be generated based on model version inferences."
+    },
+    "status": {
+      "$ref": "#/definitions/apistatusStatus",
+      "description": "Status for this dataset version."
+    },
+    "description": {
+      "type": "string",
+      "title": "Description of the dataset version"
+    },
+    "processing_info": {
+      "$ref": "#/definitions/apiDatasetVersionProcessingInfo",
+      "description": "Dataset version processing. If this is not set when the dataset version is\ncreated, then the dataset default_processing_info is copied instead. Later\nupdates to default_processing_info will not apply to existing versions."
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/apiDatasetVersionMetrics"
+      },
+      "title": "Dataset version metrics"
+    },
+    "export_info": {
+      "$ref": "#/definitions/apiDatasetVersionExportInfo",
+      "title": "Dataset version exports"
+    },
+    "metadata": {
+      "type": "object",
+      "title": "To handle arbitrary json metadata you can use a struct field:\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto"
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "embed_model_version_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The embedding models to return embeddings for. If empty, no embeddings are returned."
+    },
+    "request_origin": {
+      "$ref": "#/definitions/apiDatasetVersionRequestOrigin",
+      "title": "Read Only. Cannot be Set\nOrigin of request for new dataset version"
+    }
+  }
+}

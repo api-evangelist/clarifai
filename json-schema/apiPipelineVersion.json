@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiPipelineVersion.json",
+  "title": "apiPipelineVersion",
+  "description": "Clarifai apiPipelineVersion schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "app_id": {
+      "type": "string",
+      "description": "The app the pipeline version belongs to."
+    },
+    "user_id": {
+      "type": "string",
+      "description": "The user the pipeline version belongs to."
+    },
+    "orchestration_spec": {
+      "$ref": "#/definitions/apiOrchestrationSpec",
+      "title": "Orchestration Specification using oneof"
+    },
+    "pipeline_id": {
+      "type": "string",
+      "title": "Pipeline's Id"
+    },
+    "description": {
+      "type": "string",
+      "title": "Short description about this pipeline version"
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "metadata": {
+      "type": "object",
+      "title": "To handle arbitrary json metadata, use a struct field\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the pipeline was created"
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the pipeline was last modified"
+    },
+    "config": {
+      "$ref": "#/definitions/apiPipelineVersionConfig",
+      "title": "Pipeline version configuration including step secrets"
+    }
+  }
+}

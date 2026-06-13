@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiApp.json",
+  "title": "apiApp",
+  "description": "Clarifai apiApp schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "default_language": {
+      "type": "string"
+    },
+    "default_workflow_id": {
+      "type": "string",
+      "description": "Deprecated, use default_workflow instead.\n\n@exclude TODO (EAGLE-4506): Remove this field and associated code"
+    },
+    "default_workflow": {
+      "$ref": "#/definitions/apiWorkflow"
+    },
+    "user_id": {
+      "type": "string",
+      "title": "why is user_id present here when this message type is used in PostApps but completely ignored there? PostApp already\nspecifies the userid in path but doesn't even actually use neither of userids, it instead used the id from auth context.\nThis creates a lot of ambiguity, should always have different message types for Post/Get endpoints so that the minimum interface for each op can be described"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the app was created. We follow the XXXX timestamp\nformat. We use https://www.ietf.org/rfc/rfc3339.txt format:\n\"2006-01-02T15:04:05.999999Z\" so you can expect results like\nthe following from the API:\n\"2017-04-11T21:50:50.223962Z\""
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "When the app was last modified"
+    },
+    "legal_consent_status": {
+      "type": "integer",
+      "format": "int64",
+      "title": "if user accept legal consent for face recognition"
+    },
+    "metadata": {
+      "type": "object",
+      "title": "To handle arbitrary json metadata you can use a struct field:\nhttps://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto"
+    },
+    "description": {
+      "type": "string",
+      "description": "short description about the app."
+    },
+    "sample_ms": {
+      "type": "integer",
+      "format": "int64",
+      "title": "Default value for model predictions on video: Sample delay for video predicting (1 frame per N milliseconds)"
+    },
+    "visibility": {
+      "$ref": "#/definitions/clarifaiapiVisibility",
+      "description": "The visibility field represents whether this message is privately/publicly visible.\nTo be visible to the public the App that contains it AND the User that contains the App must\nalso be publicly visible."
+    },
+    "data_tier_id": {
+      "type": "string",
+      "description": "data tier id this app is using."
+    },
+    "is_starred": {
+      "type": "boolean",
+      "title": "Is starred by the requesting user (only showed on get/list requests)\nPlease use PostAppStars/DeleteAppStars endpoints to star/unstar an app"
+    },
+    "star_count": {
+      "type": "integer",
+      "format": "int32",
+      "title": "How many users have starred the app (only showed on get/list requests)\nComputed value, not editable"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes for the application\nThis field should be used for in-depth notes and supports up to 64Kbs."
+    },
+    "image": {
+      "$ref": "#/definitions/apiImage",
+      "title": "Representative image for this app"
+    },
+    "is_template": {
+      "type": "boolean",
+      "description": "An app marked as a template can be duplicated by any user that can see it,\nincluding all visible resources within it."
+    },
+    "extra_info": {
+      "$ref": "#/definitions/apiAppExtraInfo"
+    },
+    "embeddings_storage": {
+      "$ref": "#/definitions/AppEmbeddingsStorage",
+      "title": "Where app embeddings are stored\npostgres (default), qdrant"
+    }
+  }
+}

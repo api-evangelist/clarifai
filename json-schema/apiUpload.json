@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/json-schema/apiUpload.json",
+  "title": "apiUpload",
+  "description": "Clarifai apiUpload schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "ID of upload"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the upload was started.\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Most recent time when the upload was updated.\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the upload will expire and be deleted\nThe format is https://www.ietf.org/rfc/rfc3339.txt.\nExample: \"2006-01-02T15:04:05.999999Z\"."
+    },
+    "status": {
+      "$ref": "#/definitions/apistatusStatus",
+      "title": "Status of the upload"
+    },
+    "content_name": {
+      "type": "string",
+      "title": "name of uploaded content (e.g. filename)"
+    },
+    "content_length": {
+      "type": "string",
+      "format": "uint64",
+      "title": "Total size of the upload content"
+    },
+    "content_url": {
+      "type": "string",
+      "title": "Url of uploaded content"
+    }
+  }
+}

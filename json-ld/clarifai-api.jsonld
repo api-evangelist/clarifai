@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "clarifai": "https://api.clarifai.com/v2/"
+  },
+  "@type": "schema:WebAPI",
+  "@id": "https://api.clarifai.com/v2",
+  "schema:name": "Clarifai API",
+  "schema:description": "AI computer vision and NLP platform providing REST and gRPC APIs for image recognition, object detection, text analysis, visual search, and custom model training",
+  "schema:url": "https://docs.clarifai.com",
+  "schema:documentation": "https://docs.clarifai.com",
+  "schema:provider": {
+    "@type": "schema:Organization",
+    "schema:name": "Clarifai",
+    "schema:url": "https://www.clarifai.com"
+  },
+  "schema:termsOfService": "https://www.clarifai.com/terms",
+  "schema:version": "2.0",
+  "schema:availableChannel": {
+    "@type": "schema:ServiceChannel",
+    "schema:serviceUrl": "https://api.clarifai.com/v2",
+    "schema:availableLanguage": "en"
+  },
+  "clarifai:specificationUrl": "https://api.clarifai.com/v2/swagger.json",
+  "clarifai:pathCount": 297,
+  "clarifai:definitionCount": 655
+}

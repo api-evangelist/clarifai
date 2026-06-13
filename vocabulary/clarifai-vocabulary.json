@@ -1,0 +1,2896 @@
+{
+  "name": "Clarifai API Vocabulary",
+  "description": "Resource types, terms, and operations vocabulary extracted from the Clarifai REST API specification",
+  "source": "https://api.clarifai.com/v2/swagger.json",
+  "version": "2.0",
+  "resourceTypes": [
+    "add",
+    "annotation_filters",
+    "annotation_tracks",
+    "annotations",
+    "app",
+    "apps",
+    "artifacts",
+    "assignments",
+    "bulk_operations",
+    "check_consents",
+    "cloud_providers",
+    "collaborations",
+    "collaborators",
+    "compute_clusters",
+    "compute_plane_metrics",
+    "concepts",
+    "content_parts",
+    "count",
+    "data",
+    "data_sources",
+    "datasets",
+    "deployments",
+    "duplications",
+    "evaluations",
+    "exports",
+    "extraction",
+    "generate",
+    "ids",
+    "input_examples",
+    "inputs",
+    "instance_types",
+    "items",
+    "keys",
+    "knowledge_graphs",
+    "label_orders",
+    "labels",
+    "languages",
+    "live",
+    "log_entries",
+    "logs",
+    "metrics",
+    "migration",
+    "models",
+    "my_scopes",
+    "myscopes",
+    "myscopesroot",
+    "nodepools",
+    "open_source_licenses",
+    "output_info",
+    "outputs",
+    "partial",
+    "pipeline_steps",
+    "pipeline_templates",
+    "pipeline_version_runs",
+    "pipelines",
+    "process",
+    "publish",
+    "references",
+    "regions",
+    "relations",
+    "resource_counts",
+    "results",
+    "runner_replica_task_metrics",
+    "runners",
+    "runs",
+    "samples",
+    "scopes",
+    "searches",
+    "secrets",
+    "status",
+    "status_codes",
+    "status_logs",
+    "stream",
+    "tasks",
+    "time_estimate",
+    "toolkits",
+    "types",
+    "unpublish",
+    "upload",
+    "uploads",
+    "usecases",
+    "users",
+    "validate_password",
+    "versions",
+    "video_manifest",
+    "workers",
+    "workflow-version-evaluation-templates",
+    "workflow-version-evaluations",
+    "workflows"
+  ],
+  "operationCount": 466,
+  "operations": [
+    {
+      "path": "/v2/annotation_filters",
+      "method": "GET",
+      "operationId": "V2_ListAnnotationFilters2",
+      "summary": "List all the annotation filters."
+    },
+    {
+      "path": "/v2/annotation_filters",
+      "method": "DELETE",
+      "operationId": "V2_DeleteAnnotationFilters2",
+      "summary": "Delete one or more annotation filters in a single request."
+    },
+    {
+      "path": "/v2/annotation_filters",
+      "method": "POST",
+      "operationId": "V2_PostAnnotationFilters2",
+      "summary": "Add annotation filters."
+    },
+    {
+      "path": "/v2/annotation_filters",
+      "method": "PATCH",
+      "operationId": "V2_PatchAnnotationFilters2",
+      "summary": "Patch one or more annotation filters."
+    },
+    {
+      "path": "/v2/annotation_filters/{annotation_filter_id}",
+      "method": "GET",
+      "operationId": "V2_GetAnnotationFilter2",
+      "summary": "Get a specific annotation filter."
+    },
+    {
+      "path": "/v2/annotations",
+      "method": "GET",
+      "operationId": "V2_ListAnnotations2",
+      "summary": "List all the annotation."
+    },
+    {
+      "path": "/v2/annotations",
+      "method": "DELETE",
+      "operationId": "V2_DeleteAnnotations4",
+      "summary": "Delete multiple annotations in one request."
+    },
+    {
+      "path": "/v2/annotations",
+      "method": "POST",
+      "operationId": "V2_PostAnnotations2",
+      "summary": "Post annotations."
+    },
+    {
+      "path": "/v2/annotations",
+      "method": "PATCH",
+      "operationId": "V2_PatchAnnotations2",
+      "summary": "Patch one or more annotations."
+    },
+    {
+      "path": "/v2/annotations/searches",
+      "method": "POST",
+      "operationId": "V2_PostAnnotationsSearches2",
+      "summary": "Execute a search over annotations"
+    },
+    {
+      "path": "/v2/annotations/searches",
+      "method": "PATCH",
+      "operationId": "V2_PatchAnnotationsSearches2",
+      "summary": "Patch saved annotations searches by ids."
+    },
+    {
+      "path": "/v2/annotations/workers",
+      "method": "GET",
+      "operationId": "V2_ListAnnotationWorkers2",
+      "summary": "ListAnnotationWorkers lists users, models, and workflows (collectively\nknown as \"workers\") that have added annotations to the application."
+    },
+    {
+      "path": "/v2/app",
+      "method": "GET",
+      "operationId": "V2_GetApp2",
+      "summary": "Get a specific app from an app."
+    },
+    {
+      "path": "/v2/apps",
+      "method": "GET",
+      "operationId": "V2_ListApps2",
+      "summary": "List all the apps."
+    },
+    {
+      "path": "/v2/artifact_versions/upload",
+      "method": "POST",
+      "operationId": "V2_PostArtifactVersionsUpload",
+      "summary": "This is a streaming endpoint, the request has a field, upload_data, which can either be the config for the upload or the actual data to upload.\nThe config must be sent first before the artifact_bytes can be uploaded.\nOnce the config has been sent, the server will respond with a confirmation containing the artifact_version_id.\nThis is so that if your upload is interrupted, you can resume the upload by sending the config again with the artifact_version_id specified for your artifact_version.\nThe actual upload will be done via a multipart upload, the latest successful part_id will be sent from the server in the response to the artifact_bytes."
+    },
+    {
+      "path": "/v2/bulk_operations",
+      "method": "GET",
+      "operationId": "V2_ListBulkOperations2",
+      "summary": "List all the bulk operations"
+    },
+    {
+      "path": "/v2/bulk_operations",
+      "method": "DELETE",
+      "operationId": "V2_DeleteBulkOperations2",
+      "summary": "delete one or more terminated bulk operations"
+    },
+    {
+      "path": "/v2/bulk_operations",
+      "method": "POST",
+      "operationId": "V2_PostBulkOperations2",
+      "summary": "Perform bulk operations on a list of inputs based on input source.\nOperation include add, update, delete of concepts, metadata and geo data.\nThis is an Asynchronous process. Use ListBulkOperations or GetBulkOperation to check the status."
+    },
+    {
+      "path": "/v2/bulk_operations",
+      "method": "PATCH",
+      "operationId": "V2_CancelBulkOperations2",
+      "summary": "Cancel one or more bulk operations"
+    },
+    {
+      "path": "/v2/bulk_operations/{id}",
+      "method": "GET",
+      "operationId": "V2_GetBulkOperation2",
+      "summary": "Get the bulk operation details by ID"
+    },
+    {
+      "path": "/v2/cloud_providers",
+      "method": "GET",
+      "operationId": "V2_ListCloudProviders",
+      "summary": "List Available Cloud Providers"
+    },
+    {
+      "path": "/v2/cloud_providers/{cloud_provider.id}/regions",
+      "method": "GET",
+      "operationId": "V2_ListCloudRegions",
+      "summary": "List Regions for given Cloud Provider"
+    },
+    {
+      "path": "/v2/cloud_providers/{cloud_provider.id}/regions/{region}/instance_types",
+      "method": "GET",
+      "operationId": "V2_ListInstanceTypes",
+      "summary": "Get InstanceTypes given Cloud Provider and Region"
+    },
+    {
+      "path": "/v2/compute_clusters",
+      "method": "GET",
+      "operationId": "V2_ListComputeClusters2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/compute_plane_metrics",
+      "method": "POST",
+      "operationId": "V2_PostComputePlaneMetrics",
+      "summary": ""
+    },
+    {
+      "path": "/v2/concepts",
+      "method": "GET",
+      "operationId": "V2_ListConcepts2",
+      "summary": "List all the concepts."
+    },
+    {
+      "path": "/v2/concepts",
+      "method": "POST",
+      "operationId": "V2_PostConcepts2",
+      "summary": "Add a concept to an app."
+    },
+    {
+      "path": "/v2/concepts",
+      "method": "PATCH",
+      "operationId": "V2_PatchConcepts2",
+      "summary": "Patch one or more concepts."
+    },
+    {
+      "path": "/v2/concepts/knowledge_graphs",
+      "method": "GET",
+      "operationId": "V2_ListKnowledgeGraphs2",
+      "summary": "List all domain graphs."
+    },
+    {
+      "path": "/v2/concepts/knowledge_graphs",
+      "method": "POST",
+      "operationId": "V2_PostKnowledgeGraphs2",
+      "summary": "Post domain graphs."
+    },
+    {
+      "path": "/v2/concepts/searches",
+      "method": "POST",
+      "operationId": "V2_PostConceptsSearches2",
+      "summary": "Search over the concepts to find one or more you're looking for.\nThis leverage the \"body\" parameter because we also have page and\nper_page as url query param variables in this request."
+    },
+    {
+      "path": "/v2/concepts/status",
+      "method": "GET",
+      "operationId": "V2_GetConceptCounts2",
+      "summary": "List all the concepts with their positive and negative counts"
+    },
+    {
+      "path": "/v2/concepts/{concept_id}",
+      "method": "GET",
+      "operationId": "V2_GetConcept2",
+      "summary": "Get a specific concept from an app."
+    },
+    {
+      "path": "/v2/concepts/{concept_id}/languages",
+      "method": "GET",
+      "operationId": "V2_ListConceptLanguages2",
+      "summary": "List the concept in all the translated languages."
+    },
+    {
+      "path": "/v2/concepts/{concept_id}/languages",
+      "method": "POST",
+      "operationId": "V2_PostConceptLanguages2",
+      "summary": "Add a new translation for this concept."
+    },
+    {
+      "path": "/v2/concepts/{concept_id}/languages",
+      "method": "PATCH",
+      "operationId": "V2_PatchConceptLanguages2",
+      "summary": "Patch the name for a given language names by passing in a list of concepts with the new names\nfor the languages."
+    },
+    {
+      "path": "/v2/concepts/{concept_id}/languages/{language}",
+      "method": "GET",
+      "operationId": "V2_GetConceptLanguage2",
+      "summary": "Get a specific concept from an app."
+    },
+    {
+      "path": "/v2/datasets",
+      "method": "GET",
+      "operationId": "V2_ListDatasets3",
+      "summary": "List all the datasets."
+    },
+    {
+      "path": "/v2/datasets",
+      "method": "DELETE",
+      "operationId": "V2_DeleteDatasets2",
+      "summary": "Delete one or more datasets in a single request."
+    },
+    {
+      "path": "/v2/datasets",
+      "method": "POST",
+      "operationId": "V2_PostDatasets2",
+      "summary": "Add datasets to an app.\nThe process is atomic, i.e. either all or no datasets are added.\nIf there is an error for one dataset,\nthe process will stop, revert the transaction and return the error."
+    },
+    {
+      "path": "/v2/datasets",
+      "method": "PATCH",
+      "operationId": "V2_PatchDatasets2",
+      "summary": "Patch one or more datasets.\nThe process is atomic, i.e. either all or no datasets are patched.\nIf there is an error for one dataset,\nthe process will stop, revert the transaction and return the error."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}",
+      "method": "GET",
+      "operationId": "V2_GetDataset2",
+      "summary": "Get a specific dataset."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/inputs",
+      "method": "GET",
+      "operationId": "V2_ListDatasetInputs2",
+      "summary": "List all the dataset inputs in a dataset."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/inputs",
+      "method": "DELETE",
+      "operationId": "V2_DeleteDatasetInputs2",
+      "summary": "Delete one or more dataset inputs in a single request."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/inputs",
+      "method": "POST",
+      "operationId": "V2_PostDatasetInputs2",
+      "summary": "Add dataset inputs to a dataset.\nThe process is not atomic, i.e. if there are errors with some dataset\ninputs, others might still be added. The response reports\n  - SUCCESS if all dataset inputs were added,\n  - MIXED_STATUS if only some dataset inputs were added, and\n  - FAILURE if no dataset inputs were added.\nEach individual dataset input in the response has the status set to\nindicate if it was successful or if there was an error."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/inputs/{input_id}",
+      "method": "GET",
+      "operationId": "V2_GetDatasetInput2",
+      "summary": "Get a specific dataset input."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/versions",
+      "method": "GET",
+      "operationId": "V2_ListDatasetVersions2",
+      "summary": "List all the dataset versions."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/versions",
+      "method": "DELETE",
+      "operationId": "V2_DeleteDatasetVersions2",
+      "summary": "Delete one or more dataset versions in a single request."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/versions",
+      "method": "POST",
+      "operationId": "V2_PostDatasetVersions2",
+      "summary": "Add dataset versions to a dataset."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/versions",
+      "method": "PATCH",
+      "operationId": "V2_PatchDatasetVersions2",
+      "summary": "Patch one or more dataset versions."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/versions/{dataset_version_id}",
+      "method": "GET",
+      "operationId": "V2_GetDatasetVersion2",
+      "summary": "Get a specific dataset version."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/versions/{dataset_version_id}/exports",
+      "method": "PUT",
+      "operationId": "V2_PutDatasetVersionExports2",
+      "summary": "Create export of a dataset version."
+    },
+    {
+      "path": "/v2/datasets/{dataset_id}/versions/{dataset_version_id}/metrics",
+      "method": "GET",
+      "operationId": "V2_ListDatasetVersionMetricsGroups2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/deployments",
+      "method": "GET",
+      "operationId": "V2_ListDeployments2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/evaluations",
+      "method": "GET",
+      "operationId": "V2_ListEvaluations3",
+      "summary": ""
+    },
+    {
+      "path": "/v2/evaluations",
+      "method": "POST",
+      "operationId": "V2_PostEvaluations2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/evaluations/{evaluation_id}",
+      "method": "GET",
+      "operationId": "V2_GetEvaluation2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/inputs",
+      "method": "GET",
+      "operationId": "V2_ListInputs2",
+      "summary": "List all the inputs."
+    },
+    {
+      "path": "/v2/inputs",
+      "method": "DELETE",
+      "operationId": "V2_DeleteInputs2",
+      "summary": "Delete multiple inputs in one request.\nThis call is asynchronous."
+    },
+    {
+      "path": "/v2/inputs",
+      "method": "POST",
+      "operationId": "V2_PostInputs2",
+      "summary": "PostInputs adds one or more inputs to the app.\nTakes a list of image/video/audio/text URLs, image/video/audio bytes or raw text\nOptionally, include concepts or dataset ids to link them\nOptionally, include metadata for search\nNote that inputs processing is asynchronous process\nSee ListInputs, StreamInputs or PostInputSearches to list results"
+    },
+    {
+      "path": "/v2/inputs",
+      "method": "PATCH",
+      "operationId": "V2_PatchInputs2",
+      "summary": "Patch one or more inputs."
+    },
+    {
+      "path": "/v2/inputs/annotations",
+      "method": "DELETE",
+      "operationId": "V2_DeleteAnnotations2",
+      "summary": "Delete multiple annotations in one request."
+    },
+    {
+      "path": "/v2/inputs/data_sources",
+      "method": "POST",
+      "operationId": "V2_PostInputsDataSources2",
+      "summary": "Initiates retrieval of inputs from cloud storage from a user provided data source.\nWill create and return an inputs-add-job for tracking progress.\nArchives will be extracted and their contents will be processed as inputs."
+    },
+    {
+      "path": "/v2/inputs/jobs/add",
+      "method": "GET",
+      "operationId": "V2_ListInputsAddJobs2",
+      "summary": "List all the inputs add jobs"
+    },
+    {
+      "path": "/v2/inputs/jobs/add/{id}",
+      "method": "GET",
+      "operationId": "V2_GetInputsAddJob2",
+      "summary": "Get the input add job details by ID"
+    },
+    {
+      "path": "/v2/inputs/jobs/add/{id}",
+      "method": "PATCH",
+      "operationId": "V2_CancelInputsAddJob2",
+      "summary": "cancel the input add job by ID"
+    },
+    {
+      "path": "/v2/inputs/jobs/extraction",
+      "method": "GET",
+      "operationId": "V2_ListInputsExtractionJobs2",
+      "summary": "List all the input extraction jobs"
+    },
+    {
+      "path": "/v2/inputs/jobs/extraction",
+      "method": "PATCH",
+      "operationId": "V2_CancelInputsExtractionJobs2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/inputs/jobs/extraction/{inputs_extraction_job_id}",
+      "method": "GET",
+      "operationId": "V2_GetInputsExtractionJob2",
+      "summary": "Get the input extraction job details by ID"
+    },
+    {
+      "path": "/v2/inputs/searches",
+      "method": "POST",
+      "operationId": "V2_PostInputsSearches2",
+      "summary": "Execute a search over inputs"
+    },
+    {
+      "path": "/v2/inputs/searches",
+      "method": "PATCH",
+      "operationId": "V2_PatchInputsSearches2",
+      "summary": "Patch saved inputs searches by ids."
+    },
+    {
+      "path": "/v2/inputs/status",
+      "method": "GET",
+      "operationId": "V2_GetInputCount2",
+      "summary": "Get input count per status."
+    },
+    {
+      "path": "/v2/inputs/stream",
+      "method": "GET",
+      "operationId": "V2_StreamInputs2",
+      "summary": "Streams all the inputs starting from oldest assets."
+    },
+    {
+      "path": "/v2/inputs/uploads",
+      "method": "POST",
+      "operationId": "V2_PostInputsUploads2",
+      "summary": "Create new upload job with a file archive containing inputs (images, videos, text, audio)\nActual file upload happens in next steps by calling `PutUploadContentParts` endpoint\nand providing the file content in the request body.\nThis endpoint creates and return an inputs-add-job which contains an upload id needed for upload and further status tracking\nCompleting the upload will automatically begin unpacking the archive and uploading the contents as inputs.\nSee also GetInputsAddJob and then GetInputsExtractionJob"
+    },
+    {
+      "path": "/v2/inputs/{input_id}",
+      "method": "GET",
+      "operationId": "V2_GetInput2",
+      "summary": "Get a specific input from an app."
+    },
+    {
+      "path": "/v2/inputs/{input_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteInput2",
+      "summary": "Delete a single input asynchronously."
+    },
+    {
+      "path": "/v2/inputs/{input_id}/annotation_tracks",
+      "method": "GET",
+      "operationId": "V2_ListAnnotationTracks2",
+      "summary": "List all the annotation tracks."
+    },
+    {
+      "path": "/v2/inputs/{input_id}/annotation_tracks",
+      "method": "DELETE",
+      "operationId": "V2_DeleteAnnotationTracks2",
+      "summary": "Delete multiple annotation tracks in one request."
+    },
+    {
+      "path": "/v2/inputs/{input_id}/annotation_tracks",
+      "method": "POST",
+      "operationId": "V2_PostAnnotationTracks2",
+      "summary": "Post annotation tracks."
+    },
+    {
+      "path": "/v2/inputs/{input_id}/annotation_tracks",
+      "method": "PATCH",
+      "operationId": "V2_PatchAnnotationTracks2",
+      "summary": "Patch one or more annotation tracks."
+    },
+    {
+      "path": "/v2/inputs/{input_id}/annotations/stream/live",
+      "method": "POST",
+      "operationId": "V2_StreamLivestreamAnnotations2",
+      "summary": "Stream live video annotations as soon as they are available.\nThis endpoint will NOT replay old annotations, but only stream new annotations that are generated after the stream is opened."
+    },
+    {
+      "path": "/v2/inputs/{input_id}/annotations/{annotation_id}",
+      "method": "GET",
+      "operationId": "V2_GetAnnotation2",
+      "summary": "Get a specific annotation from an app."
+    },
+    {
+      "path": "/v2/inputs/{input_id}/annotations/{annotation_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteAnnotation2",
+      "summary": "Delete a single annotation."
+    },
+    {
+      "path": "/v2/inputs/{input_id}/track_annotations/searches",
+      "method": "POST",
+      "operationId": "V2_PostTrackAnnotationsSearches2",
+      "summary": "List video track annotations for a specific input."
+    },
+    {
+      "path": "/v2/inputs/{input_id}/track_annotations/searches/stream",
+      "method": "POST",
+      "operationId": "V2_StreamAnnotations2",
+      "summary": "Stream annotations for a specific input one-by-one."
+    },
+    {
+      "path": "/v2/inputs/{input_id}/video_manifest",
+      "method": "GET",
+      "operationId": "V2_GetInputVideoManifest2",
+      "summary": "Get a MPEG-DASH manifest for video-type inputs that were added via PostInputs and successfully processed\nExperimental. Manifest is used by browser and desktop clients that implement an efficient streaming playback\nThis means client can switch between low-resolution and high-resolution video streams\nDepending on network bandwidth or user's preference\nThis also means that reencoded video streams are reencoded in a uniform way, not relying on original format\nAlternative to MPEG-dash is to stream original file with byte-range header"
+    },
+    {
+      "path": "/v2/label_orders",
+      "method": "GET",
+      "operationId": "V2_ListLabelOrders2",
+      "summary": "List label orders."
+    },
+    {
+      "path": "/v2/label_orders",
+      "method": "DELETE",
+      "operationId": "V2_DeleteLabelOrders2",
+      "summary": "Delete multiple label orders in one request.\nthis do not change task status"
+    },
+    {
+      "path": "/v2/label_orders",
+      "method": "POST",
+      "operationId": "V2_PostLabelOrders2",
+      "summary": "Add Label orders."
+    },
+    {
+      "path": "/v2/label_orders",
+      "method": "PATCH",
+      "operationId": "V2_PatchLabelOrders2",
+      "summary": "Patch one or more label orders."
+    },
+    {
+      "path": "/v2/label_orders/{label_order_id}",
+      "method": "GET",
+      "operationId": "V2_GetLabelOrder2",
+      "summary": "Get a label order."
+    },
+    {
+      "path": "/v2/log_entries",
+      "method": "POST",
+      "operationId": "V2_PostLogEntries",
+      "summary": ""
+    },
+    {
+      "path": "/v2/models",
+      "method": "GET",
+      "operationId": "V2_ListModels3",
+      "summary": "List all the models."
+    },
+    {
+      "path": "/v2/models",
+      "method": "DELETE",
+      "operationId": "V2_DeleteModels2",
+      "summary": "Delete multiple models in one request."
+    },
+    {
+      "path": "/v2/models",
+      "method": "POST",
+      "operationId": "V2_PostModels2",
+      "summary": "Add a models to an app."
+    },
+    {
+      "path": "/v2/models",
+      "method": "PATCH",
+      "operationId": "V2_PatchModels2",
+      "summary": "Patch one or more models."
+    },
+    {
+      "path": "/v2/models/outputs/stream",
+      "method": "POST",
+      "operationId": "V2_StreamModelOutputs",
+      "summary": "Stream of requests and stream of responses"
+    },
+    {
+      "path": "/v2/models/searches",
+      "method": "POST",
+      "operationId": "V2_PostModelsSearches2",
+      "summary": "Search over the models to find one or more you're looking for.\nThis leverage the \"body\" parameter because we also have page and\nper_page as url query param variables in this request."
+    },
+    {
+      "path": "/v2/models/types",
+      "method": "GET",
+      "operationId": "V2_ListModelTypes2",
+      "summary": "List all the model types available in the platform.\nThis MUST be above ListModels so that the /models/types endpoint takes precedence."
+    },
+    {
+      "path": "/v2/models/types/{model_type_id}",
+      "method": "GET",
+      "operationId": "V2_GetModelType2",
+      "summary": "Get a specific model type."
+    },
+    {
+      "path": "/v2/models/versions/upload",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionsUpload",
+      "summary": "This is a streaming endpoint, the request has a field, upload_data, which can either be the config for the upload or the actual data to upload.\nThe config must be sent first before the model_bytes can be uploaded.\nOnce the config has been sent, the server will respond with a confirmation containing the model_version_id.\nThis is so that if your upload is interrupted, you can resume the upload by sending the config again with the model_version_id specified for your model_version.\nThe actual upload will be done via a multipart upload, the latest successful part_id will be sent from the server in the response to the model_bytes."
+    },
+    {
+      "path": "/v2/models/{model_id}",
+      "method": "GET",
+      "operationId": "V2_GetModel2",
+      "summary": "Get a specific model from an app."
+    },
+    {
+      "path": "/v2/models/{model_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteModel2",
+      "summary": "Delete a single model."
+    },
+    {
+      "path": "/v2/models/{model_id}/check_consents",
+      "method": "PATCH",
+      "operationId": "V2_PatchModelCheckConsents2",
+      "summary": "Update model check consents"
+    },
+    {
+      "path": "/v2/models/{model_id}/inputs",
+      "method": "GET",
+      "operationId": "V2_ListModelInputs2",
+      "summary": "Deprecated: Unmaintained and ideally replaced with usage of datasets\n  The server may refuse to accept requests to this endpoint."
+    },
+    {
+      "path": "/v2/models/{model_id}/languages",
+      "method": "PATCH",
+      "operationId": "V2_PatchModelLanguages2",
+      "summary": "Update model languages tags"
+    },
+    {
+      "path": "/v2/models/{model_id}/output_info",
+      "method": "GET",
+      "operationId": "V2_GetModelOutputInfo2",
+      "summary": "Get a the output info for a given model_id or model_id/version_id\ncombo."
+    },
+    {
+      "path": "/v2/models/{model_id}/outputs",
+      "method": "POST",
+      "operationId": "V2_PostModelOutputs4",
+      "summary": "Get predicted outputs from the model."
+    },
+    {
+      "path": "/v2/models/{model_id}/publish",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionsPublish2",
+      "summary": "PostModelVersionsPublish"
+    },
+    {
+      "path": "/v2/models/{model_id}/references",
+      "method": "GET",
+      "operationId": "V2_ListModelReferences2",
+      "summary": "Lists model references tied to a particular model id."
+    },
+    {
+      "path": "/v2/models/{model_id}/toolkits",
+      "method": "PATCH",
+      "operationId": "V2_PatchModelToolkits2",
+      "summary": "Update model toolkits tags"
+    },
+    {
+      "path": "/v2/models/{model_id}/unpublish",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionsUnPublish2",
+      "summary": "PostModelVersionsUnPublish"
+    },
+    {
+      "path": "/v2/models/{model_id}/usecases",
+      "method": "PATCH",
+      "operationId": "V2_PatchModelUseCases2",
+      "summary": "Update model use_cases tags"
+    },
+    {
+      "path": "/v2/models/{model_id}/versions",
+      "method": "GET",
+      "operationId": "V2_ListModelVersions2",
+      "summary": "List all the models."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions",
+      "method": "POST",
+      "operationId": "V2_PostModelVersions2",
+      "summary": "Create a new model version to trigger training of the model."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/time_estimate",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionsTrainingTimeEstimate2",
+      "summary": "Get the training time estimate based off train request and estimated input count."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{model_version_id}/evaluations",
+      "method": "GET",
+      "operationId": "V2_ListModelVersionEvaluations2",
+      "summary": "Deprecated, use GetEvaluation instead\nList the evaluation metrics for a model version."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{model_version_id}/evaluations",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionEvaluations2",
+      "summary": "Deprecated, use PostEvaluations instead"
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{model_version_id}/evaluations/{evaluation_id}",
+      "method": "GET",
+      "operationId": "V2_GetModelVersionEvaluation2",
+      "summary": "Deprecated, use GetEvaluation instead\nGet an evaluation metrics for a model version."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{model_version_id}/input_examples",
+      "method": "GET",
+      "operationId": "V2_ListModelVersionInputExamples2",
+      "summary": "ListModelVersionInputExamples"
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{model_version_id}/input_examples/{example_id}",
+      "method": "GET",
+      "operationId": "V2_GetModelVersionInputExample2",
+      "summary": "GetModelVersionInputExample"
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{version_id}",
+      "method": "GET",
+      "operationId": "V2_GetModelVersion2",
+      "summary": "Get a specific model from an app."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{version_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteModelVersion2",
+      "summary": "Delete a single model."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{version_id}/exports",
+      "method": "GET",
+      "operationId": "V2_GetModelVersionExport2",
+      "summary": "GetModelVersionExport"
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{version_id}/exports",
+      "method": "PUT",
+      "operationId": "V2_PutModelVersionExports2",
+      "summary": "Export a model"
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{version_id}/inputs",
+      "method": "GET",
+      "operationId": "V2_ListModelInputs4",
+      "summary": "Deprecated: Unmaintained and ideally replaced with usage of datasets\n  The server may refuse to accept requests to this endpoint."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{version_id}/metrics",
+      "method": "GET",
+      "operationId": "V2_GetModelVersionMetrics2",
+      "summary": "Get the evaluation metrics for a model version.\nDeprecated: Use GetEvaluation instead\n  The server may refuse to accept requests to this endpoint."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{version_id}/metrics",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionMetrics2",
+      "summary": "Deprecated, use PostEvaluations instead\nRun the evaluation metrics for a model version."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{version_id}/output_info",
+      "method": "GET",
+      "operationId": "V2_GetModelOutputInfo4",
+      "summary": "Get a the output info for a given model_id or model_id/version_id\ncombo."
+    },
+    {
+      "path": "/v2/models/{model_id}/versions/{version_id}/outputs",
+      "method": "POST",
+      "operationId": "V2_PostModelOutputs2",
+      "summary": "Get predicted outputs from the model."
+    },
+    {
+      "path": "/v2/my_scopes",
+      "method": "GET",
+      "operationId": "V2_MyScopes3",
+      "summary": "API Keys in the public API -- request is itself Key authorized, and will tell\nthe user the scopes/access of the key/credential they're providing, as computed by\nour authorizer:"
+    },
+    {
+      "path": "/v2/myscopes",
+      "method": "GET",
+      "operationId": "V2_MyScopes2",
+      "summary": "API Keys in the public API -- request is itself Key authorized, and will tell\nthe user the scopes/access of the key/credential they're providing, as computed by\nour authorizer:"
+    },
+    {
+      "path": "/v2/myscopesroot",
+      "method": "GET",
+      "operationId": "V2_MyScopesRoot",
+      "summary": ""
+    },
+    {
+      "path": "/v2/nodepools",
+      "method": "GET",
+      "operationId": "V2_ListNodepools3",
+      "summary": ""
+    },
+    {
+      "path": "/v2/open_source_licenses",
+      "method": "GET",
+      "operationId": "V2_ListOpenSourceLicenses",
+      "summary": "List all the supported open source licenses in the platform."
+    },
+    {
+      "path": "/v2/pipeline_step_versions/upload",
+      "method": "POST",
+      "operationId": "V2_PostPipelineStepVersionsUpload",
+      "summary": "This is a streaming endpoint, the request has a field, upload_data, which can either be the config for the upload or the actual data to upload.\nThe config must be sent first before the pipeline_step_bytes can be uploaded.\nOnce the config has been sent, the server will respond with a confirmation containing the pipeline_step_version_id.\nThis is so that if your upload is interrupted, you can resume the upload by sending the config again with the pipeline_step_version_id specified for your pipeline_step_version.\nThe actual upload will be done via a multipart upload, the latest successful part_id will be sent from the server in the response to the pipeline_step_bytes."
+    },
+    {
+      "path": "/v2/pipeline_templates",
+      "method": "GET",
+      "operationId": "V2_ListPipelineTemplates",
+      "summary": "Lists pipeline templates, which are ready-to-use templates that can simply be run on demand."
+    },
+    {
+      "path": "/v2/pipelines",
+      "method": "GET",
+      "operationId": "V2_ListPipelines2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/pipelines/{pipeline_id}",
+      "method": "GET",
+      "operationId": "V2_GetPipeline2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/pipelines/{pipeline_id}/versions",
+      "method": "GET",
+      "operationId": "V2_ListPipelineVersions2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/pipelines/{pipeline_id}/versions/{pipeline_version_id}",
+      "method": "GET",
+      "operationId": "V2_GetPipelineVersion2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/pipelines/{pipeline_id}/versions/{pipeline_version_id}/runs/{pipeline_version_run_id}",
+      "method": "GET",
+      "operationId": "V2_GetPipelineVersionRun2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/resource_counts",
+      "method": "GET",
+      "operationId": "V2_GetResourceCounts2",
+      "summary": "List the resource counts for the app."
+    },
+    {
+      "path": "/v2/runners/items/process",
+      "method": "POST",
+      "operationId": "V2_ProcessRunnerItems",
+      "summary": "This maintains a single request for asking the API if there is any work to be done, processing\nit and streaming back results.\nTo do that first handshake the MultiRunnerItemOutputResponse will have RUNNER_STREAM_START\nstatus filled in so that the API knows to respond with a MultiRunnerItemResponse.\nFor now there will only be one of those if the model prediction only has one request.\nNOTE(zeiler): downside of this is you can't use HTTP REST requests to do runner work."
+    },
+    {
+      "path": "/v2/searches",
+      "method": "GET",
+      "operationId": "V2_ListSearches2",
+      "summary": "List all saved legacy searches."
+    },
+    {
+      "path": "/v2/searches",
+      "method": "POST",
+      "operationId": "V2_PostSearches2",
+      "summary": "Execute a new search and optionally save it."
+    },
+    {
+      "path": "/v2/searches",
+      "method": "PATCH",
+      "operationId": "V2_PatchSearches2",
+      "summary": "Patch saved legacy searches by ids."
+    },
+    {
+      "path": "/v2/searches/{id}",
+      "method": "GET",
+      "operationId": "V2_GetSearch2",
+      "summary": "Get a saved legacy search."
+    },
+    {
+      "path": "/v2/searches/{id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteSearch2",
+      "summary": "Delete a saved search."
+    },
+    {
+      "path": "/v2/searches/{id}",
+      "method": "POST",
+      "operationId": "V2_PostSearchesByID2",
+      "summary": "Execute a previously saved legacy search."
+    },
+    {
+      "path": "/v2/status_codes",
+      "method": "GET",
+      "operationId": "V2_ListStatusCodes",
+      "summary": "List all status codes."
+    },
+    {
+      "path": "/v2/status_codes/{status_code_id}",
+      "method": "GET",
+      "operationId": "V2_GetStatusCode",
+      "summary": "Get more details for a status code."
+    },
+    {
+      "path": "/v2/tasks",
+      "method": "GET",
+      "operationId": "V2_ListTasks2",
+      "summary": "List tasks from an app."
+    },
+    {
+      "path": "/v2/tasks",
+      "method": "DELETE",
+      "operationId": "V2_DeleteTasks2",
+      "summary": "Delete multiple tasks in one request."
+    },
+    {
+      "path": "/v2/tasks",
+      "method": "POST",
+      "operationId": "V2_PostTasks2",
+      "summary": "Add tasks to an app."
+    },
+    {
+      "path": "/v2/tasks",
+      "method": "PATCH",
+      "operationId": "V2_PatchTasks2",
+      "summary": "Patch one or more tasks."
+    },
+    {
+      "path": "/v2/tasks/{task_id}",
+      "method": "GET",
+      "operationId": "V2_GetTask2",
+      "summary": "Get a specific task from an app."
+    },
+    {
+      "path": "/v2/tasks/{task_id}/annotations/count",
+      "method": "GET",
+      "operationId": "V2_GetTaskAnnotationCount2",
+      "summary": "Task annotation count"
+    },
+    {
+      "path": "/v2/tasks/{task_id}/assignments",
+      "method": "GET",
+      "operationId": "V2_ListNextTaskAssignments2",
+      "summary": "Deprecated: Use PutTaskAssignments with action=LABEL_START.\n  This endpoint has initially been designed as a GET request,\n  but has been re-designed to serve a PUT logic.\n  In order to clearly highlight that this endpoint serves a PUT request,\n  this endpoint has been deprecated and replaced by PutTaskAssignments with action=LABEL_START."
+    },
+    {
+      "path": "/v2/tasks/{task_id}/inputs/count",
+      "method": "GET",
+      "operationId": "V2_GetTaskInputCount2",
+      "summary": "Task Input count"
+    },
+    {
+      "path": "/v2/tasks/{task_id}/inputs/samples",
+      "method": "GET",
+      "operationId": "V2_GetInputSamples2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/uploads",
+      "method": "GET",
+      "operationId": "V2_ListUploads2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/uploads",
+      "method": "DELETE",
+      "operationId": "V2_DeleteUploads2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/uploads",
+      "method": "POST",
+      "operationId": "V2_PostUploads2",
+      "summary": "PostUploads is used to upload files. Note that this does not create inputs.\nreturns job with uploadID, job has UPLOAD_IN_PROGRESS status\nActual upload content can be done in multiple calls with PutUploadContentParts\nYou can get status of upload with GetUpload or ListUploads endpoints\nSee also PostInputsUploads"
+    },
+    {
+      "path": "/v2/uploads/{upload_id}",
+      "method": "GET",
+      "operationId": "V2_GetUpload2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/uploads/{upload_id}/content_parts",
+      "method": "PUT",
+      "operationId": "V2_PutUploadContentParts2",
+      "summary": "Upload a part of a multipart upload.\nBehaviour on completion depends on the endpoint that was used to initiate the upload."
+    },
+    {
+      "path": "/v2/users/{runner_selector.deployment.user_id}/deployments/{runner_selector.deployment.id}/outputs",
+      "method": "POST",
+      "operationId": "V2_PostModelOutputs5",
+      "summary": "Get predicted outputs from the model."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id_1}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/runners",
+      "method": "POST",
+      "operationId": "V2_PatchRunners",
+      "summary": "Patch runners of a user."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id_1}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/runners/{runner_id}/{log_type}/logs",
+      "method": "GET",
+      "operationId": "V2_StreamLogEntries",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id_1}/compute_clusters/{compute_cluster_user_id}/{compute_cluster_id}/nodepools/{nodepool_id}/versions/{model_version_id}/{log_type}/logs",
+      "method": "GET",
+      "operationId": "V2_StreamLogEntries2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}",
+      "method": "GET",
+      "operationId": "V2_GetUser",
+      "summary": "Get user information"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps",
+      "method": "GET",
+      "operationId": "V2_ListApps",
+      "summary": "List all the apps."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps",
+      "method": "POST",
+      "operationId": "V2_PostApps",
+      "summary": "Add a app to an app.\nThis needs to load the default workflow to make a copy, validating all the models in it, and\nthen writing the new workflow back to this new app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps",
+      "method": "PATCH",
+      "operationId": "V2_PatchApps",
+      "summary": "Patch one or more apps."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/ids",
+      "method": "PATCH",
+      "operationId": "V2_PatchAppsIds",
+      "summary": "Patch apps ids."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/searches",
+      "method": "POST",
+      "operationId": "V2_PostAppsSearches",
+      "summary": "Search over the applications to find one or more you're looking for."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}",
+      "method": "GET",
+      "operationId": "V2_GetApp",
+      "summary": "Get a specific app from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteApp",
+      "summary": "Search over the apps to find one or more you're looking for.\nThis leverage the \"body\" parameter because we also have page and\nper_page as url query param variables in this request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}",
+      "method": "PATCH",
+      "operationId": "V2_PatchApp",
+      "summary": "Patch one app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotation_filters",
+      "method": "GET",
+      "operationId": "V2_ListAnnotationFilters",
+      "summary": "List all the annotation filters."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotation_filters",
+      "method": "DELETE",
+      "operationId": "V2_DeleteAnnotationFilters",
+      "summary": "Delete one or more annotation filters in a single request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotation_filters",
+      "method": "POST",
+      "operationId": "V2_PostAnnotationFilters",
+      "summary": "Add annotation filters."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotation_filters",
+      "method": "PATCH",
+      "operationId": "V2_PatchAnnotationFilters",
+      "summary": "Patch one or more annotation filters."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotation_filters/{annotation_filter_id}",
+      "method": "GET",
+      "operationId": "V2_GetAnnotationFilter",
+      "summary": "Get a specific annotation filter."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotation_tracks",
+      "method": "DELETE",
+      "operationId": "V2_DeleteAnnotationTracks",
+      "summary": "Delete multiple annotation tracks in one request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotations",
+      "method": "GET",
+      "operationId": "V2_ListAnnotations",
+      "summary": "List all the annotation."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotations",
+      "method": "DELETE",
+      "operationId": "V2_DeleteAnnotations3",
+      "summary": "Delete multiple annotations in one request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotations",
+      "method": "POST",
+      "operationId": "V2_PostAnnotations",
+      "summary": "Post annotations."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotations",
+      "method": "PATCH",
+      "operationId": "V2_PatchAnnotations",
+      "summary": "Patch one or more annotations."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotations/searches",
+      "method": "POST",
+      "operationId": "V2_PostAnnotationsSearches",
+      "summary": "Execute a search over annotations"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotations/searches",
+      "method": "PATCH",
+      "operationId": "V2_PatchAnnotationsSearches",
+      "summary": "Patch saved annotations searches by ids."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/annotations/workers",
+      "method": "GET",
+      "operationId": "V2_ListAnnotationWorkers",
+      "summary": "ListAnnotationWorkers lists users, models, and workflows (collectively\nknown as \"workers\") that have added annotations to the application."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/artifacts",
+      "method": "GET",
+      "operationId": "V2_ListArtifacts",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/artifacts",
+      "method": "DELETE",
+      "operationId": "V2_DeleteArtifact",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/artifacts",
+      "method": "POST",
+      "operationId": "V2_PostArtifacts",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/artifacts/{artifact_id}",
+      "method": "GET",
+      "operationId": "V2_GetArtifact",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/artifacts/{artifact_id}/versions",
+      "method": "GET",
+      "operationId": "V2_ListArtifactVersions",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/artifacts/{artifact_id}/versions",
+      "method": "DELETE",
+      "operationId": "V2_DeleteArtifactVersion",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/artifacts/{artifact_id}/versions/{artifact_version_id}",
+      "method": "GET",
+      "operationId": "V2_GetArtifactVersion",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/bulk_operations",
+      "method": "GET",
+      "operationId": "V2_ListBulkOperations",
+      "summary": "List all the bulk operations"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/bulk_operations",
+      "method": "DELETE",
+      "operationId": "V2_DeleteBulkOperations",
+      "summary": "delete one or more terminated bulk operations"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/bulk_operations",
+      "method": "POST",
+      "operationId": "V2_PostBulkOperations",
+      "summary": "Perform bulk operations on a list of inputs based on input source.\nOperation include add, update, delete of concepts, metadata and geo data.\nThis is an Asynchronous process. Use ListBulkOperations or GetBulkOperation to check the status."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/bulk_operations",
+      "method": "PATCH",
+      "operationId": "V2_CancelBulkOperations",
+      "summary": "Cancel one or more bulk operations"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/bulk_operations/{id}",
+      "method": "GET",
+      "operationId": "V2_GetBulkOperation",
+      "summary": "Get the bulk operation details by ID"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/collaborators",
+      "method": "GET",
+      "operationId": "V2_ListCollaborators",
+      "summary": "owner list users who the app is shared with"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/collaborators",
+      "method": "DELETE",
+      "operationId": "V2_DeleteCollaborators",
+      "summary": "Delete existing collaborators."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/collaborators",
+      "method": "POST",
+      "operationId": "V2_PostCollaborators",
+      "summary": "add collaborators to an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/collaborators",
+      "method": "PATCH",
+      "operationId": "V2_PatchCollaborators",
+      "summary": "Patch existing collaborators."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts",
+      "method": "GET",
+      "operationId": "V2_ListConcepts",
+      "summary": "List all the concepts."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts",
+      "method": "POST",
+      "operationId": "V2_PostConcepts",
+      "summary": "Add a concept to an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts",
+      "method": "PATCH",
+      "operationId": "V2_PatchConcepts",
+      "summary": "Patch one or more concepts."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/knowledge_graphs",
+      "method": "GET",
+      "operationId": "V2_ListKnowledgeGraphs",
+      "summary": "List all domain graphs."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/knowledge_graphs",
+      "method": "POST",
+      "operationId": "V2_PostKnowledgeGraphs",
+      "summary": "Post domain graphs."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/relations",
+      "method": "GET",
+      "operationId": "V2_ListConceptRelations2",
+      "summary": "List concept relations between concepts in the platform.\nMUST be above ListConcepts so that if concept_id is empty this will still match\n/concepts/relations to list all the concept relations in the app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/searches",
+      "method": "POST",
+      "operationId": "V2_PostConceptsSearches",
+      "summary": "Search over the concepts to find one or more you're looking for.\nThis leverage the \"body\" parameter because we also have page and\nper_page as url query param variables in this request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/status",
+      "method": "GET",
+      "operationId": "V2_GetConceptCounts",
+      "summary": "List all the concepts with their positive and negative counts"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/{concept_id}",
+      "method": "GET",
+      "operationId": "V2_GetConcept",
+      "summary": "Get a specific concept from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/{concept_id}/languages",
+      "method": "GET",
+      "operationId": "V2_ListConceptLanguages",
+      "summary": "List the concept in all the translated languages."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/{concept_id}/languages",
+      "method": "POST",
+      "operationId": "V2_PostConceptLanguages",
+      "summary": "Add a new translation for this concept."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/{concept_id}/languages",
+      "method": "PATCH",
+      "operationId": "V2_PatchConceptLanguages",
+      "summary": "Patch the name for a given language names by passing in a list of concepts with the new names\nfor the languages."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/{concept_id}/languages/{language}",
+      "method": "GET",
+      "operationId": "V2_GetConceptLanguage",
+      "summary": "Get a specific concept from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/{concept_id}/relations",
+      "method": "GET",
+      "operationId": "V2_ListConceptRelations",
+      "summary": "List concept relations between concepts in the platform.\nMUST be above ListConcepts so that if concept_id is empty this will still match\n/concepts/relations to list all the concept relations in the app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/{concept_id}/relations",
+      "method": "DELETE",
+      "operationId": "V2_DeleteConceptRelations",
+      "summary": "Post concept relations to create relations between concepts in the platform."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/concepts/{concept_id}/relations",
+      "method": "POST",
+      "operationId": "V2_PostConceptRelations",
+      "summary": "Post concept relations to create relations between concepts in the platform."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets",
+      "method": "GET",
+      "operationId": "V2_ListDatasets",
+      "summary": "List all the datasets."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets",
+      "method": "DELETE",
+      "operationId": "V2_DeleteDatasets",
+      "summary": "Delete one or more datasets in a single request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets",
+      "method": "POST",
+      "operationId": "V2_PostDatasets",
+      "summary": "Add datasets to an app.\nThe process is atomic, i.e. either all or no datasets are added.\nIf there is an error for one dataset,\nthe process will stop, revert the transaction and return the error."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets",
+      "method": "PATCH",
+      "operationId": "V2_PatchDatasets",
+      "summary": "Patch one or more datasets.\nThe process is atomic, i.e. either all or no datasets are patched.\nIf there is an error for one dataset,\nthe process will stop, revert the transaction and return the error."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}",
+      "method": "GET",
+      "operationId": "V2_GetDataset",
+      "summary": "Get a specific dataset."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/inputs",
+      "method": "GET",
+      "operationId": "V2_ListDatasetInputs",
+      "summary": "List all the dataset inputs in a dataset."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/inputs",
+      "method": "DELETE",
+      "operationId": "V2_DeleteDatasetInputs",
+      "summary": "Delete one or more dataset inputs in a single request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/inputs",
+      "method": "POST",
+      "operationId": "V2_PostDatasetInputs",
+      "summary": "Add dataset inputs to a dataset.\nThe process is not atomic, i.e. if there are errors with some dataset\ninputs, others might still be added. The response reports\n  - SUCCESS if all dataset inputs were added,\n  - MIXED_STATUS if only some dataset inputs were added, and\n  - FAILURE if no dataset inputs were added.\nEach individual dataset input in the response has the status set to\nindicate if it was successful or if there was an error."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/inputs/{input_id}",
+      "method": "GET",
+      "operationId": "V2_GetDatasetInput",
+      "summary": "Get a specific dataset input."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/versions",
+      "method": "GET",
+      "operationId": "V2_ListDatasetVersions",
+      "summary": "List all the dataset versions."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/versions",
+      "method": "DELETE",
+      "operationId": "V2_DeleteDatasetVersions",
+      "summary": "Delete one or more dataset versions in a single request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/versions",
+      "method": "POST",
+      "operationId": "V2_PostDatasetVersions",
+      "summary": "Add dataset versions to a dataset."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/versions",
+      "method": "PATCH",
+      "operationId": "V2_PatchDatasetVersions",
+      "summary": "Patch one or more dataset versions."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/versions/{dataset_version_id}",
+      "method": "GET",
+      "operationId": "V2_GetDatasetVersion",
+      "summary": "Get a specific dataset version."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/versions/{dataset_version_id}/exports",
+      "method": "PUT",
+      "operationId": "V2_PutDatasetVersionExports",
+      "summary": "Create export of a dataset version."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}/versions/{dataset_version_id}/metrics",
+      "method": "GET",
+      "operationId": "V2_ListDatasetVersionMetricsGroups",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/duplications",
+      "method": "POST",
+      "operationId": "V2_PostAppDuplications",
+      "summary": "Deprecated: App duplication is no longer supported.\nPostAppDuplications starts async app duplication jobs which copy resources\n(inputs, annotations, models etc) from one application to another."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/evaluations",
+      "method": "GET",
+      "operationId": "V2_ListEvaluations",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/evaluations",
+      "method": "POST",
+      "operationId": "V2_PostEvaluations",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/evaluations/{evaluation_id}",
+      "method": "GET",
+      "operationId": "V2_GetEvaluation",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs",
+      "method": "GET",
+      "operationId": "V2_ListInputs",
+      "summary": "List all the inputs."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs",
+      "method": "DELETE",
+      "operationId": "V2_DeleteInputs",
+      "summary": "Delete multiple inputs in one request.\nThis call is asynchronous."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs",
+      "method": "POST",
+      "operationId": "V2_PostInputs",
+      "summary": "PostInputs adds one or more inputs to the app.\nTakes a list of image/video/audio/text URLs, image/video/audio bytes or raw text\nOptionally, include concepts or dataset ids to link them\nOptionally, include metadata for search\nNote that inputs processing is asynchronous process\nSee ListInputs, StreamInputs or PostInputSearches to list results"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs",
+      "method": "PATCH",
+      "operationId": "V2_PatchInputs",
+      "summary": "Patch one or more inputs."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/annotations",
+      "method": "DELETE",
+      "operationId": "V2_DeleteAnnotations",
+      "summary": "Delete multiple annotations in one request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/data_sources",
+      "method": "POST",
+      "operationId": "V2_PostInputsDataSources",
+      "summary": "Initiates retrieval of inputs from cloud storage from a user provided data source.\nWill create and return an inputs-add-job for tracking progress.\nArchives will be extracted and their contents will be processed as inputs."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/jobs/add",
+      "method": "GET",
+      "operationId": "V2_ListInputsAddJobs",
+      "summary": "List all the inputs add jobs"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/jobs/add/{id}",
+      "method": "GET",
+      "operationId": "V2_GetInputsAddJob",
+      "summary": "Get the input add job details by ID"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/jobs/add/{id}",
+      "method": "PATCH",
+      "operationId": "V2_CancelInputsAddJob",
+      "summary": "cancel the input add job by ID"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/jobs/extraction",
+      "method": "GET",
+      "operationId": "V2_ListInputsExtractionJobs",
+      "summary": "List all the input extraction jobs"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/jobs/extraction",
+      "method": "PATCH",
+      "operationId": "V2_CancelInputsExtractionJobs",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/jobs/extraction/{inputs_extraction_job_id}",
+      "method": "GET",
+      "operationId": "V2_GetInputsExtractionJob",
+      "summary": "Get the input extraction job details by ID"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/searches",
+      "method": "POST",
+      "operationId": "V2_PostInputsSearches",
+      "summary": "Execute a search over inputs"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/searches",
+      "method": "PATCH",
+      "operationId": "V2_PatchInputsSearches",
+      "summary": "Patch saved inputs searches by ids."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/status",
+      "method": "GET",
+      "operationId": "V2_GetInputCount",
+      "summary": "Get input count per status."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/stream",
+      "method": "GET",
+      "operationId": "V2_StreamInputs",
+      "summary": "Streams all the inputs starting from oldest assets."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/uploads",
+      "method": "POST",
+      "operationId": "V2_PostInputsUploads",
+      "summary": "Create new upload job with a file archive containing inputs (images, videos, text, audio)\nActual file upload happens in next steps by calling `PutUploadContentParts` endpoint\nand providing the file content in the request body.\nThis endpoint creates and return an inputs-add-job which contains an upload id needed for upload and further status tracking\nCompleting the upload will automatically begin unpacking the archive and uploading the contents as inputs.\nSee also GetInputsAddJob and then GetInputsExtractionJob"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}",
+      "method": "GET",
+      "operationId": "V2_GetInput",
+      "summary": "Get a specific input from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteInput",
+      "summary": "Delete a single input asynchronously."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}/annotation_tracks",
+      "method": "GET",
+      "operationId": "V2_ListAnnotationTracks",
+      "summary": "List all the annotation tracks."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}/annotation_tracks",
+      "method": "POST",
+      "operationId": "V2_PostAnnotationTracks",
+      "summary": "Post annotation tracks."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}/annotation_tracks",
+      "method": "PATCH",
+      "operationId": "V2_PatchAnnotationTracks",
+      "summary": "Patch one or more annotation tracks."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}/annotations/stream/live",
+      "method": "POST",
+      "operationId": "V2_StreamLivestreamAnnotations",
+      "summary": "Stream live video annotations as soon as they are available.\nThis endpoint will NOT replay old annotations, but only stream new annotations that are generated after the stream is opened."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}/annotations/{annotation_id}",
+      "method": "GET",
+      "operationId": "V2_GetAnnotation",
+      "summary": "Get a specific annotation from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}/annotations/{annotation_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteAnnotation",
+      "summary": "Delete a single annotation."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}/track_annotations/searches",
+      "method": "POST",
+      "operationId": "V2_PostTrackAnnotationsSearches",
+      "summary": "List video track annotations for a specific input."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}/track_annotations/searches/stream",
+      "method": "POST",
+      "operationId": "V2_StreamAnnotations",
+      "summary": "Stream annotations for a specific input one-by-one."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}/video_manifest",
+      "method": "GET",
+      "operationId": "V2_GetInputVideoManifest",
+      "summary": "Get a MPEG-DASH manifest for video-type inputs that were added via PostInputs and successfully processed\nExperimental. Manifest is used by browser and desktop clients that implement an efficient streaming playback\nThis means client can switch between low-resolution and high-resolution video streams\nDepending on network bandwidth or user's preference\nThis also means that reencoded video streams are reencoded in a uniform way, not relying on original format\nAlternative to MPEG-dash is to stream original file with byte-range header"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/keys",
+      "method": "GET",
+      "operationId": "V2_ListAppKeys",
+      "summary": "List keys by app_id"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/label_orders",
+      "method": "GET",
+      "operationId": "V2_ListLabelOrders",
+      "summary": "List label orders."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/label_orders",
+      "method": "DELETE",
+      "operationId": "V2_DeleteLabelOrders",
+      "summary": "Delete multiple label orders in one request.\nthis do not change task status"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/label_orders",
+      "method": "POST",
+      "operationId": "V2_PostLabelOrders",
+      "summary": "Add Label orders."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/label_orders",
+      "method": "PATCH",
+      "operationId": "V2_PatchLabelOrders",
+      "summary": "Patch one or more label orders."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/label_orders/{label_order_id}",
+      "method": "GET",
+      "operationId": "V2_GetLabelOrder",
+      "summary": "Get a label order."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models",
+      "method": "GET",
+      "operationId": "V2_ListModels",
+      "summary": "List all the models."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models",
+      "method": "DELETE",
+      "operationId": "V2_DeleteModels",
+      "summary": "Delete multiple models in one request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models",
+      "method": "POST",
+      "operationId": "V2_PostModels",
+      "summary": "Add a models to an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models",
+      "method": "PATCH",
+      "operationId": "V2_PatchModels",
+      "summary": "Patch one or more models."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/ids",
+      "method": "PATCH",
+      "operationId": "V2_PatchModelIds",
+      "summary": "Patch one or more models ids."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/searches",
+      "method": "POST",
+      "operationId": "V2_PostModelsSearches",
+      "summary": "Search over the models to find one or more you're looking for.\nThis leverage the \"body\" parameter because we also have page and\nper_page as url query param variables in this request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/types",
+      "method": "GET",
+      "operationId": "V2_ListModelTypes",
+      "summary": "List all the model types available in the platform.\nThis MUST be above ListModels so that the /models/types endpoint takes precedence."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/types/{model_type_id}",
+      "method": "GET",
+      "operationId": "V2_GetModelType",
+      "summary": "Get a specific model type."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}",
+      "method": "GET",
+      "operationId": "V2_GetModel",
+      "summary": "Get a specific model from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteModel",
+      "summary": "Delete a single model."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/check_consents",
+      "method": "PATCH",
+      "operationId": "V2_PatchModelCheckConsents",
+      "summary": "Update model check consents"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/concepts",
+      "method": "GET",
+      "operationId": "V2_ListModelConcepts",
+      "summary": "List models concepts."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/inputs",
+      "method": "GET",
+      "operationId": "V2_ListModelInputs",
+      "summary": "Deprecated: Unmaintained and ideally replaced with usage of datasets\n  The server may refuse to accept requests to this endpoint."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/languages",
+      "method": "PATCH",
+      "operationId": "V2_PatchModelLanguages",
+      "summary": "Update model languages tags"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/migration",
+      "method": "DELETE",
+      "operationId": "V2_DeleteModelMigration",
+      "summary": "Reverts a model migration from Docker format back to Triton format."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/migration",
+      "method": "POST",
+      "operationId": "V2_PostModelMigration",
+      "summary": "Kicks off conversion from the old Triton model format to the new Docker model format."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/output_info",
+      "method": "GET",
+      "operationId": "V2_GetModelOutputInfo",
+      "summary": "Get a the output info for a given model_id or model_id/version_id\ncombo."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/outputs",
+      "method": "POST",
+      "operationId": "V2_PostModelOutputs3",
+      "summary": "Get predicted outputs from the model."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/outputs/generate",
+      "method": "POST",
+      "operationId": "V2_GenerateModelOutputs2",
+      "summary": "TODO(zeiler): will need to\nSingle request but streaming responses."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/publish",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionsPublish",
+      "summary": "PostModelVersionsPublish"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/references",
+      "method": "GET",
+      "operationId": "V2_ListModelReferences",
+      "summary": "Lists model references tied to a particular model id."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/toolkits",
+      "method": "PATCH",
+      "operationId": "V2_PatchModelToolkits",
+      "summary": "Update model toolkits tags"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/unpublish",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionsUnPublish",
+      "summary": "PostModelVersionsUnPublish"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/usecases",
+      "method": "PATCH",
+      "operationId": "V2_PatchModelUseCases",
+      "summary": "Update model use_cases tags"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions",
+      "method": "GET",
+      "operationId": "V2_ListModelVersions",
+      "summary": "List all the models."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions",
+      "method": "POST",
+      "operationId": "V2_PostModelVersions",
+      "summary": "Create a new model version to trigger training of the model."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions",
+      "method": "PATCH",
+      "operationId": "V2_PatchModelVersions",
+      "summary": "PatchModelVersions"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/time_estimate",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionsTrainingTimeEstimate",
+      "summary": "Get the training time estimate based off train request and estimated input count."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{model_version_id}/evaluations",
+      "method": "GET",
+      "operationId": "V2_ListModelVersionEvaluations",
+      "summary": "Deprecated, use GetEvaluation instead\nList the evaluation metrics for a model version."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{model_version_id}/evaluations",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionEvaluations",
+      "summary": "Deprecated, use PostEvaluations instead"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{model_version_id}/evaluations/{evaluation_id}",
+      "method": "GET",
+      "operationId": "V2_GetModelVersionEvaluation",
+      "summary": "Deprecated, use GetEvaluation instead\nGet an evaluation metrics for a model version."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{model_version_id}/input_examples",
+      "method": "GET",
+      "operationId": "V2_ListModelVersionInputExamples",
+      "summary": "ListModelVersionInputExamples"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{model_version_id}/input_examples/{example_id}",
+      "method": "GET",
+      "operationId": "V2_GetModelVersionInputExample",
+      "summary": "GetModelVersionInputExample"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{model_version_id}/{log_type}/logs",
+      "method": "GET",
+      "operationId": "V2_ListLogEntries4",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}",
+      "method": "GET",
+      "operationId": "V2_GetModelVersion",
+      "summary": "Get a specific model from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteModelVersion",
+      "summary": "Delete a single model."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/concepts",
+      "method": "GET",
+      "operationId": "V2_ListModelConcepts2",
+      "summary": "List models concepts."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/exports",
+      "method": "GET",
+      "operationId": "V2_GetModelVersionExport",
+      "summary": "GetModelVersionExport"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/exports",
+      "method": "PUT",
+      "operationId": "V2_PutModelVersionExports",
+      "summary": "Export a model"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/inputs",
+      "method": "GET",
+      "operationId": "V2_ListModelInputs3",
+      "summary": "Deprecated: Unmaintained and ideally replaced with usage of datasets\n  The server may refuse to accept requests to this endpoint."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/metrics",
+      "method": "GET",
+      "operationId": "V2_GetModelVersionMetrics",
+      "summary": "Get the evaluation metrics for a model version.\nDeprecated: Use GetEvaluation instead\n  The server may refuse to accept requests to this endpoint."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/metrics",
+      "method": "POST",
+      "operationId": "V2_PostModelVersionMetrics",
+      "summary": "Deprecated, use PostEvaluations instead\nRun the evaluation metrics for a model version."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/migration",
+      "method": "POST",
+      "operationId": "V2_PostModelMigration2",
+      "summary": "Kicks off conversion from the old Triton model format to the new Docker model format."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/output_info",
+      "method": "GET",
+      "operationId": "V2_GetModelOutputInfo3",
+      "summary": "Get a the output info for a given model_id or model_id/version_id\ncombo."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/outputs",
+      "method": "POST",
+      "operationId": "V2_PostModelOutputs",
+      "summary": "Get predicted outputs from the model."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/outputs/generate",
+      "method": "POST",
+      "operationId": "V2_GenerateModelOutputs",
+      "summary": "TODO(zeiler): will need to\nSingle request but streaming responses."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/myscopes",
+      "method": "GET",
+      "operationId": "V2_MyScopes",
+      "summary": "API Keys in the public API -- request is itself Key authorized, and will tell\nthe user the scopes/access of the key/credential they're providing, as computed by\nour authorizer:"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/partial",
+      "method": "PATCH",
+      "operationId": "V2_PatchAppsDetails",
+      "summary": "Allows to Patch only the below fields in one or more apps.\nAllowed fields are notes, description and image"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipeline_steps",
+      "method": "GET",
+      "operationId": "V2_ListPipelineSteps",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipeline_steps",
+      "method": "DELETE",
+      "operationId": "V2_DeletePipelineSteps",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipeline_steps",
+      "method": "POST",
+      "operationId": "V2_PostPipelineSteps",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipeline_steps/{pipeline_step_id}",
+      "method": "GET",
+      "operationId": "V2_GetPipelineStep",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipeline_steps/{pipeline_step_id}/versions",
+      "method": "GET",
+      "operationId": "V2_ListPipelineStepVersions",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipeline_steps/{pipeline_step_id}/versions",
+      "method": "DELETE",
+      "operationId": "V2_DeletePipelineStepVersions",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipeline_steps/{pipeline_step_id}/versions/{pipeline_step_version_id}",
+      "method": "GET",
+      "operationId": "V2_GetPipelineStepVersion",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipeline_templates/{pipeline_template_name}/pipeline_version_runs",
+      "method": "POST",
+      "operationId": "V2_PostPipelineVersionRunFromTemplate",
+      "summary": "Creates a Pipeline, PipelineVersion, and PipelineVersionRun from a PipelineTemplate.\nThis is a convenience endpoint for users to quickly get started with running pipelines."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines",
+      "method": "GET",
+      "operationId": "V2_ListPipelines",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines",
+      "method": "DELETE",
+      "operationId": "V2_DeletePipelines",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines",
+      "method": "POST",
+      "operationId": "V2_PostPipelines",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines",
+      "method": "PATCH",
+      "operationId": "V2_PatchPipelines",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}",
+      "method": "GET",
+      "operationId": "V2_GetPipeline",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions",
+      "method": "GET",
+      "operationId": "V2_ListPipelineVersions",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions",
+      "method": "DELETE",
+      "operationId": "V2_DeletePipelineVersions",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions",
+      "method": "PATCH",
+      "operationId": "V2_PatchPipelineVersions",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions/{pipeline_version_id}",
+      "method": "GET",
+      "operationId": "V2_GetPipelineVersion",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions/{pipeline_version_id}/runs",
+      "method": "GET",
+      "operationId": "V2_ListPipelineVersionRuns",
+      "summary": "putting above the Get Nodepool endpoint to make it appear above the other one"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions/{pipeline_version_id}/runs",
+      "method": "POST",
+      "operationId": "V2_PostPipelineVersionRuns",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions/{pipeline_version_id}/runs",
+      "method": "PATCH",
+      "operationId": "V2_PatchPipelineVersionRuns",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions/{pipeline_version_id}/runs/{pipeline_version_run_id}",
+      "method": "GET",
+      "operationId": "V2_GetPipelineVersionRun",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions/{pipeline_version_id}/runs/{pipeline_version_run_id}/status_logs",
+      "method": "GET",
+      "operationId": "V2_ListPipelineVersionRunStatusLogs",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions/{pipeline_version_id}/runs/{pipeline_version_run_id}/{log_type}/logs",
+      "method": "GET",
+      "operationId": "V2_ListLogEntries5",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/pipelines/{pipeline_id}/versions/{pipeline_version_id}/runs/{pipeline_version_run_id}/{log_type}/stream/logs",
+      "method": "GET",
+      "operationId": "V2_StreamLogEntries3",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/resource_counts",
+      "method": "GET",
+      "operationId": "V2_GetResourceCounts",
+      "summary": "List the resource counts for the app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/runner_replica_task_metrics",
+      "method": "POST",
+      "operationId": "V2_PostRunnerReplicaTaskMetrics",
+      "summary": "Post task metrics from runner replicas."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/searches",
+      "method": "GET",
+      "operationId": "V2_ListSearches",
+      "summary": "List all saved legacy searches."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/searches",
+      "method": "POST",
+      "operationId": "V2_PostSearches",
+      "summary": "Execute a new search and optionally save it."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/searches",
+      "method": "PATCH",
+      "operationId": "V2_PatchSearches",
+      "summary": "Patch saved legacy searches by ids."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/searches/{id}",
+      "method": "GET",
+      "operationId": "V2_GetSearch",
+      "summary": "Get a saved legacy search."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/searches/{id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteSearch",
+      "summary": "Delete a saved search."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/searches/{id}",
+      "method": "POST",
+      "operationId": "V2_PostSearchesByID",
+      "summary": "Execute a previously saved legacy search."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/task/{task_id}/annotations/status",
+      "method": "PATCH",
+      "operationId": "V2_PatchAnnotationsStatus",
+      "summary": "Patch annotations status by worker id and task id.\nDeprecated: Use PutTaskAssignments to update task annotations.\n  For example, you can use PutTaskAssignments with action REVIEW_APPROVE\n  to approve task assignments and associated annotations in bulk."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/tasks",
+      "method": "GET",
+      "operationId": "V2_ListTasks",
+      "summary": "List tasks from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/tasks",
+      "method": "DELETE",
+      "operationId": "V2_DeleteTasks",
+      "summary": "Delete multiple tasks in one request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/tasks",
+      "method": "POST",
+      "operationId": "V2_PostTasks",
+      "summary": "Add tasks to an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/tasks",
+      "method": "PATCH",
+      "operationId": "V2_PatchTasks",
+      "summary": "Patch one or more tasks."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/tasks/{task_id}",
+      "method": "GET",
+      "operationId": "V2_GetTask",
+      "summary": "Get a specific task from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/tasks/{task_id}/annotations/count",
+      "method": "GET",
+      "operationId": "V2_GetTaskAnnotationCount",
+      "summary": "Task annotation count"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/tasks/{task_id}/assignments",
+      "method": "GET",
+      "operationId": "V2_ListNextTaskAssignments",
+      "summary": "Deprecated: Use PutTaskAssignments with action=LABEL_START.\n  This endpoint has initially been designed as a GET request,\n  but has been re-designed to serve a PUT logic.\n  In order to clearly highlight that this endpoint serves a PUT request,\n  this endpoint has been deprecated and replaced by PutTaskAssignments with action=LABEL_START."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/tasks/{task_id}/assignments",
+      "method": "PUT",
+      "operationId": "V2_PutTaskAssignments",
+      "summary": "PutTaskAssignments performs an idempotent action for the task assignments in given task.\nSee PutTaskAssignmentsRequestAction for more details about possible actions."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/tasks/{task_id}/inputs/count",
+      "method": "GET",
+      "operationId": "V2_GetTaskInputCount",
+      "summary": "Task Input count"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/tasks/{task_id}/inputs/samples",
+      "method": "GET",
+      "operationId": "V2_GetInputSamples",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/uploads",
+      "method": "GET",
+      "operationId": "V2_ListUploads",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/uploads",
+      "method": "DELETE",
+      "operationId": "V2_DeleteUploads",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/uploads",
+      "method": "POST",
+      "operationId": "V2_PostUploads",
+      "summary": "PostUploads is used to upload files. Note that this does not create inputs.\nreturns job with uploadID, job has UPLOAD_IN_PROGRESS status\nActual upload content can be done in multiple calls with PutUploadContentParts\nYou can get status of upload with GetUpload or ListUploads endpoints\nSee also PostInputsUploads"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/uploads/{upload_id}",
+      "method": "GET",
+      "operationId": "V2_GetUpload",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/uploads/{upload_id}/content_parts",
+      "method": "PUT",
+      "operationId": "V2_PutUploadContentParts",
+      "summary": "Upload a part of a multipart upload.\nBehaviour on completion depends on the endpoint that was used to initiate the upload."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows",
+      "method": "GET",
+      "operationId": "V2_ListWorkflows",
+      "summary": "List all the workflows."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows",
+      "method": "DELETE",
+      "operationId": "V2_DeleteWorkflows",
+      "summary": "Delete multiple workflows in one request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows",
+      "method": "POST",
+      "operationId": "V2_PostWorkflows",
+      "summary": "Add a workflow to an app.\nNote(zeiler): the order of the workflows that are returned from this endpoint\nmay be different than the order in which the user provides them. This is because\nwe reorder by a sort that optimizes for performance of the graph and its dependencies.\nWhen using the workflow in any future call the order returned by this endpoint\nwill be used."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows",
+      "method": "PATCH",
+      "operationId": "V2_PatchWorkflows",
+      "summary": "Patch one or more workflows."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/ids",
+      "method": "PATCH",
+      "operationId": "V2_PatchWorkflowIds",
+      "summary": "Patch one or more workflows ids."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}",
+      "method": "GET",
+      "operationId": "V2_GetWorkflow",
+      "summary": "Get a specific workflow from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteWorkflow",
+      "summary": "Delete a single workflow."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/publish",
+      "method": "POST",
+      "operationId": "V2_PostWorkflowVersionsPublish",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/results",
+      "method": "POST",
+      "operationId": "V2_PostWorkflowResults2",
+      "summary": "Predict using a workflow."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/unpublish",
+      "method": "POST",
+      "operationId": "V2_PostWorkflowVersionsUnPublish",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions",
+      "method": "GET",
+      "operationId": "V2_ListWorkflowVersions",
+      "summary": "List workflow versions."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions",
+      "method": "DELETE",
+      "operationId": "V2_DeleteWorkflowVersions",
+      "summary": "Delete workflow versions."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions",
+      "method": "PATCH",
+      "operationId": "V2_PatchWorkflowVersions",
+      "summary": "Patch workflow versions."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions/{version_id}/results",
+      "method": "POST",
+      "operationId": "V2_PostWorkflowResults",
+      "summary": "Predict using a workflow."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions/{workflow_version_id}",
+      "method": "GET",
+      "operationId": "V2_GetWorkflowVersion",
+      "summary": "Get single workflow version."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions/{workflow_version_id}/evaluations",
+      "method": "GET",
+      "operationId": "V2_ListWorkflowVersionEvaluations",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions/{workflow_version_id}/evaluations",
+      "method": "POST",
+      "operationId": "V2_PostWorkflowVersionEvaluations",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions/{workflow_version_id}/evaluations",
+      "method": "PATCH",
+      "operationId": "V2_PatchWorkflowVersionEvaluations",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions/{workflow_version_id}/evaluations/{workflow_version_evaluation_id}",
+      "method": "GET",
+      "operationId": "V2_GetWorkflowVersionEvaluation",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions/{workflow_version_id}/evaluations/{workflow_version_evaluation_id}/data",
+      "method": "GET",
+      "operationId": "V2_ListWorkflowVersionEvaluationData",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/workflows/{workflow_id}/versions/{workflow_version_id}/evaluations/{workflow_version_evaluation_id}/data",
+      "method": "POST",
+      "operationId": "V2_PostWorkflowVersionEvaluationData",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/audit_log/searches",
+      "method": "POST",
+      "operationId": "V2_PostAuditLogSearches",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/collaborations",
+      "method": "GET",
+      "operationId": "V2_ListCollaborations",
+      "summary": "Collaboration includes the app user are invitied to work on"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters",
+      "method": "GET",
+      "operationId": "V2_ListComputeClusters",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters",
+      "method": "DELETE",
+      "operationId": "V2_DeleteComputeClusters",
+      "summary": "Delete multiple compute_clusters in one request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters",
+      "method": "POST",
+      "operationId": "V2_PostComputeClusters",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters",
+      "method": "PATCH",
+      "operationId": "V2_PatchComputeClusters",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}",
+      "method": "GET",
+      "operationId": "V2_GetComputeCluster",
+      "summary": "ComputeCluster CRUD"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools",
+      "method": "GET",
+      "operationId": "V2_ListNodepools",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools",
+      "method": "DELETE",
+      "operationId": "V2_DeleteNodepools",
+      "summary": "Delete multiple nodepools in one request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools",
+      "method": "POST",
+      "operationId": "V2_PostNodepools",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools",
+      "method": "PATCH",
+      "operationId": "V2_PatchNodepools",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}",
+      "method": "GET",
+      "operationId": "V2_GetNodepool",
+      "summary": "Nodepools CRUD"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/pipeline_version_runs",
+      "method": "GET",
+      "operationId": "V2_ListPipelineVersionRuns2",
+      "summary": "putting above the Get Nodepool endpoint to make it appear above the other one"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/runners",
+      "method": "GET",
+      "operationId": "V2_ListRunners",
+      "summary": "List all the runners for the user."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/runners",
+      "method": "DELETE",
+      "operationId": "V2_DeleteRunners",
+      "summary": "Delete multiple runners in one request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/runners",
+      "method": "POST",
+      "operationId": "V2_PostRunners",
+      "summary": "Add a runners to a user."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/runners/{runner_id}",
+      "method": "GET",
+      "operationId": "V2_GetRunner",
+      "summary": "Get a specific runner.\nTODO(zeiler): runner_id is a UUID so can list globally as well."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/runners/{runner_id}/items",
+      "method": "GET",
+      "operationId": "V2_ListRunnerItems",
+      "summary": "List items for the remote runner to work on.\nsince the runner_id is a UUID we can access it directly too."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/runners/{runner_id}/items/{runner_item_id}/outputs",
+      "method": "POST",
+      "operationId": "V2_PostRunnerItemOutputs",
+      "summary": "Post back outputs from remote runners\nsince the runner_id is a UUID we can access it directly too."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/runners/{runner_id}/{log_type}/logs",
+      "method": "GET",
+      "operationId": "V2_ListLogEntries",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/status",
+      "method": "POST",
+      "operationId": "V2_PostNodepoolStatus",
+      "summary": "Update nodepool status. Called by the agent to report nodepool health/errors."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_id}/{log_type}/logs",
+      "method": "GET",
+      "operationId": "V2_ListLogEntries3",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/compute_clusters/{compute_cluster_user_id}/{compute_cluster_id}/nodepools/{nodepool_id}/versions/{model_version_id}/{log_type}/logs",
+      "method": "GET",
+      "operationId": "V2_ListLogEntries2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/datasets",
+      "method": "GET",
+      "operationId": "V2_ListDatasets2",
+      "summary": "List all the datasets."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/deployments",
+      "method": "GET",
+      "operationId": "V2_ListDeployments",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/deployments",
+      "method": "DELETE",
+      "operationId": "V2_DeleteDeployments",
+      "summary": "Delete multiple deployments in one request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/deployments",
+      "method": "POST",
+      "operationId": "V2_PostDeployments",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/deployments",
+      "method": "PATCH",
+      "operationId": "V2_PatchDeployments",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/deployments/{deployment_id}",
+      "method": "GET",
+      "operationId": "V2_GetDeployment",
+      "summary": "Deployments CRUD"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/duplications",
+      "method": "GET",
+      "operationId": "V2_ListAppDuplications",
+      "summary": "Deprecated: App duplication is no longer supported.\nListAppDuplications lists all app duplication jobs created by the user."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/duplications/{app_duplication_id}",
+      "method": "GET",
+      "operationId": "V2_GetAppDuplication",
+      "summary": "Deprecated: App duplication is no longer supported.\nGetAppDuplication returns an app duplication job created by the user."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/evaluations",
+      "method": "GET",
+      "operationId": "V2_ListEvaluations2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/keys",
+      "method": "GET",
+      "operationId": "V2_ListKeys",
+      "summary": "List all the keys."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/keys",
+      "method": "POST",
+      "operationId": "V2_PostKeys",
+      "summary": "Add a key to an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/keys",
+      "method": "PATCH",
+      "operationId": "V2_PatchKeys",
+      "summary": "Patch one or more keys."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/keys/{key_id}",
+      "method": "GET",
+      "operationId": "V2_GetKey",
+      "summary": "Get a specific key from an app."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/keys/{key_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteKey",
+      "summary": "Search over the keys to find one or more you're looking for.\nThis leverage the \"body\" parameter because we also have page and\nper_page as url query param variables in this request."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/metrics",
+      "method": "POST",
+      "operationId": "V2_PostMetricsQuery",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/metrics/labels",
+      "method": "GET",
+      "operationId": "V2_ListMetricLabels",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/models",
+      "method": "GET",
+      "operationId": "V2_ListModels2",
+      "summary": "List all the models."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/myscopes",
+      "method": "GET",
+      "operationId": "V2_MyScopesUser",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/nodepools",
+      "method": "GET",
+      "operationId": "V2_ListNodepools2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/runners",
+      "method": "GET",
+      "operationId": "V2_ListRunners2",
+      "summary": "List all the runners for the user."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/runners/{runner_id}",
+      "method": "GET",
+      "operationId": "V2_GetRunner2",
+      "summary": "Get a specific runner.\nTODO(zeiler): runner_id is a UUID so can list globally as well."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/scopes",
+      "method": "GET",
+      "operationId": "V2_ListScopes",
+      "summary": "List all auth scopes available to me as a user."
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/secrets",
+      "method": "GET",
+      "operationId": "V2_ListSecrets",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/secrets",
+      "method": "DELETE",
+      "operationId": "V2_DeleteSecrets",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/secrets",
+      "method": "POST",
+      "operationId": "V2_PostSecrets",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/secrets",
+      "method": "PATCH",
+      "operationId": "V2_PatchSecrets",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/secrets/{id}",
+      "method": "GET",
+      "operationId": "V2_GetSecret",
+      "summary": ""
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/validate_password",
+      "method": "POST",
+      "operationId": "V2_PostValidatePassword",
+      "summary": "Validate new password in real-time for a user"
+    },
+    {
+      "path": "/v2/users/{user_app_id.user_id}/workflows",
+      "method": "GET",
+      "operationId": "V2_ListWorkflows2",
+      "summary": "List all the workflows."
+    },
+    {
+      "path": "/v2/validate_password",
+      "method": "POST",
+      "operationId": "V2_PostValidatePassword2",
+      "summary": "Validate new password in real-time for a user"
+    },
+    {
+      "path": "/v2/workflow-version-evaluation-templates",
+      "method": "GET",
+      "operationId": "V2_ListWorkflowEvaluationTemplates",
+      "summary": ""
+    },
+    {
+      "path": "/v2/workflow-version-evaluations",
+      "method": "GET",
+      "operationId": "V2_ListWorkflowVersionEvaluations2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/workflow-version-evaluations/{workflow_version_evaluation_id}",
+      "method": "GET",
+      "operationId": "V2_GetWorkflowVersionEvaluation2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/workflow-version-evaluations/{workflow_version_evaluation_id}/data",
+      "method": "GET",
+      "operationId": "V2_ListWorkflowVersionEvaluationData2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/workflow-version-evaluations/{workflow_version_evaluation_id}/data",
+      "method": "POST",
+      "operationId": "V2_PostWorkflowVersionEvaluationData2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/workflows",
+      "method": "GET",
+      "operationId": "V2_ListWorkflows3",
+      "summary": "List all the workflows."
+    },
+    {
+      "path": "/v2/workflows",
+      "method": "DELETE",
+      "operationId": "V2_DeleteWorkflows2",
+      "summary": "Delete multiple workflows in one request."
+    },
+    {
+      "path": "/v2/workflows",
+      "method": "POST",
+      "operationId": "V2_PostWorkflows2",
+      "summary": "Add a workflow to an app.\nNote(zeiler): the order of the workflows that are returned from this endpoint\nmay be different than the order in which the user provides them. This is because\nwe reorder by a sort that optimizes for performance of the graph and its dependencies.\nWhen using the workflow in any future call the order returned by this endpoint\nwill be used."
+    },
+    {
+      "path": "/v2/workflows",
+      "method": "PATCH",
+      "operationId": "V2_PatchWorkflows2",
+      "summary": "Patch one or more workflows."
+    },
+    {
+      "path": "/v2/workflows/{workflow_id}",
+      "method": "GET",
+      "operationId": "V2_GetWorkflow2",
+      "summary": "Get a specific workflow from an app."
+    },
+    {
+      "path": "/v2/workflows/{workflow_id}",
+      "method": "DELETE",
+      "operationId": "V2_DeleteWorkflow2",
+      "summary": "Delete a single workflow."
+    },
+    {
+      "path": "/v2/workflows/{workflow_id}/publish",
+      "method": "POST",
+      "operationId": "V2_PostWorkflowVersionsPublish2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/workflows/{workflow_id}/results",
+      "method": "POST",
+      "operationId": "V2_PostWorkflowResults3",
+      "summary": "Predict using a workflow."
+    },
+    {
+      "path": "/v2/workflows/{workflow_id}/unpublish",
+      "method": "POST",
+      "operationId": "V2_PostWorkflowVersionsUnPublish2",
+      "summary": ""
+    },
+    {
+      "path": "/v2/workflows/{workflow_id}/versions",
+      "method": "GET",
+      "operationId": "V2_ListWorkflowVersions2",
+      "summary": "List workflow versions."
+    },
+    {
+      "path": "/v2/workflows/{workflow_id}/versions",
+      "method": "DELETE",
+      "operationId": "V2_DeleteWorkflowVersions2",
+      "summary": "Delete workflow versions."
+    },
+    {
+      "path": "/v2/workflows/{workflow_id}/versions",
+      "method": "PATCH",
+      "operationId": "V2_PatchWorkflowVersions2",
+      "summary": "Patch workflow versions."
+    },
+    {
+      "path": "/v2/workflows/{workflow_id}/versions/{workflow_version_id}",
+      "method": "GET",
+      "operationId": "V2_GetWorkflowVersion2",
+      "summary": "Get single workflow version."
+    }
+  ]
+}

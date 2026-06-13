@@ -1,0 +1,32 @@
+{
+  "path": "/v2/inputs",
+  "method": "POST",
+  "summary": "PostInputs adds one or more inputs to the app.\nTakes a list of image/video/audio/text URLs, image/video/audio bytes or raw text\nOptionally, include concepts or dataset ids to link them\nOptionally, include metadata for search\nNote that inputs processing is asynchronous process\nSee ListInputs, StreamInputs or PostInputSearches to list results",
+  "description": "",
+  "operationId": "V2_PostInputs2",
+  "tags": [
+    "V2"
+  ],
+  "parameters": [
+    {
+      "name": "body",
+      "in": "body",
+      "required": true,
+      "type": "apiPostInputsRequest"
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/definitions/apiMultiInputResponse"
+      }
+    },
+    "default": {
+      "description": "An unexpected error response.",
+      "schema": {
+        "$ref": "#/definitions/googlerpcStatus"
+      }
+    }
+  }
+}

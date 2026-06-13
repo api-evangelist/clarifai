@@ -1,0 +1,68 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "clarifai": "https://api.clarifai.com/v2/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "App": "clarifai:apps",
+    "Model": "clarifai:models",
+    "ModelVersion": "clarifai:models/{model_id}/versions",
+    "Concept": "clarifai:concepts",
+    "Input": "clarifai:inputs",
+    "Annotation": "clarifai:annotations",
+    "Dataset": "clarifai:datasets",
+    "DatasetVersion": "clarifai:datasets/{dataset_id}/versions",
+    "Workflow": "clarifai:workflows",
+    "WorkflowVersion": "clarifai:workflows/{workflow_id}/versions",
+    "Search": "clarifai:searches",
+    "Task": "clarifai:tasks",
+    "Runner": "clarifai:runners",
+    "Upload": "clarifai:uploads",
+    "Pipeline": "clarifai:pipelines",
+    "Evaluation": "clarifai:evaluations",
+    "Deployment": "clarifai:deployments",
+    "Key": "clarifai:keys",
+    "User": "clarifai:users",
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "modified_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "user_id": "clarifai:user_id",
+    "app_id": "clarifai:app_id",
+    "model_id": "clarifai:model_id",
+    "version_id": "clarifai:version_id",
+    "input_id": "clarifai:input_id",
+    "concept_id": "clarifai:concept_id",
+    "dataset_id": "clarifai:dataset_id",
+    "workflow_id": "clarifai:workflow_id",
+    "status": "clarifai:status",
+    "data": "clarifai:data",
+    "image": {
+      "@id": "schema:image",
+      "@type": "@id"
+    },
+    "video": {
+      "@id": "schema:VideoObject",
+      "@type": "@id"
+    },
+    "text": {
+      "@id": "schema:Text",
+      "@type": "xsd:string"
+    },
+    "metadata": "clarifai:metadata",
+    "visibility": "clarifai:visibility",
+    "output": "clarifai:output",
+    "model": "clarifai:model",
+    "concepts": "clarifai:concepts",
+    "regions": "clarifai:regions",
+    "frames": "clarifai:frames",
+    "value": "schema:value"
+  }
+}
