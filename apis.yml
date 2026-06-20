@@ -5,7 +5,7 @@ description: >
   object detection, text analysis, visual search, and custom model training. The platform enables teams
   to build, deploy, and manage AI across shared cloud, on-premise, and edge infrastructure with support
   for model inference, workflow orchestration, vector search, and dataset management.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/clarifai/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -29,7 +29,7 @@ apis:
       The Clarifai API provides REST and gRPC endpoints for AI-powered computer vision and NLP capabilities
       including image recognition, object detection, text classification, visual search, and custom model
       training and deployment. Authentication uses Personal Access Tokens (PAT).
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.clarifai.com
     baseURL: https://api.clarifai.com/v2
     tags:
