@@ -54,6 +54,10 @@ apis:
         url: https://www.clarifai.com/contact
         email: sales@clarifai.com
 common:
+  - type: VulnerabilityDisclosure
+    url: security/clarifai-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/clarifai-domain-security.yml
   - type: Website
     url: https://www.clarifai.com
   - type: Documentation
