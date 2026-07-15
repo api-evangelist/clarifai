@@ -54,6 +54,8 @@ apis:
         url: https://www.clarifai.com/contact
         email: sales@clarifai.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/clarifai-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/clarifai-vulnerability-disclosure.yml
   - type: DomainSecurity
