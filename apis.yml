@@ -5,6 +5,18 @@ description: >
   object detection, text analysis, visual search, and custom model training. The platform enables teams
   to build, deploy, and manage AI across shared cloud, on-premise, and edge infrastructure with support
   for model inference, workflow orchestration, vector search, and dataset management.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
