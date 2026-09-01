@@ -64,6 +64,8 @@ apis:
   humanURL: https://docs.clarifai.com
   baseURL: https://api.clarifai.com/v2
   tags:
+  - v2
+  tags_raw:
   - V2
   properties:
   - type: OpenAPI
