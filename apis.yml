@@ -37,13 +37,13 @@ specificationVersion: '0.23'
 type: Index
 tags:
   - Artificial Intelligence
-  - Computer-Vision
+  - Computer Vision
   - NLP
   - Image Recognition
   - Object Detection
   - Text Analysis
   - Visual Search
-  - Machine-Learning
+  - Machine Learning
   - Custom Model Training
   - gRPC
 tags_raw:
@@ -57,19 +57,583 @@ tags_raw:
   - Machine Learning
   - Custom Model Training
   - gRPC
+  - Computer-Vision
+  - Machine-Learning
 apis:
-- aid: clarifai:clarifai-v2-api
-  name: Clarifai V2 API
-  description: The V2 API from Clarifai — 297 operation(s) for v2.
+- aid: clarifai:clarifai-annotation-filters-api
+  name: Clarifai Annotation Filters API
+  description: The Annotation Filters API from Clarifai — 2 operation(s) for annotation filters.
   humanURL: https://docs.clarifai.com
   baseURL: https://api.clarifai.com/v2
   tags:
-  - v2
-  tags_raw:
-  - V2
+  - Annotation Filters
   properties:
   - type: OpenAPI
-    url: openapi/clarifai-v2-api-openapi.yml
+    url: openapi/clarifai-annotation-filters-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-annotations-api
+  name: Clarifai Annotations API
+  description: The Annotations API from Clarifai — 3 operation(s) for annotations.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Annotations
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-annotations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-app-api
+  name: Clarifai App API
+  description: The App API from Clarifai — 1 operation(s) for app.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - App
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-app-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-apps-api
+  name: Clarifai Apps API
+  description: The Apps API from Clarifai — 1 operation(s) for apps.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-apps-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-artifact-versions-api
+  name: Clarifai Artifact Versions API
+  description: The Artifact Versions API from Clarifai — 1 operation(s) for artifact versions.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Artifact Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-artifact-versions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-bulk-operations-api
+  name: Clarifai Bulk Operations API
+  description: The Bulk Operations API from Clarifai — 2 operation(s) for bulk operations.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Bulk Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-bulk-operations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-cloud-providers-api
+  name: Clarifai Cloud Providers API
+  description: The Cloud Providers API from Clarifai — 3 operation(s) for cloud providers.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Cloud Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-cloud-providers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-compute-clusters-api
+  name: Clarifai Compute Clusters API
+  description: The Compute Clusters API from Clarifai — 1 operation(s) for compute clusters.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Compute Clusters
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-compute-clusters-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-compute-plane-metrics-api
+  name: Clarifai Compute Plane Metrics API
+  description: The Compute Plane Metrics API from Clarifai — 1 operation(s) for compute plane metrics.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Compute Plane Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-compute-plane-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-concepts-api
+  name: Clarifai Concepts API
+  description: The Concepts API from Clarifai — 7 operation(s) for concepts.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Concepts
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-concepts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-datasets-api
+  name: Clarifai Datasets API
+  description: The Datasets API from Clarifai — 8 operation(s) for datasets.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-datasets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-deployments-api
+  name: Clarifai Deployments API
+  description: The Deployments API from Clarifai — 1 operation(s) for deployments.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Deployments
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-deployments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-evaluations-api
+  name: Clarifai Evaluations API
+  description: The Evaluations API from Clarifai — 2 operation(s) for evaluations.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Evaluations
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-evaluations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-inputs-api
+  name: Clarifai Inputs API
+  description: The Inputs API from Clarifai — 18 operation(s) for inputs.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Inputs
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-inputs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-label-orders-api
+  name: Clarifai Label Orders API
+  description: The Label Orders API from Clarifai — 2 operation(s) for label orders.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Label Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-label-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-log-entries-api
+  name: Clarifai Log Entries API
+  description: The Log Entries API from Clarifai — 1 operation(s) for log entries.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Log Entries
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-log-entries-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-models-api
+  name: Clarifai Models API
+  description: The Models API from Clarifai — 29 operation(s) for models.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Models
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-models-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-my-scopes-api
+  name: Clarifai My Scopes API
+  description: The My Scopes API from Clarifai — 1 operation(s) for my scopes.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - My Scopes
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-my-scopes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-myscopes-api
+  name: Clarifai Myscopes API
+  description: The Myscopes API from Clarifai — 1 operation(s) for myscopes.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Myscopes
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-myscopes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-myscopesroot-api
+  name: Clarifai Myscopesroot API
+  description: The Myscopesroot API from Clarifai — 1 operation(s) for myscopesroot.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Myscopesroot
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-myscopesroot-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-nodepools-api
+  name: Clarifai Nodepools API
+  description: The Nodepools API from Clarifai — 1 operation(s) for nodepools.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Nodepools
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-nodepools-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-open-source-licenses-api
+  name: Clarifai Open Source Licenses API
+  description: The Open Source Licenses API from Clarifai — 1 operation(s) for open source licenses.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Open Source Licenses
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-open-source-licenses-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-pipeline-step-versions-api
+  name: Clarifai Pipeline Step Versions API
+  description: >-
+    The Pipeline Step Versions API from Clarifai — 1 operation(s) for pipeline step versions.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Pipeline Step Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-pipeline-step-versions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-pipeline-templates-api
+  name: Clarifai Pipeline Templates API
+  description: The Pipeline Templates API from Clarifai — 1 operation(s) for pipeline templates.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Pipeline Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-pipeline-templates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-pipelines-api
+  name: Clarifai Pipelines API
+  description: The Pipelines API from Clarifai — 5 operation(s) for pipelines.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Pipelines
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-pipelines-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-resource-counts-api
+  name: Clarifai Resource Counts API
+  description: The Resource Counts API from Clarifai — 1 operation(s) for resource counts.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Resource Counts
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-resource-counts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-runners-api
+  name: Clarifai Runners API
+  description: The Runners API from Clarifai — 1 operation(s) for runners.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Runners
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-runners-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-searches-api
+  name: Clarifai Searches API
+  description: The Searches API from Clarifai — 2 operation(s) for searches.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Searches
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-searches-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-status-codes-api
+  name: Clarifai Status Codes API
+  description: The Status Codes API from Clarifai — 2 operation(s) for status codes.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Status Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-status-codes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-tasks-api
+  name: Clarifai Tasks API
+  description: The Tasks API from Clarifai — 6 operation(s) for tasks.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-uploads-api
+  name: Clarifai Uploads API
+  description: The Uploads API from Clarifai — 3 operation(s) for uploads.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Uploads
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-uploads-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-users-api
+  name: Clarifai Users API
+  description: The Users API from Clarifai — 175 operation(s) for users.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-validate-password-api
+  name: Clarifai Validate Password API
+  description: The Validate Password API from Clarifai — 1 operation(s) for validate password.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Validate Password
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-validate-password-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-workflow-version-evaluation-templates-api
+  name: Clarifai Workflow Version Evaluation Templates API
+  description: >-
+    The Workflow Version Evaluation Templates API from Clarifai — 1 operation(s) for workflow version
+    evaluation templates.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Workflow Version Evaluation Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-workflow-version-evaluation-templates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-workflow-version-evaluations-api
+  name: Clarifai Workflow Version Evaluations API
+  description: >-
+    The Workflow Version Evaluations API from Clarifai — 3 operation(s) for workflow version evaluations.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Workflow Version Evaluations
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-workflow-version-evaluations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.clarifai.com
+  - type: Postman
+    url: https://docs.clarifai.com
+  - type: Authentication
+    url: https://docs.clarifai.com/getting-started/quickstart/
+- aid: clarifai:clarifai-workflows-api
+  name: Clarifai Workflows API
+  description: The Workflows API from Clarifai — 7 operation(s) for workflows.
+  humanURL: https://docs.clarifai.com
+  baseURL: https://api.clarifai.com/v2
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/clarifai-workflows-api-openapi.yml
   - type: Documentation
     url: https://docs.clarifai.com
   - type: Postman

@@ -1,0 +1,800 @@
+openapi: 3.2.0
+info:
+  title: proto/clarifai/api/service.proto Pipeline Templates API
+  version: version not set
+tags:
+- name: Pipeline Templates
+paths:
+  /v2/pipeline_templates:
+    get:
+      summary: Lists pipeline templates, which are ready-to-use templates that can simply be…
+      operationId: V2_ListPipelineTemplates
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiMultiPipelineTemplateResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/googlerpcStatus'
+      parameters:
+      - name: pipeline_template_type
+        description: Filter based on PipelineTemplateTypes (e.g. TRAINING)
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - UNKNOWN
+            - TRAINING
+      tags:
+      - Pipeline Templates
+components:
+  schemas:
+    googlerpcStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protobufAny'
+    apiPipelineTemplateParameter:
+      type: object
+      properties:
+        name:
+          type: string
+          title: Name of the parameter
+        type:
+          $ref: '#/components/schemas/apiPipelineTemplateParameterType'
+          title: Type of the parameter (string, int, float, bool)
+        required:
+          type: boolean
+          title: Whether this parameter is required
+        default_string:
+          type: string
+          title: Default value when type is STRING
+        default_int:
+          type: string
+          format: int64
+          title: Default value when type is INT
+        default_float:
+          type: number
+          format: double
+          title: Default value when type is FLOAT
+        default_bool:
+          type: boolean
+          title: Default value when type is BOOL
+        description:
+          type: string
+          title: Description of the parameter
+        constraints:
+          $ref: '#/components/schemas/PipelineTemplateParameterConstraints'
+          title: Constraints to validate parameter values
+        ui_hints:
+          $ref: '#/components/schemas/PipelineTemplateParameterUIHints'
+          title: UI hints for rendering this parameter in the frontend
+    ConstraintsIntConstraints:
+      type: object
+      properties:
+        min:
+          type: string
+          format: int64
+          title: Minimum value for the int parameter
+        max:
+          type: string
+          format: int64
+          title: Maximum value for the int parameter
+    apiPipelineTemplateParameterType:
+      type: string
+      enum:
+      - PARAMETER_TYPE_UNSPECIFIED
+      - STRING
+      - INT
+      - FLOAT
+      - BOOL
+      default: PARAMETER_TYPE_UNSPECIFIED
+    UIHintsUIWidget:
+      type: string
+      enum:
+      - UI_WIDGET_UNSPECIFIED
+      - TEXT_INPUT
+      - NUMBER_INPUT
+      - SLIDER
+      - DROPDOWN
+      - TOGGLE
+      default: UI_WIDGET_UNSPECIFIED
+    apiMultiPipelineTemplateResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/apistatusStatus'
+        pipeline_templates:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/apiPipelineTemplate'
+    statusRedirectInfo:
+      type: object
+      properties:
+        url:
+          type: string
+          description: New location for the resource. Used to set response Location header.
+        resource_type:
+          type: string
+          title: Resource type
+        old_resource_id:
+          type: string
+          title: Old resource id
+        new_resource_id:
+          type: string
+          title: New resource id
+    apiPipelineTemplate:
+      type: object
+      properties:
+        name:
+          type: string
+          title: Name of the template
+        description:
+          type: string
+          title: Description of the template
+        pipeline_template_type:
+          $ref: '#/components/schemas/PipelineTemplatePipelineTemplateType'
+          title: Type of the pipeline template
+        compute_info:
+          $ref: '#/components/schemas/apiComputeInfo'
+          title: Compute resources required to run this pipeline template
+        parameters:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/apiPipelineTemplateParameter'
+          title: List of parameters that can be configured for this template
+        pipeline_steps:
+          type: object
+          additionalProperties:
+            type: string
+          title: Map from pipeline step name to pipeline step reference
+    statusStatusCode:
+      type: string
+      enum:
+      - ZERO
+      - SUCCESS
+      - MIXED_STATUS
+      - FAILURE
+      - TRY_AGAIN
+      - NOT_IMPLEMENTED
+      - MOVED
+      - TEAPOT
+      - ACCEPTED
+      - CONN_ACCOUNT_ISSUES
+      - CONN_TOKEN_INVALID
+      - CONN_CREDENTIALS_INVALID
+      - CONN_EXCEED_HOURLY_LIMIT
+      - CONN_EXCEED_MONTHLY_LIMIT
+      - CONN_THROTTLED
+      - CONN_EXCEEDS_LIMITS
+      - CONN_INSUFFICIENT_SCOPES
+      - CONN_KEY_INVALID
+      - CONN_KEY_NOT_FOUND
+      - CONN_BAD_REQUEST_FORMAT
+      - CONN_DOES_NOT_EXIST
+      - CONN_INVALID_REQUEST
+      - CONN_METHOD_NOT_ALLOWED
+      - CONN_NO_GDPR_CONSENT
+      - CONN_INVALID_RANGE
+      - CONN_AUTH_METHOD_DISABLED
+      - MODEL_TRAINED
+      - MODEL_TRAINING
+      - MODEL_UNTRAINED
+      - MODEL_QUEUED_FOR_TRAINING
+      - MODEL_UPLOADING
+      - MODEL_UPLOADING_FAILED
+      - MODEL_TRAINING_FAILED
+      - MODEL_BUILDING
+      - MODEL_BUILDING_FAILED
+      - MODEL_BUILD_UNEXPECTED_ERROR
+      - MODEL_TRAINING_NO_DATA
+      - MODEL_TRAINING_NO_POSITIVES
+      - MODEL_TRAINING_ONE_VS_N_SINGLE_CLASS
+      - MODEL_TRAINING_TIMED_OUT
+      - MODEL_TRAINING_WAITING_ERROR
+      - MODEL_TRAINING_UNKNOWN_ERROR
+      - MODEL_TRAINING_MSG_REDELIVER
+      - MODEL_TRAINING_INSUFFICIENT_DATA
+      - MODEL_TRAINING_INVALID_PARAMS
+      - MODEL_TRAINING_INVALID_DATA_TOLERANCE_EXCEEDED
+      - MODEL_MODIFY_SUCCESS
+      - MODEL_MODIFY_PENDING
+      - MODEL_MODIFY_FAILED
+      - MODEL_DOES_NOT_EXIST
+      - MODEL_PERMISSION_DENIED
+      - MODEL_INVALID_ARGUMENT
+      - MODEL_INVALID_REQUEST
+      - MODEL_EVALUATED
+      - MODEL_EVALUATING
+      - MODEL_NOT_EVALUATED
+      - MODEL_QUEUED_FOR_EVALUATION
+      - MODEL_EVALUATION_TIMED_OUT
+      - MODEL_EVALUATION_WAITING_ERROR
+      - MODEL_EVALUATION_UNKNOWN_ERROR
+      - MODEL_PREDICTION_FAILED
+      - MODEL_EVALUATION_MSG_REDELIVER
+      - MODEL_EVALUATION_NEED_LABELS
+      - MODEL_EVALUATION_NEED_INPUTS
+      - MODEL_EVALUATION_FAILED
+      - MODEL_DEPLOYMENT_FAILED
+      - MODEL_DEPLOYING
+      - MODEL_QUEUED_FOR_DEPLOYMENT
+      - MODEL_NOT_DEPLOYED
+      - MODEL_BUSY_PLEASE_RETRY
+      - MODEL_LOADING
+      - MODEL_REFERENCE_INVALID_ARGUMENT
+      - MODEL_EXAMPLE_INPUT_INVALID_ARGUMENT
+      - MODEL_EXPORTED
+      - MODEL_EXPORTING
+      - MODEL_EXPORTING_FAILED
+      - MODEL_EXPORT_PENDING
+      - WORKFLOW_NO_MATCHING_INPUT
+      - WORKFLOW_REQUIRE_TRAINED_MODEL
+      - WORKFLOW_DUPLICATE
+      - WORKFLOW_UNSUPPORTED_FORMAT
+      - WORKFLOW_DOES_NOT_EXIST
+      - WORKFLOW_PERMISSION_DENIED
+      - WORKFLOW_INVALID_ARGUMENT
+      - WORKFLOW_INVALID_RECIPE
+      - WORKFLOW_INVALID_TEMPLATE
+      - WORKFLOW_INVALID_GRAPH
+      - WORKFLOW_INTERNAL_FAILURE
+      - WORKFLOW_INVALID_REQUEST
+      - WORKFLOW_MODIFY_SUCCESS
+      - WORKFLOW_MODIFY_PENDING
+      - WORKFLOW_MODIFY_FAILED
+      - WORKFLOW_REINDEX_FAILED
+      - CONCEPT_MODIFY_SUCCESS
+      - CONCEPT_MODIFY_PENDING
+      - CONCEPT_MODIFY_FAILED
+      - ANNOTATION_SUCCESS
+      - ANNOTATION_PENDING
+      - ANNOTATION_FAILED
+      - ANNOTATION_UNKNOWN_STATUS
+      - ANNOTATION_INVALID_ARGUMENT
+      - ANNOTATION_PERMISSION_DENIED
+      - ANNOTATION_AWAITING_REVIEW
+      - ANNOTATION_AWAITING_CONSENSUS_REVIEW
+      - ANNOTATION_REVIEW_DENIED
+      - ANNOTATION_MODIFY_SUCCESS
+      - ANNOTATION_MODIFY_PENDING
+      - ANNOTATION_MODIFY_FAILED
+      - ANNOTATION_TRACK_IDLE
+      - ANNOTATION_TRACK_IN_PROGRESS
+      - ANNOTATION_TRACK_PENDING
+      - ANNOTATION_TRACK_APPROVED
+      - ANNOTATION_TRACK_FAILED
+      - METADATA_INVALID_PATCH_ARGUMENTS
+      - METADATA_PARSING_ISSUE
+      - METADATA_MANIPULATION_ISSUE
+      - TRAINER_JOB_STATE_NONE
+      - TRAINER_JOB_STATE_QUEUED
+      - TRAINER_JOB_STATE_RUNNING
+      - TRAINER_JOB_STATE_COMPLETE
+      - TRAINER_JOB_STATE_ERROR
+      - DATA_DUMP_SUCCESS
+      - DATA_DUMP_PENDING
+      - DATA_DUMP_FAILED
+      - DATA_DUMP_IN_PROGRESS
+      - DATA_DUMP_NO_DATA
+      - DATA_DUMP_UNEXPECTED_ERROR
+      - DATA_DUMP_EXPORT_SUCCESS
+      - DATA_DUMP_EXPORT_PENDING
+      - DATA_DUMP_EXPORT_FAILED
+      - DATA_DUMP_EXPORT_IN_PROGRESS
+      - DATA_DUMP_EXPORT_UNEXPECTED_ERROR
+      - APP_DUPLICATION_SUCCESS
+      - APP_DUPLICATION_FAILED
+      - APP_DUPLICATION_PENDING
+      - APP_DUPLICATION_IN_PROGRESS
+      - APP_DUPLICATION_INVALID_REQUEST
+      - MODULE_DOES_NOT_EXIST
+      - MODULE_PERMISSION_DENIED
+      - MODULE_INVALID_ARGUMENT
+      - MODULE_INVALID_REQUEST
+      - BULK_OPERATION_SUCCESS
+      - BULK_OPERATION_FAILED
+      - BULK_OPERATION_PENDING
+      - BULK_OPERATION_IN_PROGRESS
+      - BULK_OPERATION_INVALID_REQUEST
+      - BULK_OPERATION_CANCELLED
+      - BULK_OPERATION_UNEXPECTED_ERROR
+      - RUNNER_DOES_NOT_EXIST
+      - RUNNER_PERMISSION_DENIED
+      - RUNNER_INVALID_ARGUMENT
+      - RUNNER_INVALID_REQUEST
+      - RUNNER_NEEDS_RETRY
+      - RUNNER_STREAM_START
+      - RUNNER_STREAM_END
+      - RUNNER_ITEM_CANCELLED
+      - RUNNER_PROCESSING_FAILED
+      - RUNNER_SPECIAL_HANDLING_NOT_COMPLETE
+      - NODEPOOL_DOES_NOT_EXIST
+      - NODEPOOL_INVALID_ARGUMENT
+      - NODEPOOL_INVALID_REQUEST
+      - COMPUTE_CLUSTER_DOES_NOT_EXIST
+      - COMPUTE_CLUSTER_INVALID_ARGUMENT
+      - COMPUTE_CLUSTER_INVALID_REQUEST
+      - DEPLOYMENT_DOES_NOT_EXIST
+      - DEPLOYMENT_INVALID_ARGUMENT
+      - DEPLOYMENT_INVALID_REQUEST
+      - DEPLOYMENT_DISABLED
+      - INSTANCE_TYPE_DOES_NOT_EXIST
+      - INSTANCE_TYPE_INVALID_ARGUMENT
+      - INSTANCE_TYPE_INVALID_REQUEST
+      - COMPUTE_PLANE_METRICS_INVALID_REQUEST
+      - PIPELINE_STEP_DOES_NOT_EXIST
+      - PIPELINE_STEP_INVALID_ARGUMENT
+      - PIPELINE_STEP_INVALID_REQUEST
+      - PIPELINE_STEP_UPLOADING
+      - PIPELINE_STEP_UPLOADING_FAILED
+      - PIPELINE_STEP_BUILDING
+      - PIPELINE_STEP_BUILDING_FAILED
+      - PIPELINE_STEP_BUILD_UNEXPECTED_ERROR
+      - PIPELINE_STEP_READY
+      - PIPELINE_STEP_NOT_READY
+      - PIPELINE_DOES_NOT_EXIST
+      - PIPELINE_INVALID_ARGUMENT
+      - PIPELINE_INVALID_REQUEST
+      - ARTIFACT_DOES_NOT_EXIST
+      - ARTIFACT_INVALID_ARGUMENT
+      - ARTIFACT_INVALID_REQUEST
+      - ARTIFACT_VERSION_DOES_NOT_EXIST
+      - ARTIFACT_VERSION_INVALID_ARGUMENT
+      - ARTIFACT_VERSION_INVALID_REQUEST
+      - INPUT_SUCCESS
+      - INPUT_PENDING
+      - INPUT_FAILED
+      - INPUT_IN_PROGRESS
+      - INPUT_DOWNLOAD_SUCCESS
+      - INPUT_DOWNLOAD_PENDING
+      - INPUT_DOWNLOAD_FAILED
+      - INPUT_DOWNLOAD_IN_PROGRESS
+      - INPUT_STATUS_UPDATE_FAILED
+      - INPUT_DELETE_FAILED
+      - INPUT_DUPLICATE
+      - INPUT_UNSUPPORTED_FORMAT
+      - INPUT_DOES_NOT_EXIST
+      - INPUT_PERMISSION_DENIED
+      - INPUT_INVALID_ARGUMENT
+      - INPUT_OVER_LIMIT
+      - INPUT_INVALID_URL
+      - INPUT_MODIFY_SUCCESS
+      - INPUT_MODIFY_PENDING
+      - INPUT_MODIFY_FAILED
+      - INPUT_STORAGE_HOST_FAILED
+      - ALL_INPUT_INVALID_BYTES
+      - INPUT_CLUSTER_SUCCESS
+      - INPUT_CLUSTER_PENDING
+      - INPUT_CLUSTER_FAILED
+      - INPUT_CLUSTER_IN_PROGRESS
+      - INPUT_REINDEX_SUCCESS
+      - INPUT_REINDEX_PENDING
+      - INPUT_REINDEX_FAILED
+      - INPUT_REINDEX_IN_PROGRESS
+      - INPUT_VIDEO_DOWNLOAD_SUCCESS
+      - INPUT_VIDEO_DOWNLOAD_PENDING
+      - INPUT_VIDEO_DOWNLOAD_FAILED
+      - INPUT_VIDEO_DUPLICATE
+      - INPUT_VIDEO_UNSUPPORTED_FORMAT
+      - INPUT_VIDEO_DOES_NOT_EXIST
+      - INPUT_VIDEO_PERMISSION_DENIED
+      - INPUT_VIDEO_INVALID_ARGUMENT
+      - INPUT_VIDEO_OVER_LIMIT
+      - INPUT_VIDEO_INVALID_URL
+      - INPUT_VIDEO_MODIFY_SUCCESS
+      - INPUT_VIDEO_MODIFY_PENDING
+      - INPUT_VIDEO_MODIFY_FAILED
+      - INPUT_VIDEO_STORAGE_HOST_FAILED
+      - ALL_INPUT_VIDEOS_INVALID_BYTES
+      - INPUT_VIDEO_PROCESSING_SUCCESS
+      - INPUT_VIDEO_PROCESSING_PENDING
+      - INPUT_VIDEO_PROCESSING_FAILED
+      - INPUT_VIDEO_STORAGE_INCONSISTENCY
+      - INPUT_VIDEO_STORAGE_FAILURE
+      - INPUT_VIDEO_URL_GENERATION_FAILURE
+      - INPUT_CONNECTION_FAILED
+      - REQUEST_DISABLED_FOR_MAINTENANCE
+      - INPUT_WRITES_DISABLED_FOR_MAINTENANCE
+      - INPUT_INVALID_REQUEST
+      - PREDICT_INVALID_REQUEST
+      - SEARCH_INVALID_REQUEST
+      - CONCEPTS_INVALID_REQUEST
+      - STATS_INVALID_REQUEST
+      - DATABASE_DUPLICATE_KEY
+      - DATABASE_STATEMENT_TIMEOUT
+      - DATABASE_INVALID_ROWS_AFFECTED
+      - DATABASE_DEADLOCK_DETECTED
+      - DATABASE_FAIL_TASK
+      - DATABASE_FAIL_TO_GET_CONNECTIONS
+      - DATABASE_TOO_MANY_CLIENTS
+      - DATABASE_CONSTRAINT_VIOLATED
+      - DATABASE_CANCELED
+      - ASYNC_WORKER_MULTI_ERRORS
+      - RPC_REQUEST_QUEUE_FULL
+      - RPC_SERVER_UNAVAILABLE
+      - RPC_REQUEST_TIMEOUT
+      - RPC_MAX_MESSAGE_SIZE_EXCEEDED
+      - RPC_CANCELED
+      - RPC_UNKNOWN_METHOD
+      - REQUEST_CANCELED_BY_USER
+      - CLUSTER_INTERNAL_FAILURE
+      - EXTERNAL_CONNECTION_ERROR
+      - QUERY_INVALID_SYNTAX
+      - QUEUE_CONN_ERROR
+      - QUEUE_CLOSE_REQUEST_TIMEOUT
+      - QUEUE_CONN_CLOSED
+      - QUEUE_PUBLISH_ACK_TIMEOUT
+      - QUEUE_PUBLISH_ERROR
+      - QUEUE_SUBSCRIPTION_TIMEOUT
+      - QUEUE_SUBSCRIPTION_ERROR
+      - QUEUE_MARSHALLING_FAILED
+      - QUEUE_UNMARSHALLING_FAILED
+      - QUEUE_MAX_MSG_REDELIVERY_EXCEEDED
+      - QUEUE_ACK_FAILURE
+      - SQS_OVERLIMIT
+      - SQS_INVALID_RECEIPT_HANDLE
+      - SQS_UNKNOWN
+      - SEARCH_INTERNAL_FAILURE
+      - SEARCH_PROJECTION_FAILURE
+      - SEARCH_PREDICTION_FAILURE
+      - SEARCH_BY_NOT_FULLY_INDEXED_INPUT
+      - SAVED_SEARCH_MODIFY_FAILED
+      - SEARCH_COUNTS_UNAVAILABLE
+      - EVALUATION_QUEUED
+      - EVALUATION_IN_PROGRESS
+      - EVALUATION_SUCCESS
+      - EVALUATION_FAILED_TO_RETRIEVE_DATA
+      - EVALUATION_INVALID_ARGUMENT
+      - EVALUATION_FAILED
+      - EVALUATION_PENDING
+      - EVALUATION_TIMED_OUT
+      - EVALUATION_UNEXPECTED_ERROR
+      - EVALUATION_MIXED
+      - STRIPE_EVENT_ERROR
+      - STRIPE_UNEXPECTED_ERROR
+      - CACHE_MISS
+      - REDIS_SCRIPT_EXITED_WITH_FAILURE
+      - REDIS_STREAM_ERR
+      - REDIS_NO_CONSUMERS
+      - REDIS_STREAM_BACKOFF
+      - REDIS_CHANNEL_ERR
+      - SIGNUP_EVENT_ERROR
+      - SIGNUP_FLAGGED
+      - FILETYPE_UNSUPPORTED
+      - LOGIN_EVENT_ERROR
+      - SIFT_UNCATEGORIZED_ERROR
+      - USER_FLAGGED
+      - APP_COUNT_INVALID_MESSAGE
+      - APP_COUNT_UPDATE_INCREMENT_FAILED
+      - APP_COUNT_REBUILD_FAILED
+      - APP_COUNT_INTERNAL_FAILURE
+      - MP_DOWNLOAD_ERROR
+      - MP_RESOLVE_DNS_ERROR
+      - MP_DOWNLOAD_MAX_SIZE_EXCEEDED_ERROR
+      - MP_IMAGE_DECODE_ERROR
+      - MP_INVALID_ARGUMENT
+      - MP_IMAGE_PROCESSING_ERROR
+      - DATATIER_CONN_ERROR
+      - USER_CONSENT_FACE
+      - WORKER_MISSING
+      - WORKER_ACTIVE
+      - WORKER_INACTIVE
+      - SSO_IDENTITY_PROVIDER_DOES_NOT_EXIST
+      - TASK_IN_PROGRESS
+      - TASK_DONE
+      - TASK_WONT_DO
+      - TASK_FAILED
+      - TASK_IDLE
+      - TASK_CONFLICT
+      - TASK_NOT_IMPLEMENTED
+      - TASK_MISSING
+      - TASK_PERMISSION_DENIED
+      - TASK_ASSIGNMENT_SUCCESS
+      - TASK_ASSIGNMENT_PENDING
+      - TASK_ASSIGNMENT_AWAITING_REVIEW
+      - TASK_ASSIGNMENT_AWAITING_CONSENSUS_REVIEW
+      - TASK_ASSIGNMENT_REJECTED
+      - TASK_ASSIGNMENT_REVIEW_SUCCESS
+      - TASK_ASSIGNMENT_REVIEW_PENDING
+      - TASK_ASSIGNMENT_REVIEW_DISMISSED
+      - LABEL_ORDER_PENDING
+      - LABEL_ORDER_IN_PROGRESS
+      - LABEL_ORDER_SUCCESS
+      - LABEL_ORDER_CANCELED
+      - LICENSE_ACTIVE
+      - LICENSE_DOES_NOT_EXIST
+      - LICENSE_NEED_UPDATE
+      - LICENSE_EXPIRED
+      - LICENSE_REVOKED
+      - LICENSE_DELETED
+      - LICENSE_VOLUME_EXCEEDED
+      - PASSWORD_VALIDATION_SUCCESS
+      - PASSWORD_VALIDATION_FAILED
+      - PASSWORDPOLICY_INVALID_ARGUMENT
+      - FEATUREFLAG_CONFIG_NOT_FOUND
+      - FEATUREFLAG_INVALID_ARGUMENT
+      - FEATUREFLAG_BLOCKED
+      - FEATUREFLAG_NOT_FOUND
+      - MAINTENANCE_SUCCESS
+      - MAINTENANCE_FAILED
+      - DATASET_VERSION_PENDING
+      - DATASET_VERSION_IN_PROGRESS
+      - DATASET_VERSION_READY
+      - DATASET_VERSION_FAILURE
+      - DATASET_VERSION_UNEXPECTED_ERROR
+      - DATASET_VERSION_CONFLICT
+      - DATASET_INPUT_SUCCESS
+      - DATASET_INPUT_DUPLICATE
+      - DATASET_VERSION_EXPORT_SUCCESS
+      - DATASET_VERSION_EXPORT_PENDING
+      - DATASET_VERSION_EXPORT_FAILED
+      - DATASET_VERSION_EXPORT_IN_PROGRESS
+      - DATASET_VERSION_EXPORT_UNEXPECTED_ERROR
+      - JOB_QUEUED
+      - JOB_RUNNING
+      - JOB_COMPLETED
+      - JOB_FAILED
+      - JOB_CANCELLED
+      - JOB_UNEXPECTED_ERROR
+      - JOB_CONFLICT
+      - JOB_PAUSED
+      - AUTH_MISSING_IDP_ASSOC
+      - LIST_OBJECTS_FAILED
+      - ARCHIVE_EXTRACT_FAILED
+      - UPLOAD_IN_PROGRESS
+      - UPLOAD_DONE
+      - UPLOAD_FAILED
+      - UPLOAD_UNEXPECTED_ERROR
+      - UPLOAD_EXPIRED
+      - UPLOAD_CANCELED
+      - UPLOAD_CONFLICT
+      - BILLING_INVALID_INFO
+      - BILLING_MISSING_TOKENS
+      - LOG_ENTRIES_INVALID_REQUEST
+      - TWILIO_MAX_VERIFICATION_BEGIN_EXCEEDED
+      - TWILIO_MAX_VERIFICATION_CHECK_EXCEEDED
+      - TWILIO_PHONE_NUMBER_BLOCKED
+      - INTERNAL_SERVER_ISSUE
+      - INTERNAL_FETCHING_ISSUE
+      - INTERNAL_DATABASE_ISSUE
+      - INTERNAL_CONTEXT_CANCELED
+      - INTERNAL_UNEXPECTED_TIMEOUT
+      - INTERNAL_UNEXPECTED_V1
+      - INTERNAL_UNEXPECTED_PANIC
+      - INTERNAL_UNEXPECTED_SPIRE
+      - INTERNAL_REDIS_UNAVAILABLE
+      - INTERNAL_RESOURCE_EXHAUSTED
+      - INTERNAL_REDIS_UNCATEGORIZED
+      - INTERNAL_AWS_UNCATEGORIZED
+      - INTERNAL_AZURE_UNCATEGORIZED
+      - INTERNAL_VECTORDB_UNCATEGORIZED
+      - INTERNAL_ORACLE_UNCATEGORIZED
+      - INTERNAL_VULTR_UNCATEGORIZED
+      - INTERNAL_GCP_UNCATEGORIZED
+      - CONN_UNCATEGORIZED
+      - MODEL_UNCATEGORIZED
+      - INPUT_UNCATEGORIZED
+      - ANNOTATION_UNCATEGORIZED
+      - BILLING_UNCATEGORIZED
+      - INTERNAL_UNCATEGORIZED
+      - BAD_REQUEST
+      - SERVER_ERROR
+      default: ZERO
+      description: "expired cc, still in trial, feature not supported in your tier\n - CONN_TOKEN_INVALID: invalid auth token used. Deprecated: we should return CONN_KEY_INVALID instead now in all cases.\n - CONN_CREDENTIALS_INVALID: invalid auth credentials\n - CONN_EXCEED_HOURLY_LIMIT: throttle hourly limit exceeded\n - CONN_EXCEED_MONTHLY_LIMIT: throttle monthly limit exceeded\n - CONN_THROTTLED: throttler and billing stuff\n - CONN_EXCEEDS_LIMITS: throttler and billing stuff\n - CONN_INSUFFICIENT_SCOPES: api key has insufficient permissions\n - CONN_KEY_INVALID: api key is invalid\n - CONN_KEY_NOT_FOUND: api key not found\n - CONN_BAD_REQUEST_FORMAT: multipart form parsing, broken json, etc\n - CONN_DOES_NOT_EXIST: when path is bad\n - CONN_INVALID_REQUEST: something wrong with a header\n - CONN_METHOD_NOT_ALLOWED: when a request method is not allowed\n - CONN_NO_GDPR_CONSENT: lack GDPR consent\n - CONN_INVALID_RANGE: when invalid range of a resource is requested\n - CONN_AUTH_METHOD_DISABLED: authentication method is disabled\n - MODEL_TRAINED: Model/Custom Training related 20xxx\n\nCustom model has been already trained.\n - MODEL_TRAINING: Custom model is currently training.\n - MODEL_UNTRAINED: Custom model has not yet been trained.\n - MODEL_QUEUED_FOR_TRAINING: Custom model is currently in queue for training, waiting on assets to process first.\n - MODEL_TRAINING_FAILED: generic err msg for any type of model training err.\n - MODEL_BUILDING: For new V3 DockerInternalType models which are built images\n - MODEL_BUILDING_FAILED: Failed to build image for model.\n - MODEL_BUILD_UNEXPECTED_ERROR: Failed to build image for model.\n - MODEL_TRAINING_NO_DATA: Custom model training had no data.  FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_NO_POSITIVES: Custom model training had no positive examples. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_ONE_VS_N_SINGLE_CLASS: Custom model training was ONE_VS_N but with a single class. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_TIMED_OUT: Training took longer than hard coded timeouts. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_WAITING_ERROR: Training got error waiting on asset pipeline to finish. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_UNKNOWN_ERROR: Training threw an unknown exception.\n - MODEL_TRAINING_MSG_REDELIVER: Training message was redelivered. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_INSUFFICIENT_DATA: Training got error due to insufficient labelled data. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_INVALID_PARAMS: FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_INVALID_DATA_TOLERANCE_EXCEEDED: Training is stopped because too much data was dropped. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_EVALUATION_TIMED_OUT: Evaluation took longer than hard coded timeouts. FIXME(yang): deprecate this. Use the 21317 + errStatusMsg\n - MODEL_EVALUATION_WAITING_ERROR: Evaluation got error waiting on asset pipeline to finish.FIXME(yang): deprecate this. Use the 21317 + errStatusMsg\n - MODEL_EVALUATION_UNKNOWN_ERROR: EVALUATION THREW AN UNKNOWN EXCEPTION.\n - MODEL_EVALUATION_MSG_REDELIVER: Eval message was redelivered. FIXME(yang): deprecate this. Use the 21317 + errStatusMsg\n - MODEL_EVALUATION_NEED_LABELS: Don't have enough concepts labelled to perform evaluation. FIXME(yang): deprecate this. Use the 21317 + errStatusMsg\n - MODEL_EVALUATION_NEED_INPUTS: Don't have enough inputs per concept to perform evaluation. FIXME(yang): deprecate this. Use the 21317 + errStatusMsg\n - MODEL_EVALUATION_FAILED: Generic err code for eval failure.\n - MODEL_DEPLOYMENT_FAILED: Used when inference coordinator failed to deploy spire and throws an error\n - MODEL_DEPLOYING: Used when calling the inference coordinator to deploy a spire\n - MODEL_QUEUED_FOR_DEPLOYMENT: Used when training is completed\n - MODEL_NOT_DEPLOYED: Used when model spire deployment is manually taken down or due to inactivity\n - MODEL_LOADING: Used when the model pod is running, but not yet ready to serve requests.\n - MODEL_REFERENCE_INVALID_ARGUMENT: Used when a model reference field is not set properly\n - MODEL_EXAMPLE_INPUT_INVALID_ARGUMENT: Used when a model example input field is not set properly\n - MODEL_EXPORTED: Model Export status codes\n - WORKFLOW_NO_MATCHING_INPUT: specified model input not in workflow\n - WORKFLOW_REQUIRE_TRAINED_MODEL: specified model must be trained\n - WORKFLOW_INVALID_ARGUMENT: error in the request somewhere\n - WORKFLOW_INVALID_REQUEST: error in the request somewhere\n - CONCEPT_MODIFY_SUCCESS: Concept related 23xxx\n - ANNOTATION_SUCCESS: Annotation related 24xxx\n - ANNOTATION_AWAITING_REVIEW: Annotation is awaiting review from task REVIEWERS.\n - ANNOTATION_AWAITING_CONSENSUS_REVIEW: Annotation is awaiting consensus review from task LABELERS.\n - ANNOTATION_TRACK_IDLE: Annotation (video) tracks are groups of annotations per frame\nIDLE -> PROCESSING --> PENDING --> APPROVED --> (DELETED)\nPROCESSING --> FAILED --> (DELETED)\nPROCESSING --> (DELETED)\n - METADATA_INVALID_PATCH_ARGUMENTS: Metadata related 249xx\n - TRAINER_JOB_STATE_NONE: Training service related 25xxx\n - DATA_DUMP_SUCCESS: Data Dump related 251xx\n - DATA_DUMP_NO_DATA: DEPRECATED: Not used anymore. Now for an empty data dump, DATA_DUMP_SUCCESS is returned. To detect an empty data dump, check if the inptus count is 0.\n - APP_DUPLICATION_SUCCESS: Duplicate related 252xx - DEPRECATED: App duplication is no longer supported.\n - MODULE_DOES_NOT_EXIST: Module related codes 253xx\n - BULK_OPERATION_SUCCESS: Bulk Operation related codes 254xx\n - RUNNER_DOES_NOT_EXIST: Runner related codes 256xx\n - NODEPOOL_DOES_NOT_EXIST: Nodepool related codes 257xx\n - COMPUTE_CLUSTER_DOES_NOT_EXIST: ComputeCluster related codes 258xx\n - DEPLOYMENT_DOES_NOT_EXIST: Deployment related codes 259xx\n - DEPLOYMENT_DISABLED: The deployment is disabled and cannot serve traffic.\n - INSTANCE_TYPE_DOES_NOT_EXIST: InstanceType related codes 260xx\n - COMPUTE_PLANE_METRICS_INVALID_REQUEST: Compute plane related codes 261xx\n - PIPELINE_STEP_DOES_NOT_EXIST: PipelineStep related codes 262xx\n - PIPELINE_DOES_NOT_EXIST: Pipeline related codes 263xx\n - ARTIFACT_DOES_NOT_EXIST: Artifact related codes 264xx\n - INPUT_SUCCESS: Input:Image related 30xxx\n - INPUT_PENDING: when things are async, this is the default status.\n - INPUT_FAILED: any type of error downloading and processing\n - INPUT_DOWNLOAD_SUCCESS: use INPUT_SUCCESS, INPUT_PENDING, INPUT_FAILED, INPUT_IN_PROGRESS instead\nDOWNLOAD is no longer correct, but keep old statuses for backward compatibility\n - INPUT_VIDEO_DOWNLOAD_SUCCESS: Input:Video related 31xxx -- Deprecated\n - INPUT_WRITES_DISABLED_FOR_MAINTENANCE: deprecate this one. Use REQUEST_DISABLED_FOR_MAINTENANCE\n - PREDICT_INVALID_REQUEST: API formatting issues 4000x\n - DATABASE_DUPLICATE_KEY: Other related 400xx\n - EXTERNAL_CONNECTION_ERROR: could not connect to external services\n - QUEUE_CONN_ERROR: Queue related errors 41xxx\n - SQS_OVERLIMIT: SQS related errors 411xx\n - SEARCH_INTERNAL_FAILURE: Search related errors 43xxxx\n - EVALUATION_QUEUED: Workflow evaluation err code\n - STRIPE_EVENT_ERROR: Stripe 44xxx\n - CACHE_MISS: Redis/Cache 45xxx\n - SIGNUP_EVENT_ERROR: Sift Science 46xxx\n - APP_COUNT_INVALID_MESSAGE: Application counts related errors 470xx\n - MP_DOWNLOAD_ERROR: Media processor related errors 471xx -- DEPRECATED\n - DATATIER_CONN_ERROR: DataTier related error 472xx\n - USER_CONSENT_FACE: User legal consent stauts related 50xxx\n - WORKER_MISSING: Workers 51xxx\n - SSO_IDENTITY_PROVIDER_DOES_NOT_EXIST: SSO 53xxx\n - TASK_IN_PROGRESS: Tasks 54xxx\nThe task was created.\n - TASK_DONE: The task is completed.\n - TASK_WONT_DO: The task is marked as abandoned.\n - TASK_FAILED: An error occurred during add-task-annotations or add-auto-annotations pipeline.\n - TASK_IDLE: Task is waiting for user action.\nExamples:\n- When an Auto Annotation task job has finished processing its last batch and is waiting for more dataset assets.\n- When an Auto Annotation task job for a video livestream input is waiting for user to create a task deployment.\n - TASK_CONFLICT: The task operation is in conflict with the current state of the server.\n - TASK_NOT_IMPLEMENTED: Certain task-related scenarios are not implemented.\n - TASK_MISSING: Task was not found.\n - TASK_PERMISSION_DENIED: Not allowed to perform a task-related action.\n - TASK_ASSIGNMENT_SUCCESS: Task Assignments 542xx\n - TASK_ASSIGNMENT_REVIEW_SUCCESS: Task Assignment Reviews 543xx\n - LABEL_ORDER_PENDING: Label Order Related Status Code 55xxx\n - LICENSE_ACTIVE: License Related Status Code 600xx\nDEPRECATED: License feature is fully deprecated now.\n - LICENSE_DELETED: hidden state not reflected to users\n - PASSWORD_VALIDATION_SUCCESS: Password Related Status Code\n - FEATUREFLAG_CONFIG_NOT_FOUND: Feature flags status code\n - MAINTENANCE_SUCCESS: Maintenance status code\n - DATASET_VERSION_PENDING: Datasets 64xxx\nThe dataset version is pending to be processed.\n - DATASET_VERSION_IN_PROGRESS: The dataset version is currently being processed.\n - DATASET_VERSION_READY: The dataset version is ready to be used.\n - DATASET_VERSION_FAILURE: An error occurred during the dataset version processing.\n - DATASET_VERSION_UNEXPECTED_ERROR: An unexpected error occurred during the dataset version processing.\n - DATASET_VERSION_CONFLICT: An alteration to dataset version would create a conflict\n - DATASET_INPUT_SUCCESS: The dataset input was successfully added.\n - DATASET_INPUT_DUPLICATE: The dataset input is a duplicate.\nDeprecated: Unused.\n - DATASET_VERSION_EXPORT_SUCCESS: The dataset version export is completed.\n - DATASET_VERSION_EXPORT_PENDING: The dataset version is pending to be exported.\n - DATASET_VERSION_EXPORT_FAILED: An error occurred during the dataset version export.\n - DATASET_VERSION_EXPORT_IN_PROGRESS: The dataset version is currently being exported.\n - DATASET_VERSION_EXPORT_UNEXPECTED_ERROR: An unexpected error occurred during the dataset version export.\n - JOB_QUEUED: Generic Job status codes\n - AUTH_MISSING_IDP_ASSOC: auth issues\n\nTODO: Knowledge graph related 80xxx\n - UPLOAD_IN_PROGRESS: Multipart uploading status codes\n - BILLING_INVALID_INFO: Billing related issues: 69xxx\n - LOG_ENTRIES_INVALID_REQUEST: Logs related issues: 70000;\n - TWILIO_MAX_VERIFICATION_BEGIN_EXCEEDED: Twilio related issues: 71xxx\n - TWILIO_PHONE_NUMBER_BLOCKED: The provided phone number was rejected or blocked by Twilio.\n - INTERNAL_SERVER_ISSUE: Internal issues: 98xxx\n - CONN_UNCATEGORIZED: Uncategorized: 99xxx: move off as soon as known\n - BAD_REQUEST: Deprecated: migrate off to one of the internal issues\n - SERVER_ERROR: Deprecated: migrate off to one of the internal issues"
+      title: "- ZERO: to be revised and greatly expanded\n - SUCCESS: Generic\n - MOVED: Resource moved. Respond with Http status 307 and add new Location header to response\n - ACCEPTED: Request has been accepted. Respond with Http status 202.\n - CONN_ACCOUNT_ISSUES: Clarifai Connection Codes: 11xxx"
+    ConstraintsFloatConstraints:
+      type: object
+      properties:
+        min:
+          type: number
+          format: double
+          title: Minimum value for the float parameter
+        max:
+          type: number
+          format: double
+          title: Maximum value for the float parameter
+    apiComputeInfo:
+      type: object
+      properties:
+        cpu_limit:
+          type: string
+          description: 'Amount of CPUs to use as a limit. This follows kubernetes notation like: "1", "100m", "4.5", etc.
+
+            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/
+
+            For instances, this is the instance''s CPU count.
+
+            For runners, this is the maximum amount of CPU that the runner pod can use.'
+        cpu_memory:
+          type: string
+          description: 'Amount of CPU memory to use as a limit. This follows kubernetes notation like:
+
+            1Ki, 1500Mi, 3Gi, 4Ti, etc.
+
+            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/
+
+            For instances, this is the instance''s CPU memory.
+
+            For runners, this is the maximum amount of CPU memory that the runner pod can use.'
+        cpu_requests:
+          type: string
+          description: 'Amount of CPUs to use as a minimum. This follows kubernetes notation like: "1", "100m", "4.5", etc.
+
+            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/
+
+            For runners, this is the minimum amount of CPU requested for the runner pod.
+
+            Optional. If unspecified, a small default is used.'
+        cpu_memory_requests:
+          type: string
+          description: 'Amount of CPU memory to use as a minimum. This follows kubernetes notation like:
+
+            1Ki, 1500Mi, 3Gi, 4Ti, etc.
+
+            For runners, this is the minimum amount of CPU memory requested for the runner pod.
+
+            Optional. If unspecified, a small default is used.'
+        num_accelerators:
+          type: integer
+          format: int64
+          description: Amount of GPU/TPUs to use.
+        accelerator_memory:
+          type: string
+          description: "The supported accelerators that the resource can run on. If the resource requires a specific\n accelerator type then it will only be scheduled on nodes that have that type of accelerator.\n If there is no hard requirements beyond the number of accelerators and their memory then this\n field can be left empty.\n This setting will cause an error if num_accelerators == 0"
+          title: 'Amount of accelerator/GPU memory to use as a minimum.
+
+            This is defined per accelerator.
+
+            This follows the format used by kubernetes like 1Ki, 2Mi, 3Gi, 4Ti.
+
+            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/'
+        accelerator_type:
+          type: array
+          items:
+            type: string
+          description: 'Or should it be removed completely and use the nodepool accelerator type itself.
+
+            These are the supported accelerators that the model can run on.'
+        accelerator_topology:
+          type: array
+          items:
+            type: string
+          description: 'For multi-host accelerators (i.e., TPU Slices), this defines the slice topology.
+
+            Corresponds to the tpu.googleapis.com/topology annotation.
+
+            Example: "2x2x1" for a 16-chip slice using v4 TPUs.
+
+            Leave empty for single-host accelerators like GPUs or non-slice TPUs.'
+      description: 'These are the resource needs of a given API object such as a model.
+
+        This is what they require as a minimum to run and will be used upon scheduling
+
+        as the request and limit for the k8s pod. If we want to separate limits and requests in the
+
+        future we can allow setting a limits ComputeInfo and a requests ComputeInfo.'
+    protobufAny:
+      type: object
+      properties:
+        '@type':
+          type: string
+      additionalProperties: {}
+    PipelineTemplatePipelineTemplateType:
+      type: string
+      enum:
+      - UNKNOWN
+      - TRAINING
+      default: UNKNOWN
+    PipelineTemplateParameterUIHints:
+      type: object
+      properties:
+        widget:
+          $ref: '#/components/schemas/UIHintsUIWidget'
+          title: The UI widget to use for displaying this parameter
+        data_source:
+          type: string
+          title: Used for dropdowns populated dynamically
+        serialize_as_string:
+          type: boolean
+          title: Used when backend expects string even if UI shows bool/int
+    ConstraintsStringConstraints:
+      type: object
+      properties:
+        allowed_values:
+          type: array
+          items:
+            type: string
+          title: List of allowed values for the string parameter
+        allow_free_text:
+          type: boolean
+          title: Whether free text input is allowed beyond allowed_values
+        min_length:
+          type: integer
+          format: int64
+          title: Minimum length of the string
+        max_length:
+          type: integer
+          format: int64
+          title: Maximum length of the string
+    apistatusStatus:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/statusStatusCode'
+          description: Status code from internal codes.
+        description:
+          type: string
+          description: A short description of the error.
+        details:
+          type: string
+          description: 'More details of the given error.
+
+            These details may be exposed to non-technical users.
+
+            For technical details, try to use developer_notes field.'
+        stack_trace:
+          type: array
+          items:
+            type: string
+          description: 'For some environment we may return a stack trace to help debug
+
+            any issues.'
+        percent_completed:
+          type: integer
+          format: int64
+          title: specifically for long running jobs
+        time_remaining:
+          type: integer
+          format: int64
+          title: if status is pending, how much time is remaining (in seconds)
+        req_id:
+          type: string
+          title: A request ID may be present, to help monitoring and tracking requests
+        internal_details:
+          type: string
+          description: Internal Annotation (do not set in production, for internal Clarifai use only).
+        redirect_info:
+          $ref: '#/components/schemas/statusRedirectInfo'
+          description: Resource location info for redirect, when resource location has been changed.
+        developer_notes:
+          type: string
+          description: 'Notes for developer.
+
+            These notes are rather technical details for developers how to interpret the status,
+
+            e.g. why an error occurred and how to avoid getting the error.'
+        http_status_code:
+          type: integer
+          format: int64
+          description: The HTTP status code of the response.
+    PipelineTemplateParameterConstraints:
+      type: object
+      properties:
+        string_constraints:
+          $ref: '#/components/schemas/ConstraintsStringConstraints'
+        int_constraints:
+          $ref: '#/components/schemas/ConstraintsIntConstraints'
+        float_constraints:
+          $ref: '#/components/schemas/ConstraintsFloatConstraints'
