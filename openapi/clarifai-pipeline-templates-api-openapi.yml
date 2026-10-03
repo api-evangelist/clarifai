@@ -40,65 +40,24 @@ paths:
       - Pipeline Templates
 components:
   schemas:
-    googlerpcStatus:
+    PipelineTemplateParameterUIHints:
       type: object
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        widget:
+          $ref: '#/components/schemas/UIHintsUIWidget'
+          title: The UI widget to use for displaying this parameter
+        data_source:
           type: string
-        details:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protobufAny'
-    apiPipelineTemplateParameter:
-      type: object
-      properties:
-        name:
-          type: string
-          title: Name of the parameter
-        type:
-          $ref: '#/components/schemas/apiPipelineTemplateParameterType'
-          title: Type of the parameter (string, int, float, bool)
-        required:
+          title: Used for dropdowns populated dynamically
+        serialize_as_string:
           type: boolean
-          title: Whether this parameter is required
-        default_string:
-          type: string
-          title: Default value when type is STRING
-        default_int:
-          type: string
-          format: int64
-          title: Default value when type is INT
-        default_float:
-          type: number
-          format: double
-          title: Default value when type is FLOAT
-        default_bool:
-          type: boolean
-          title: Default value when type is BOOL
-        description:
-          type: string
-          title: Description of the parameter
-        constraints:
-          $ref: '#/components/schemas/PipelineTemplateParameterConstraints'
-          title: Constraints to validate parameter values
-        ui_hints:
-          $ref: '#/components/schemas/PipelineTemplateParameterUIHints'
-          title: UI hints for rendering this parameter in the frontend
-    ConstraintsIntConstraints:
-      type: object
-      properties:
-        min:
-          type: string
-          format: int64
-          title: Minimum value for the int parameter
-        max:
-          type: string
-          format: int64
-          title: Maximum value for the int parameter
+          title: Used when backend expects string even if UI shows bool/int
+    PipelineTemplatePipelineTemplateType:
+      type: string
+      enum:
+      - UNKNOWN
+      - TRAINING
+      default: UNKNOWN
     apiPipelineTemplateParameterType:
       type: string
       enum:
@@ -108,41 +67,146 @@ components:
       - FLOAT
       - BOOL
       default: PARAMETER_TYPE_UNSPECIFIED
-    UIHintsUIWidget:
-      type: string
-      enum:
-      - UI_WIDGET_UNSPECIFIED
-      - TEXT_INPUT
-      - NUMBER_INPUT
-      - SLIDER
-      - DROPDOWN
-      - TOGGLE
-      default: UI_WIDGET_UNSPECIFIED
-    apiMultiPipelineTemplateResponse:
+    apistatusStatus:
       type: object
       properties:
-        status:
-          $ref: '#/components/schemas/apistatusStatus'
-        pipeline_templates:
+        code:
+          $ref: '#/components/schemas/statusStatusCode'
+          description: Status code from internal codes.
+        description:
+          type: string
+          description: A short description of the error.
+        details:
+          type: string
+          description: 'More details of the given error.
+
+            These details may be exposed to non-technical users.
+
+            For technical details, try to use developer_notes field.'
+        stack_trace:
           type: array
           items:
-            type: object
-            $ref: '#/components/schemas/apiPipelineTemplate'
-    statusRedirectInfo:
+            type: string
+          description: 'For some environment we may return a stack trace to help debug
+
+            any issues.'
+        percent_completed:
+          type: integer
+          format: int64
+          title: specifically for long running jobs
+        time_remaining:
+          type: integer
+          format: int64
+          title: if status is pending, how much time is remaining (in seconds)
+        req_id:
+          type: string
+          title: A request ID may be present, to help monitoring and tracking requests
+        internal_details:
+          type: string
+          description: Internal Annotation (do not set in production, for internal Clarifai use only).
+        redirect_info:
+          $ref: '#/components/schemas/statusRedirectInfo'
+          description: Resource location info for redirect, when resource location has been changed.
+        developer_notes:
+          type: string
+          description: 'Notes for developer.
+
+            These notes are rather technical details for developers how to interpret the status,
+
+            e.g. why an error occurred and how to avoid getting the error.'
+        http_status_code:
+          type: integer
+          format: int64
+          description: The HTTP status code of the response.
+    PipelineTemplateParameterConstraints:
       type: object
       properties:
-        url:
+        string_constraints:
+          $ref: '#/components/schemas/ConstraintsStringConstraints'
+        int_constraints:
+          $ref: '#/components/schemas/ConstraintsIntConstraints'
+        float_constraints:
+          $ref: '#/components/schemas/ConstraintsFloatConstraints'
+    apiComputeInfo:
+      type: object
+      properties:
+        cpu_limit:
           type: string
-          description: New location for the resource. Used to set response Location header.
-        resource_type:
+          description: 'Amount of CPUs to use as a limit. This follows kubernetes notation like: "1", "100m", "4.5", etc.
+
+            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/
+
+            For instances, this is the instance''s CPU count.
+
+            For runners, this is the maximum amount of CPU that the runner pod can use.'
+        cpu_memory:
           type: string
-          title: Resource type
-        old_resource_id:
+          description: 'Amount of CPU memory to use as a limit. This follows kubernetes notation like:
+
+            1Ki, 1500Mi, 3Gi, 4Ti, etc.
+
+            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/
+
+            For instances, this is the instance''s CPU memory.
+
+            For runners, this is the maximum amount of CPU memory that the runner pod can use.'
+        cpu_requests:
           type: string
-          title: Old resource id
-        new_resource_id:
+          description: 'Amount of CPUs to use as a minimum. This follows kubernetes notation like: "1", "100m", "4.5", etc.
+
+            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/
+
+            For runners, this is the minimum amount of CPU requested for the runner pod.
+
+            Optional. If unspecified, a small default is used.'
+        cpu_memory_requests:
           type: string
-          title: New resource id
+          description: 'Amount of CPU memory to use as a minimum. This follows kubernetes notation like:
+
+            1Ki, 1500Mi, 3Gi, 4Ti, etc.
+
+            For runners, this is the minimum amount of CPU memory requested for the runner pod.
+
+            Optional. If unspecified, a small default is used.'
+        num_accelerators:
+          type: integer
+          format: int64
+          description: Amount of GPU/TPUs to use.
+        accelerator_memory:
+          type: string
+          description: "The supported accelerators that the resource can run on. If the resource requires a specific\n accelerator type then it will only be scheduled on nodes that have that type of accelerator.\n If there is no hard requirements beyond the number of accelerators and their memory then this\n field can be left empty.\n This setting will cause an error if num_accelerators == 0"
+          title: 'Amount of accelerator/GPU memory to use as a minimum.
+
+            This is defined per accelerator.
+
+            This follows the format used by kubernetes like 1Ki, 2Mi, 3Gi, 4Ti.
+
+            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/'
+        accelerator_type:
+          type: array
+          items:
+            type: string
+          description: 'Or should it be removed completely and use the nodepool accelerator type itself.
+
+            These are the supported accelerators that the model can run on.'
+        accelerator_topology:
+          type: array
+          items:
+            type: string
+          description: 'For multi-host accelerators (i.e., TPU Slices), this defines the slice topology.
+
+            Corresponds to the tpu.googleapis.com/topology annotation.
+
+            Example: "2x2x1" for a 16-chip slice using v4 TPUs.
+
+            Leave empty for single-host accelerators like GPUs or non-slice TPUs.'
+      description: 'These are the resource needs of a given API object such as a model.
+
+        This is what they require as a minimum to run and will be used upon scheduling
+
+        as the request and limit for the k8s pod. If we want to separate limits and requests in the
+
+        future we can allow setting a limits ComputeInfo and a requests ComputeInfo.'
     apiPipelineTemplate:
       type: object
       properties:
@@ -169,6 +233,21 @@ components:
           additionalProperties:
             type: string
           title: Map from pipeline step name to pipeline step reference
+    statusRedirectInfo:
+      type: object
+      properties:
+        url:
+          type: string
+          description: New location for the resource. Used to set response Location header.
+        resource_type:
+          type: string
+          title: Resource type
+        old_resource_id:
+          type: string
+          title: Old resource id
+        new_resource_id:
+          type: string
+          title: New resource id
     statusStatusCode:
       type: string
       enum:
@@ -615,110 +694,80 @@ components:
           type: number
           format: double
           title: Maximum value for the float parameter
-    apiComputeInfo:
+    googlerpcStatus:
       type: object
       properties:
-        cpu_limit:
-          type: string
-          description: 'Amount of CPUs to use as a limit. This follows kubernetes notation like: "1", "100m", "4.5", etc.
-
-            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/
-
-            For instances, this is the instance''s CPU count.
-
-            For runners, this is the maximum amount of CPU that the runner pod can use.'
-        cpu_memory:
-          type: string
-          description: 'Amount of CPU memory to use as a limit. This follows kubernetes notation like:
-
-            1Ki, 1500Mi, 3Gi, 4Ti, etc.
-
-            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/
-
-            For instances, this is the instance''s CPU memory.
-
-            For runners, this is the maximum amount of CPU memory that the runner pod can use.'
-        cpu_requests:
-          type: string
-          description: 'Amount of CPUs to use as a minimum. This follows kubernetes notation like: "1", "100m", "4.5", etc.
-
-            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/
-
-            For runners, this is the minimum amount of CPU requested for the runner pod.
-
-            Optional. If unspecified, a small default is used.'
-        cpu_memory_requests:
-          type: string
-          description: 'Amount of CPU memory to use as a minimum. This follows kubernetes notation like:
-
-            1Ki, 1500Mi, 3Gi, 4Ti, etc.
-
-            For runners, this is the minimum amount of CPU memory requested for the runner pod.
-
-            Optional. If unspecified, a small default is used.'
-        num_accelerators:
+        code:
           type: integer
-          format: int64
-          description: Amount of GPU/TPUs to use.
-        accelerator_memory:
+          format: int32
+        message:
           type: string
-          description: "The supported accelerators that the resource can run on. If the resource requires a specific\n accelerator type then it will only be scheduled on nodes that have that type of accelerator.\n If there is no hard requirements beyond the number of accelerators and their memory then this\n field can be left empty.\n This setting will cause an error if num_accelerators == 0"
-          title: 'Amount of accelerator/GPU memory to use as a minimum.
-
-            This is defined per accelerator.
-
-            This follows the format used by kubernetes like 1Ki, 2Mi, 3Gi, 4Ti.
-
-            See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/'
-        accelerator_type:
+        details:
           type: array
           items:
-            type: string
-          description: 'Or should it be removed completely and use the nodepool accelerator type itself.
-
-            These are the supported accelerators that the model can run on.'
-        accelerator_topology:
+            type: object
+            $ref: '#/components/schemas/protobufAny'
+    apiMultiPipelineTemplateResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/apistatusStatus'
+        pipeline_templates:
           type: array
           items:
-            type: string
-          description: 'For multi-host accelerators (i.e., TPU Slices), this defines the slice topology.
-
-            Corresponds to the tpu.googleapis.com/topology annotation.
-
-            Example: "2x2x1" for a 16-chip slice using v4 TPUs.
-
-            Leave empty for single-host accelerators like GPUs or non-slice TPUs.'
-      description: 'These are the resource needs of a given API object such as a model.
-
-        This is what they require as a minimum to run and will be used upon scheduling
-
-        as the request and limit for the k8s pod. If we want to separate limits and requests in the
-
-        future we can allow setting a limits ComputeInfo and a requests ComputeInfo.'
+            type: object
+            $ref: '#/components/schemas/apiPipelineTemplate'
+    apiPipelineTemplateParameter:
+      type: object
+      properties:
+        name:
+          type: string
+          title: Name of the parameter
+        type:
+          $ref: '#/components/schemas/apiPipelineTemplateParameterType'
+          title: Type of the parameter (string, int, float, bool)
+        required:
+          type: boolean
+          title: Whether this parameter is required
+        default_string:
+          type: string
+          title: Default value when type is STRING
+        default_int:
+          type: string
+          format: int64
+          title: Default value when type is INT
+        default_float:
+          type: number
+          format: double
+          title: Default value when type is FLOAT
+        default_bool:
+          type: boolean
+          title: Default value when type is BOOL
+        description:
+          type: string
+          title: Description of the parameter
+        constraints:
+          $ref: '#/components/schemas/PipelineTemplateParameterConstraints'
+          title: Constraints to validate parameter values
+        ui_hints:
+          $ref: '#/components/schemas/PipelineTemplateParameterUIHints'
+          title: UI hints for rendering this parameter in the frontend
+    UIHintsUIWidget:
+      type: string
+      enum:
+      - UI_WIDGET_UNSPECIFIED
+      - TEXT_INPUT
+      - NUMBER_INPUT
+      - SLIDER
+      - DROPDOWN
+      - TOGGLE
+      default: UI_WIDGET_UNSPECIFIED
     protobufAny:
       type: object
       properties:
         '@type':
           type: string
       additionalProperties: {}
-    PipelineTemplatePipelineTemplateType:
-      type: string
-      enum:
-      - UNKNOWN
-      - TRAINING
-      default: UNKNOWN
-    PipelineTemplateParameterUIHints:
-      type: object
-      properties:
-        widget:
-          $ref: '#/components/schemas/UIHintsUIWidget'
-          title: The UI widget to use for displaying this parameter
-        data_source:
-          type: string
-          title: Used for dropdowns populated dynamically
-        serialize_as_string:
-          type: boolean
-          title: Used when backend expects string even if UI shows bool/int
     ConstraintsStringConstraints:
       type: object
       properties:
@@ -738,63 +787,14 @@ components:
           type: integer
           format: int64
           title: Maximum length of the string
-    apistatusStatus:
+    ConstraintsIntConstraints:
       type: object
       properties:
-        code:
-          $ref: '#/components/schemas/statusStatusCode'
-          description: Status code from internal codes.
-        description:
+        min:
           type: string
-          description: A short description of the error.
-        details:
-          type: string
-          description: 'More details of the given error.
-
-            These details may be exposed to non-technical users.
-
-            For technical details, try to use developer_notes field.'
-        stack_trace:
-          type: array
-          items:
-            type: string
-          description: 'For some environment we may return a stack trace to help debug
-
-            any issues.'
-        percent_completed:
-          type: integer
           format: int64
-          title: specifically for long running jobs
-        time_remaining:
-          type: integer
+          title: Minimum value for the int parameter
+        max:
+          type: string
           format: int64
-          title: if status is pending, how much time is remaining (in seconds)
-        req_id:
-          type: string
-          title: A request ID may be present, to help monitoring and tracking requests
-        internal_details:
-          type: string
-          description: Internal Annotation (do not set in production, for internal Clarifai use only).
-        redirect_info:
-          $ref: '#/components/schemas/statusRedirectInfo'
-          description: Resource location info for redirect, when resource location has been changed.
-        developer_notes:
-          type: string
-          description: 'Notes for developer.
-
-            These notes are rather technical details for developers how to interpret the status,
-
-            e.g. why an error occurred and how to avoid getting the error.'
-        http_status_code:
-          type: integer
-          format: int64
-          description: The HTTP status code of the response.
-    PipelineTemplateParameterConstraints:
-      type: object
-      properties:
-        string_constraints:
-          $ref: '#/components/schemas/ConstraintsStringConstraints'
-        int_constraints:
-          $ref: '#/components/schemas/ConstraintsIntConstraints'
-        float_constraints:
-          $ref: '#/components/schemas/ConstraintsFloatConstraints'
+          title: Maximum value for the int parameter

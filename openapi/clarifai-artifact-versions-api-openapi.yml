@@ -39,75 +39,49 @@ paths:
         required: true
 components:
   schemas:
-    VisibilityGettable:
-      type: string
-      enum:
-      - UNKNOWN_VISIBILITY
-      - PRIVATE
-      - ORG
-      - PUBLIC
-      default: UNKNOWN_VISIBILITY
-      description: "Gettable defined the level of access for GET operations for this resource.\n\n - UNKNOWN_VISIBILITY: Default value not allowed.\n - PRIVATE: PRIVATE requires collaborator or team permissions in order to GET this resource.\n - ORG: ORG requires you to be in the same org in order to GET this resource, but don't have to be a\nteammate or collaborator.\n - PUBLIC: PUBLIC opens up GET access to the resource to any user on the platform even if they are not\na teammate or collaborator."
-    googlerpcStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protobufAny'
-    apiArtifactVersion:
+    apiUpload:
       type: object
       properties:
         id:
           type: string
-          title: ID of artifact version
-        description:
-          type: string
-          title: Description of the artifact version
-        artifact:
-          $ref: '#/components/schemas/apiArtifact'
-          title: Reference to the artifact resource
-        upload:
-          $ref: '#/components/schemas/apiUpload'
-          title: Reference to the upload resource which contains the actual file location and metadata
-        visibility:
-          $ref: '#/components/schemas/clarifaiapiVisibility'
-          description: 'The visibility field represents whether this is privately/publicly visible.
-
-            To be visible to the public the App that contains it AND the User that contains the App must
-
-            also be publicly visible.'
-        expires_at:
-          type: string
-          format: date-time
-          description: 'When the artifact version will expire and be deleted.
-
-            The format is https://www.ietf.org/rfc/rfc3339.txt.
-
-            Example: "2006-01-02T15:04:05.999999Z".
-
-            If not set, the artifact version will be retained indefinitely
-
-            and will not be automatically deleted by lifecycle policies.'
+          title: ID of upload
         created_at:
           type: string
           format: date-time
-          description: When the artifact version was created.
+          description: 'When the upload was started.
+
+            The format is https://www.ietf.org/rfc/rfc3339.txt.
+
+            Example: "2006-01-02T15:04:05.999999Z".'
         modified_at:
           type: string
           format: date-time
-          description: Most recent time when the artifact version was updated.
-        deleted_at:
+          description: 'Most recent time when the upload was updated.
+
+            The format is https://www.ietf.org/rfc/rfc3339.txt.
+
+            Example: "2006-01-02T15:04:05.999999Z".'
+        expires_at:
           type: string
           format: date-time
-          description: When the artifact version was deleted.
-      description: ArtifactVersion represents a specific version of the artifact.
+          description: 'When the upload will expire and be deleted
+
+            The format is https://www.ietf.org/rfc/rfc3339.txt.
+
+            Example: "2006-01-02T15:04:05.999999Z".'
+        status:
+          $ref: '#/components/schemas/apistatusStatus'
+          title: Status of the upload
+        content_name:
+          type: string
+          title: name of uploaded content (e.g. filename)
+        content_length:
+          type: string
+          format: uint64
+          title: Total size of the upload content
+        content_url:
+          type: string
+          title: Url of uploaded content
     apiArtifact:
       type: object
       properties:
@@ -138,63 +112,57 @@ components:
       description: 'Artifact is a resource that represents a file stored in Clarifai''s storage system.
 
         It should have a reference to upload resource which contains the actual file location and metadata.'
-    apiPostArtifactVersionsUploadConfig:
+    apistatusStatus:
       type: object
       properties:
-        user_app_id:
-          $ref: '#/components/schemas/apiUserAppIDSet'
-          title: User ID and App ID of the user uploading the artifact
-        artifact_id:
+        code:
+          $ref: '#/components/schemas/statusStatusCode'
+          description: Status code from internal codes.
+        description:
           type: string
-          title: Artifact to create version for
-        artifact_version:
-          $ref: '#/components/schemas/apiArtifactVersion'
-          title: Specification for the artifact version to be uploaded
-        total_size:
+          description: A short description of the error.
+        details:
           type: string
-          format: uint64
-          title: Number of bytes in the artifact files to be uploaded
-        storage_request_size:
+          description: 'More details of the given error.
+
+            These details may be exposed to non-technical users.
+
+            For technical details, try to use developer_notes field.'
+        stack_trace:
+          type: array
+          items:
+            type: string
+          description: 'For some environment we may return a stack trace to help debug
+
+            any issues.'
+        percent_completed:
+          type: integer
+          format: int64
+          title: specifically for long running jobs
+        time_remaining:
+          type: integer
+          format: int64
+          title: if status is pending, how much time is remaining (in seconds)
+        req_id:
           type: string
-          format: uint64
-          description: Number of bytes requested for the build process.
-    statusRedirectInfo:
-      type: object
-      properties:
-        url:
+          title: A request ID may be present, to help monitoring and tracking requests
+        internal_details:
           type: string
-          description: New location for the resource. Used to set response Location header.
-        resource_type:
+          description: Internal Annotation (do not set in production, for internal Clarifai use only).
+        redirect_info:
+          $ref: '#/components/schemas/statusRedirectInfo'
+          description: Resource location info for redirect, when resource location has been changed.
+        developer_notes:
           type: string
-          title: Resource type
-        old_resource_id:
-          type: string
-          title: Old resource id
-        new_resource_id:
-          type: string
-          title: New resource id
-    apiPostArtifactVersionsUploadResponse:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/apistatusStatus'
-          title: Status of the upload
-        bytes_remaining:
-          type: string
-          format: uint64
-          title: Bytes remaining to be uploaded - This is total_size - bytes_uploaded
-        artifact_version_id:
-          type: string
-          title: ID of the artifact version being uploaded
-    apiUserAppIDSet:
-      type: object
-      properties:
-        user_id:
-          type: string
-          title: Note user_id 'me' is reserved - it is the alias for the id of authorized user
-        app_id:
-          type: string
-      description: Common message to identify the app in a url endpoint.
+          description: 'Notes for developer.
+
+            These notes are rather technical details for developers how to interpret the status,
+
+            e.g. why an error occurred and how to avoid getting the error.'
+        http_status_code:
+          type: integer
+          format: int64
+          description: The HTTP status code of the response.
     statusStatusCode:
       type: string
       enum:
@@ -630,24 +598,53 @@ components:
       default: ZERO
       description: "expired cc, still in trial, feature not supported in your tier\n - CONN_TOKEN_INVALID: invalid auth token used. Deprecated: we should return CONN_KEY_INVALID instead now in all cases.\n - CONN_CREDENTIALS_INVALID: invalid auth credentials\n - CONN_EXCEED_HOURLY_LIMIT: throttle hourly limit exceeded\n - CONN_EXCEED_MONTHLY_LIMIT: throttle monthly limit exceeded\n - CONN_THROTTLED: throttler and billing stuff\n - CONN_EXCEEDS_LIMITS: throttler and billing stuff\n - CONN_INSUFFICIENT_SCOPES: api key has insufficient permissions\n - CONN_KEY_INVALID: api key is invalid\n - CONN_KEY_NOT_FOUND: api key not found\n - CONN_BAD_REQUEST_FORMAT: multipart form parsing, broken json, etc\n - CONN_DOES_NOT_EXIST: when path is bad\n - CONN_INVALID_REQUEST: something wrong with a header\n - CONN_METHOD_NOT_ALLOWED: when a request method is not allowed\n - CONN_NO_GDPR_CONSENT: lack GDPR consent\n - CONN_INVALID_RANGE: when invalid range of a resource is requested\n - CONN_AUTH_METHOD_DISABLED: authentication method is disabled\n - MODEL_TRAINED: Model/Custom Training related 20xxx\n\nCustom model has been already trained.\n - MODEL_TRAINING: Custom model is currently training.\n - MODEL_UNTRAINED: Custom model has not yet been trained.\n - MODEL_QUEUED_FOR_TRAINING: Custom model is currently in queue for training, waiting on assets to process first.\n - MODEL_TRAINING_FAILED: generic err msg for any type of model training err.\n - MODEL_BUILDING: For new V3 DockerInternalType models which are built images\n - MODEL_BUILDING_FAILED: Failed to build image for model.\n - MODEL_BUILD_UNEXPECTED_ERROR: Failed to build image for model.\n - MODEL_TRAINING_NO_DATA: Custom model training had no data.  FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_NO_POSITIVES: Custom model training had no positive examples. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_ONE_VS_N_SINGLE_CLASS: Custom model training was ONE_VS_N but with a single class. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_TIMED_OUT: Training took longer than hard coded timeouts. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_WAITING_ERROR: Training got error waiting on asset pipeline to finish. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_UNKNOWN_ERROR: Training threw an unknown exception.\n - MODEL_TRAINING_MSG_REDELIVER: Training message was redelivered. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_INSUFFICIENT_DATA: Training got error due to insufficient labelled data. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_INVALID_PARAMS: FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_TRAINING_INVALID_DATA_TOLERANCE_EXCEEDED: Training is stopped because too much data was dropped. FIXME(yang): deprecate this. Use the 21106 + errStatusMsg\n - MODEL_EVALUATION_TIMED_OUT: Evaluation took longer than hard coded timeouts. FIXME(yang): deprecate this. Use the 21317 + errStatusMsg\n - MODEL_EVALUATION_WAITING_ERROR: Evaluation got error waiting on asset pipeline to finish.FIXME(yang): deprecate this. Use the 21317 + errStatusMsg\n - MODEL_EVALUATION_UNKNOWN_ERROR: EVALUATION THREW AN UNKNOWN EXCEPTION.\n - MODEL_EVALUATION_MSG_REDELIVER: Eval message was redelivered. FIXME(yang): deprecate this. Use the 21317 + errStatusMsg\n - MODEL_EVALUATION_NEED_LABELS: Don't have enough concepts labelled to perform evaluation. FIXME(yang): deprecate this. Use the 21317 + errStatusMsg\n - MODEL_EVALUATION_NEED_INPUTS: Don't have enough inputs per concept to perform evaluation. FIXME(yang): deprecate this. Use the 21317 + errStatusMsg\n - MODEL_EVALUATION_FAILED: Generic err code for eval failure.\n - MODEL_DEPLOYMENT_FAILED: Used when inference coordinator failed to deploy spire and throws an error\n - MODEL_DEPLOYING: Used when calling the inference coordinator to deploy a spire\n - MODEL_QUEUED_FOR_DEPLOYMENT: Used when training is completed\n - MODEL_NOT_DEPLOYED: Used when model spire deployment is manually taken down or due to inactivity\n - MODEL_LOADING: Used when the model pod is running, but not yet ready to serve requests.\n - MODEL_REFERENCE_INVALID_ARGUMENT: Used when a model reference field is not set properly\n - MODEL_EXAMPLE_INPUT_INVALID_ARGUMENT: Used when a model example input field is not set properly\n - MODEL_EXPORTED: Model Export status codes\n - WORKFLOW_NO_MATCHING_INPUT: specified model input not in workflow\n - WORKFLOW_REQUIRE_TRAINED_MODEL: specified model must be trained\n - WORKFLOW_INVALID_ARGUMENT: error in the request somewhere\n - WORKFLOW_INVALID_REQUEST: error in the request somewhere\n - CONCEPT_MODIFY_SUCCESS: Concept related 23xxx\n - ANNOTATION_SUCCESS: Annotation related 24xxx\n - ANNOTATION_AWAITING_REVIEW: Annotation is awaiting review from task REVIEWERS.\n - ANNOTATION_AWAITING_CONSENSUS_REVIEW: Annotation is awaiting consensus review from task LABELERS.\n - ANNOTATION_TRACK_IDLE: Annotation (video) tracks are groups of annotations per frame\nIDLE -> PROCESSING --> PENDING --> APPROVED --> (DELETED)\nPROCESSING --> FAILED --> (DELETED)\nPROCESSING --> (DELETED)\n - METADATA_INVALID_PATCH_ARGUMENTS: Metadata related 249xx\n - TRAINER_JOB_STATE_NONE: Training service related 25xxx\n - DATA_DUMP_SUCCESS: Data Dump related 251xx\n - DATA_DUMP_NO_DATA: DEPRECATED: Not used anymore. Now for an empty data dump, DATA_DUMP_SUCCESS is returned. To detect an empty data dump, check if the inptus count is 0.\n - APP_DUPLICATION_SUCCESS: Duplicate related 252xx - DEPRECATED: App duplication is no longer supported.\n - MODULE_DOES_NOT_EXIST: Module related codes 253xx\n - BULK_OPERATION_SUCCESS: Bulk Operation related codes 254xx\n - RUNNER_DOES_NOT_EXIST: Runner related codes 256xx\n - NODEPOOL_DOES_NOT_EXIST: Nodepool related codes 257xx\n - COMPUTE_CLUSTER_DOES_NOT_EXIST: ComputeCluster related codes 258xx\n - DEPLOYMENT_DOES_NOT_EXIST: Deployment related codes 259xx\n - DEPLOYMENT_DISABLED: The deployment is disabled and cannot serve traffic.\n - INSTANCE_TYPE_DOES_NOT_EXIST: InstanceType related codes 260xx\n - COMPUTE_PLANE_METRICS_INVALID_REQUEST: Compute plane related codes 261xx\n - PIPELINE_STEP_DOES_NOT_EXIST: PipelineStep related codes 262xx\n - PIPELINE_DOES_NOT_EXIST: Pipeline related codes 263xx\n - ARTIFACT_DOES_NOT_EXIST: Artifact related codes 264xx\n - INPUT_SUCCESS: Input:Image related 30xxx\n - INPUT_PENDING: when things are async, this is the default status.\n - INPUT_FAILED: any type of error downloading and processing\n - INPUT_DOWNLOAD_SUCCESS: use INPUT_SUCCESS, INPUT_PENDING, INPUT_FAILED, INPUT_IN_PROGRESS instead\nDOWNLOAD is no longer correct, but keep old statuses for backward compatibility\n - INPUT_VIDEO_DOWNLOAD_SUCCESS: Input:Video related 31xxx -- Deprecated\n - INPUT_WRITES_DISABLED_FOR_MAINTENANCE: deprecate this one. Use REQUEST_DISABLED_FOR_MAINTENANCE\n - PREDICT_INVALID_REQUEST: API formatting issues 4000x\n - DATABASE_DUPLICATE_KEY: Other related 400xx\n - EXTERNAL_CONNECTION_ERROR: could not connect to external services\n - QUEUE_CONN_ERROR: Queue related errors 41xxx\n - SQS_OVERLIMIT: SQS related errors 411xx\n - SEARCH_INTERNAL_FAILURE: Search related errors 43xxxx\n - EVALUATION_QUEUED: Workflow evaluation err code\n - STRIPE_EVENT_ERROR: Stripe 44xxx\n - CACHE_MISS: Redis/Cache 45xxx\n - SIGNUP_EVENT_ERROR: Sift Science 46xxx\n - APP_COUNT_INVALID_MESSAGE: Application counts related errors 470xx\n - MP_DOWNLOAD_ERROR: Media processor related errors 471xx -- DEPRECATED\n - DATATIER_CONN_ERROR: DataTier related error 472xx\n - USER_CONSENT_FACE: User legal consent stauts related 50xxx\n - WORKER_MISSING: Workers 51xxx\n - SSO_IDENTITY_PROVIDER_DOES_NOT_EXIST: SSO 53xxx\n - TASK_IN_PROGRESS: Tasks 54xxx\nThe task was created.\n - TASK_DONE: The task is completed.\n - TASK_WONT_DO: The task is marked as abandoned.\n - TASK_FAILED: An error occurred during add-task-annotations or add-auto-annotations pipeline.\n - TASK_IDLE: Task is waiting for user action.\nExamples:\n- When an Auto Annotation task job has finished processing its last batch and is waiting for more dataset assets.\n- When an Auto Annotation task job for a video livestream input is waiting for user to create a task deployment.\n - TASK_CONFLICT: The task operation is in conflict with the current state of the server.\n - TASK_NOT_IMPLEMENTED: Certain task-related scenarios are not implemented.\n - TASK_MISSING: Task was not found.\n - TASK_PERMISSION_DENIED: Not allowed to perform a task-related action.\n - TASK_ASSIGNMENT_SUCCESS: Task Assignments 542xx\n - TASK_ASSIGNMENT_REVIEW_SUCCESS: Task Assignment Reviews 543xx\n - LABEL_ORDER_PENDING: Label Order Related Status Code 55xxx\n - LICENSE_ACTIVE: License Related Status Code 600xx\nDEPRECATED: License feature is fully deprecated now.\n - LICENSE_DELETED: hidden state not reflected to users\n - PASSWORD_VALIDATION_SUCCESS: Password Related Status Code\n - FEATUREFLAG_CONFIG_NOT_FOUND: Feature flags status code\n - MAINTENANCE_SUCCESS: Maintenance status code\n - DATASET_VERSION_PENDING: Datasets 64xxx\nThe dataset version is pending to be processed.\n - DATASET_VERSION_IN_PROGRESS: The dataset version is currently being processed.\n - DATASET_VERSION_READY: The dataset version is ready to be used.\n - DATASET_VERSION_FAILURE: An error occurred during the dataset version processing.\n - DATASET_VERSION_UNEXPECTED_ERROR: An unexpected error occurred during the dataset version processing.\n - DATASET_VERSION_CONFLICT: An alteration to dataset version would create a conflict\n - DATASET_INPUT_SUCCESS: The dataset input was successfully added.\n - DATASET_INPUT_DUPLICATE: The dataset input is a duplicate.\nDeprecated: Unused.\n - DATASET_VERSION_EXPORT_SUCCESS: The dataset version export is completed.\n - DATASET_VERSION_EXPORT_PENDING: The dataset version is pending to be exported.\n - DATASET_VERSION_EXPORT_FAILED: An error occurred during the dataset version export.\n - DATASET_VERSION_EXPORT_IN_PROGRESS: The dataset version is currently being exported.\n - DATASET_VERSION_EXPORT_UNEXPECTED_ERROR: An unexpected error occurred during the dataset version export.\n - JOB_QUEUED: Generic Job status codes\n - AUTH_MISSING_IDP_ASSOC: auth issues\n\nTODO: Knowledge graph related 80xxx\n - UPLOAD_IN_PROGRESS: Multipart uploading status codes\n - BILLING_INVALID_INFO: Billing related issues: 69xxx\n - LOG_ENTRIES_INVALID_REQUEST: Logs related issues: 70000;\n - TWILIO_MAX_VERIFICATION_BEGIN_EXCEEDED: Twilio related issues: 71xxx\n - TWILIO_PHONE_NUMBER_BLOCKED: The provided phone number was rejected or blocked by Twilio.\n - INTERNAL_SERVER_ISSUE: Internal issues: 98xxx\n - CONN_UNCATEGORIZED: Uncategorized: 99xxx: move off as soon as known\n - BAD_REQUEST: Deprecated: migrate off to one of the internal issues\n - SERVER_ERROR: Deprecated: migrate off to one of the internal issues"
       title: "- ZERO: to be revised and greatly expanded\n - SUCCESS: Generic\n - MOVED: Resource moved. Respond with Http status 307 and add new Location header to response\n - ACCEPTED: Request has been accepted. Respond with Http status 202.\n - CONN_ACCOUNT_ISSUES: Clarifai Connection Codes: 11xxx"
-    apiUploadContentPart:
+    apiArtifactVersion:
       type: object
       properties:
-        range_start:
+        id:
           type: string
-          format: uint64
-        part_number:
+          title: ID of artifact version
+        description:
           type: string
-          format: int64
-        data:
+          title: Description of the artifact version
+        artifact:
+          $ref: '#/components/schemas/apiArtifact'
+          title: Reference to the artifact resource
+        upload:
+          $ref: '#/components/schemas/apiUpload'
+          title: Reference to the upload resource which contains the actual file location and metadata
+        visibility:
+          $ref: '#/components/schemas/clarifaiapiVisibility'
+          description: 'The visibility field represents whether this is privately/publicly visible.
+
+            To be visible to the public the App that contains it AND the User that contains the App must
+
+            also be publicly visible.'
+        expires_at:
           type: string
-          format: byte
-    protobufAny:
-      type: object
-      properties:
-        '@type':
+          format: date-time
+          description: 'When the artifact version will expire and be deleted.
+
+            The format is https://www.ietf.org/rfc/rfc3339.txt.
+
+            Example: "2006-01-02T15:04:05.999999Z".
+
+            If not set, the artifact version will be retained indefinitely
+
+            and will not be automatically deleted by lifecycle policies.'
+        created_at:
           type: string
-      additionalProperties: {}
+          format: date-time
+          description: When the artifact version was created.
+        modified_at:
+          type: string
+          format: date-time
+          description: Most recent time when the artifact version was updated.
+        deleted_at:
+          type: string
+          format: date-time
+          description: When the artifact version was deleted.
+      description: ArtifactVersion represents a specific version of the artifact.
     clarifaiapiVisibility:
       type: object
       properties:
@@ -666,49 +663,15 @@ components:
         If AllowedVisibility is ORG then we allow ORG (30), PUBLIC (50)
 
         If AllowedVisibility is PUBLIC then we allow PUBLIC (50) only.'
-    apiUpload:
-      type: object
-      properties:
-        id:
-          type: string
-          title: ID of upload
-        created_at:
-          type: string
-          format: date-time
-          description: 'When the upload was started.
-
-            The format is https://www.ietf.org/rfc/rfc3339.txt.
-
-            Example: "2006-01-02T15:04:05.999999Z".'
-        modified_at:
-          type: string
-          format: date-time
-          description: 'Most recent time when the upload was updated.
-
-            The format is https://www.ietf.org/rfc/rfc3339.txt.
-
-            Example: "2006-01-02T15:04:05.999999Z".'
-        expires_at:
-          type: string
-          format: date-time
-          description: 'When the upload will expire and be deleted
-
-            The format is https://www.ietf.org/rfc/rfc3339.txt.
-
-            Example: "2006-01-02T15:04:05.999999Z".'
-        status:
-          $ref: '#/components/schemas/apistatusStatus'
-          title: Status of the upload
-        content_name:
-          type: string
-          title: name of uploaded content (e.g. filename)
-        content_length:
-          type: string
-          format: uint64
-          title: Total size of the upload content
-        content_url:
-          type: string
-          title: Url of uploaded content
+    VisibilityGettable:
+      type: string
+      enum:
+      - UNKNOWN_VISIBILITY
+      - PRIVATE
+      - ORG
+      - PUBLIC
+      default: UNKNOWN_VISIBILITY
+      description: "Gettable defined the level of access for GET operations for this resource.\n\n - UNKNOWN_VISIBILITY: Default value not allowed.\n - PRIVATE: PRIVATE requires collaborator or team permissions in order to GET this resource.\n - ORG: ORG requires you to be in the same org in order to GET this resource, but don't have to be a\nteammate or collaborator.\n - PUBLIC: PUBLIC opens up GET access to the resource to any user on the platform even if they are not\na teammate or collaborator."
     apiPostArtifactVersionsUploadRequest:
       type: object
       properties:
@@ -718,54 +681,91 @@ components:
         content_part:
           $ref: '#/components/schemas/apiUploadContentPart'
           description: Upload a part of a multipart upload.
-    apistatusStatus:
+    googlerpcStatus:
       type: object
       properties:
         code:
-          $ref: '#/components/schemas/statusStatusCode'
-          description: Status code from internal codes.
-        description:
+          type: integer
+          format: int32
+        message:
           type: string
-          description: A short description of the error.
         details:
-          type: string
-          description: 'More details of the given error.
-
-            These details may be exposed to non-technical users.
-
-            For technical details, try to use developer_notes field.'
-        stack_trace:
           type: array
           items:
-            type: string
-          description: 'For some environment we may return a stack trace to help debug
-
-            any issues.'
-        percent_completed:
-          type: integer
-          format: int64
-          title: specifically for long running jobs
-        time_remaining:
-          type: integer
-          format: int64
-          title: if status is pending, how much time is remaining (in seconds)
-        req_id:
+            type: object
+            $ref: '#/components/schemas/protobufAny'
+    apiUploadContentPart:
+      type: object
+      properties:
+        range_start:
           type: string
-          title: A request ID may be present, to help monitoring and tracking requests
-        internal_details:
+          format: uint64
+        part_number:
           type: string
-          description: Internal Annotation (do not set in production, for internal Clarifai use only).
-        redirect_info:
-          $ref: '#/components/schemas/statusRedirectInfo'
-          description: Resource location info for redirect, when resource location has been changed.
-        developer_notes:
-          type: string
-          description: 'Notes for developer.
-
-            These notes are rather technical details for developers how to interpret the status,
-
-            e.g. why an error occurred and how to avoid getting the error.'
-        http_status_code:
-          type: integer
           format: int64
-          description: The HTTP status code of the response.
+        data:
+          type: string
+          format: byte
+    apiPostArtifactVersionsUploadConfig:
+      type: object
+      properties:
+        user_app_id:
+          $ref: '#/components/schemas/apiUserAppIDSet'
+          title: User ID and App ID of the user uploading the artifact
+        artifact_id:
+          type: string
+          title: Artifact to create version for
+        artifact_version:
+          $ref: '#/components/schemas/apiArtifactVersion'
+          title: Specification for the artifact version to be uploaded
+        total_size:
+          type: string
+          format: uint64
+          title: Number of bytes in the artifact files to be uploaded
+        storage_request_size:
+          type: string
+          format: uint64
+          description: Number of bytes requested for the build process.
+    protobufAny:
+      type: object
+      properties:
+        '@type':
+          type: string
+      additionalProperties: {}
+    statusRedirectInfo:
+      type: object
+      properties:
+        url:
+          type: string
+          description: New location for the resource. Used to set response Location header.
+        resource_type:
+          type: string
+          title: Resource type
+        old_resource_id:
+          type: string
+          title: Old resource id
+        new_resource_id:
+          type: string
+          title: New resource id
+    apiPostArtifactVersionsUploadResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/apistatusStatus'
+          title: Status of the upload
+        bytes_remaining:
+          type: string
+          format: uint64
+          title: Bytes remaining to be uploaded - This is total_size - bytes_uploaded
+        artifact_version_id:
+          type: string
+          title: ID of the artifact version being uploaded
+    apiUserAppIDSet:
+      type: object
+      properties:
+        user_id:
+          type: string
+          title: Note user_id 'me' is reserved - it is the alias for the id of authorized user
+        app_id:
+          type: string
+      description: Common message to identify the app in a url endpoint.

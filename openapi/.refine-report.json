@@ -41,9 +41,7 @@
     "clarifai-workflow-version-evaluations-api-openapi.yml",
     "clarifai-workflows-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -551,10 +549,44 @@
     "openapi.json: declared missing tag: Workflow Version Evaluation Templates",
     "openapi.json: declared missing tag: Workflow Version Evaluations",
     "openapi.json: declared missing tag: Workflows",
-    "superseded outputs removed: clarifai-v2-api-openapi.yml",
-    "apis.yml register: written (+36 apis, 36 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
-    "clarifai-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+    "clarifai-annotation-filters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-annotations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-app-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-artifact-versions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-bulk-operations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-cloud-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-compute-clusters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-compute-plane-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-concepts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-deployments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-evaluations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-inputs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-label-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-log-entries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-my-scopes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-myscopes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-myscopesroot-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-nodepools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-open-source-licenses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-pipeline-step-versions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-pipeline-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-pipelines-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-resource-counts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-runners-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-searches-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-status-codes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-uploads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-validate-password-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-workflow-version-evaluation-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-workflow-version-evaluations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "clarifai-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }

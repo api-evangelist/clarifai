@@ -33,68 +33,57 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    apiPostLogEntriesRequest:
-      type: object
-      properties:
-        log_entries:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/apiLogEntry'
-          description: List of log entries to be stored.
-    googlerpcStatus:
+    apistatusStatus:
       type: object
       properties:
         code:
-          type: integer
-          format: int32
-        message:
+          $ref: '#/components/schemas/statusStatusCode'
+          description: Status code from internal codes.
+        description:
           type: string
+          description: A short description of the error.
         details:
+          type: string
+          description: 'More details of the given error.
+
+            These details may be exposed to non-technical users.
+
+            For technical details, try to use developer_notes field.'
+        stack_trace:
           type: array
           items:
-            type: object
-            $ref: '#/components/schemas/protobufAny'
-    apiLogEntry:
-      type: object
-      properties:
-        message:
+            type: string
+          description: 'For some environment we may return a stack trace to help debug
+
+            any issues.'
+        percent_completed:
+          type: integer
+          format: int64
+          title: specifically for long running jobs
+        time_remaining:
+          type: integer
+          format: int64
+          title: if status is pending, how much time is remaining (in seconds)
+        req_id:
           type: string
-          description: Text of the log entry.
-        log_type:
+          title: A request ID may be present, to help monitoring and tracking requests
+        internal_details:
           type: string
-          description: 'The type of log entry. Examples: model, agent, build, training.'
-        url:
+          description: Internal Annotation (do not set in production, for internal Clarifai use only).
+        redirect_info:
+          $ref: '#/components/schemas/statusRedirectInfo'
+          description: Resource location info for redirect, when resource location has been changed.
+        developer_notes:
           type: string
-          description: URL to log file or stream.
-        meta:
-          $ref: '#/components/schemas/apiComputeSourceMetadata'
-          description: Who and where the metrics are from.
-      description: LogEntry is a single technical log entry (e.g. service log, stack traces, etc).
-    statusRedirectInfo:
-      type: object
-      properties:
-        url:
-          type: string
-          description: New location for the resource. Used to set response Location header.
-        resource_type:
-          type: string
-          title: Resource type
-        old_resource_id:
-          type: string
-          title: Old resource id
-        new_resource_id:
-          type: string
-          title: New resource id
-    apiUserAppIDSet:
-      type: object
-      properties:
-        user_id:
-          type: string
-          title: Note user_id 'me' is reserved - it is the alias for the id of authorized user
-        app_id:
-          type: string
-      description: Common message to identify the app in a url endpoint.
+          description: 'Notes for developer.
+
+            These notes are rather technical details for developers how to interpret the status,
+
+            e.g. why an error occurred and how to avoid getting the error.'
+        http_status_code:
+          type: integer
+          format: int64
+          description: The HTTP status code of the response.
     statusStatusCode:
       type: string
       enum:
@@ -538,6 +527,44 @@ components:
       description: 'Base message to return when there is a internal server error that
 
         is not caught elsewhere.'
+    googlerpcStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protobufAny'
+    apiLogEntry:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Text of the log entry.
+        log_type:
+          type: string
+          description: 'The type of log entry. Examples: model, agent, build, training.'
+        url:
+          type: string
+          description: URL to log file or stream.
+        meta:
+          $ref: '#/components/schemas/apiComputeSourceMetadata'
+          description: Who and where the metrics are from.
+      description: LogEntry is a single technical log entry (e.g. service log, stack traces, etc).
+    apiPostLogEntriesRequest:
+      type: object
+      properties:
+        log_entries:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/apiLogEntry'
+          description: List of log entries to be stored.
     protobufAny:
       type: object
       properties:
@@ -581,54 +608,27 @@ components:
         pipeline_step_version_id:
           type: string
       description: ComputeSourceMetadata describes the source of something computed. The who and where.
-    apistatusStatus:
+    statusRedirectInfo:
       type: object
       properties:
-        code:
-          $ref: '#/components/schemas/statusStatusCode'
-          description: Status code from internal codes.
-        description:
+        url:
           type: string
-          description: A short description of the error.
-        details:
+          description: New location for the resource. Used to set response Location header.
+        resource_type:
           type: string
-          description: 'More details of the given error.
-
-            These details may be exposed to non-technical users.
-
-            For technical details, try to use developer_notes field.'
-        stack_trace:
-          type: array
-          items:
-            type: string
-          description: 'For some environment we may return a stack trace to help debug
-
-            any issues.'
-        percent_completed:
-          type: integer
-          format: int64
-          title: specifically for long running jobs
-        time_remaining:
-          type: integer
-          format: int64
-          title: if status is pending, how much time is remaining (in seconds)
-        req_id:
+          title: Resource type
+        old_resource_id:
           type: string
-          title: A request ID may be present, to help monitoring and tracking requests
-        internal_details:
+          title: Old resource id
+        new_resource_id:
           type: string
-          description: Internal Annotation (do not set in production, for internal Clarifai use only).
-        redirect_info:
-          $ref: '#/components/schemas/statusRedirectInfo'
-          description: Resource location info for redirect, when resource location has been changed.
-        developer_notes:
+          title: New resource id
+    apiUserAppIDSet:
+      type: object
+      properties:
+        user_id:
           type: string
-          description: 'Notes for developer.
-
-            These notes are rather technical details for developers how to interpret the status,
-
-            e.g. why an error occurred and how to avoid getting the error.'
-        http_status_code:
-          type: integer
-          format: int64
-          description: The HTTP status code of the response.
+          title: Note user_id 'me' is reserved - it is the alias for the id of authorized user
+        app_id:
+          type: string
+      description: Common message to identify the app in a url endpoint.
