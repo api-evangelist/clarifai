@@ -38,57 +38,12 @@ paths:
       - Resource Counts
 components:
   schemas:
-    apistatusStatus:
+    protobufAny:
       type: object
       properties:
-        code:
-          $ref: '#/components/schemas/statusStatusCode'
-          description: Status code from internal codes.
-        description:
+        '@type':
           type: string
-          description: A short description of the error.
-        details:
-          type: string
-          description: 'More details of the given error.
-
-            These details may be exposed to non-technical users.
-
-            For technical details, try to use developer_notes field.'
-        stack_trace:
-          type: array
-          items:
-            type: string
-          description: 'For some environment we may return a stack trace to help debug
-
-            any issues.'
-        percent_completed:
-          type: integer
-          format: int64
-          title: specifically for long running jobs
-        time_remaining:
-          type: integer
-          format: int64
-          title: if status is pending, how much time is remaining (in seconds)
-        req_id:
-          type: string
-          title: A request ID may be present, to help monitoring and tracking requests
-        internal_details:
-          type: string
-          description: Internal Annotation (do not set in production, for internal Clarifai use only).
-        redirect_info:
-          $ref: '#/components/schemas/statusRedirectInfo'
-          description: Resource location info for redirect, when resource location has been changed.
-        developer_notes:
-          type: string
-          description: 'Notes for developer.
-
-            These notes are rather technical details for developers how to interpret the status,
-
-            e.g. why an error occurred and how to avoid getting the error.'
-        http_status_code:
-          type: integer
-          format: int64
-          description: The HTTP status code of the response.
+      additionalProperties: {}
     statusStatusCode:
       type: string
       enum:
@@ -537,6 +492,21 @@ components:
           items:
             type: object
             $ref: '#/components/schemas/protobufAny'
+    statusRedirectInfo:
+      type: object
+      properties:
+        url:
+          type: string
+          description: New location for the resource. Used to set response Location header.
+        resource_type:
+          type: string
+          title: Resource type
+        old_resource_id:
+          type: string
+          title: Old resource id
+        new_resource_id:
+          type: string
+          title: New resource id
     apiGetResourceCountsResponse:
       type: object
       properties:
@@ -558,24 +528,54 @@ components:
           type: string
           format: int64
       title: ResourceCountResponse
-    protobufAny:
+    apistatusStatus:
       type: object
       properties:
-        '@type':
+        code:
+          $ref: '#/components/schemas/statusStatusCode'
+          description: Status code from internal codes.
+        description:
           type: string
-      additionalProperties: {}
-    statusRedirectInfo:
-      type: object
-      properties:
-        url:
+          description: A short description of the error.
+        details:
           type: string
-          description: New location for the resource. Used to set response Location header.
-        resource_type:
+          description: 'More details of the given error.
+
+            These details may be exposed to non-technical users.
+
+            For technical details, try to use developer_notes field.'
+        stack_trace:
+          type: array
+          items:
+            type: string
+          description: 'For some environment we may return a stack trace to help debug
+
+            any issues.'
+        percent_completed:
+          type: integer
+          format: int64
+          title: specifically for long running jobs
+        time_remaining:
+          type: integer
+          format: int64
+          title: if status is pending, how much time is remaining (in seconds)
+        req_id:
           type: string
-          title: Resource type
-        old_resource_id:
+          title: A request ID may be present, to help monitoring and tracking requests
+        internal_details:
           type: string
-          title: Old resource id
-        new_resource_id:
+          description: Internal Annotation (do not set in production, for internal Clarifai use only).
+        redirect_info:
+          $ref: '#/components/schemas/statusRedirectInfo'
+          description: Resource location info for redirect, when resource location has been changed.
+        developer_notes:
           type: string
-          title: New resource id
+          description: 'Notes for developer.
+
+            These notes are rather technical details for developers how to interpret the status,
+
+            e.g. why an error occurred and how to avoid getting the error.'
+        http_status_code:
+          type: integer
+          format: int64
+          description: The HTTP status code of the response.
