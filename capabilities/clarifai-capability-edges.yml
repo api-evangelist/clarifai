@@ -1,0 +1,76 @@
+slug: clarifai
+provider: Clarifai
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Models
+  spec_file: clarifai-models-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.9
+  evidence: '"Add a models to an app", "List all the model types available in the platform.", "POST /v2/models/versions/upload",
+    "Stream of requests and stream of responses" (V2_StreamModelOutputs)'
+  reason: 'Full machine-learning model lifecycle: creation, versioning, upload, typing, evaluation and
+    inference streaming — squarely AI/ML model lifecycle and MLOps management.'
+- tag: Datasets
+  spec_file: clarifai-datasets-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: '"Add datasets to an app.", "Add dataset inputs to a dataset.", "Add dataset versions to a
+    dataset", apiDatasetVersionExportFormat'
+  reason: Management and versioning of training datasets for machine-learning models — core MLOps/AI lifecycle
+    tooling on an AI platform.
+- tag: Evaluations
+  spec_file: clarifai-evaluations-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: POST /v2/evaluations with schemas apiSingleEvalMetricsResponse, apiMultiEvalMetricsResponse,
+    apiEvalInfo, apiLabelDistribution
+  reason: Creation and retrieval of model evaluation metrics against datasets — model validation within
+    the AI/ML lifecycle (MLOps).
+- tag: Pipelines
+  spec_file: clarifai-pipelines-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: GET /v2/pipelines/{pipeline_id}/versions/{pipeline_version_id}/runs/{pipeline_version_run_id}
+    'V2 get pipeline version run2'
+  reason: Managing ML pipelines, their versions and runs is MLOps/AI model lifecycle orchestration on
+    an AI platform, matching Artificial Intelligence Management.
+- tag: Workflow Version Evaluations
+  spec_file: clarifai-workflow-version-evaluations-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: GET /v2/workflow-version-evaluations/{workflow_version_evaluation_id}  'V2 get workflow version
+    evaluation'; schema apiEvalInfo
+  reason: Evaluation runs and evaluation data for versions of AI inference workflows — model/workflow
+    performance evaluation, a core MLOps activity under Artificial Intelligence Management.
+- tag: Workflows
+  spec_file: clarifai-workflows-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: POST /v2/workflows/{workflow_id}/results  'Predict using a workflow'; GET /v2/workflows/{workflow_id}/versions  'List
+    workflow versions'
+  reason: Workflows are versioned AI model pipelines that are created, versioned, published and invoked
+    for prediction — AI/ML model lifecycle and inference orchestration. Not generic business process management,
+    since the artefacts are model prediction graphs.
