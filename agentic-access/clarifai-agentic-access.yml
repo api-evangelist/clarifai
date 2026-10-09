@@ -1,20 +1,20 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/openapi.json
+source: openapi/clarifai-v2-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 466
   by_action_class:
-    connected: 219
-    acting: 247
+    connected: 226
+    acting: 240
   by_consequence:
-    read: 219
-    write: 226
-    physical: 15
-    safety-critical: 6
-  human_in_the_loop_required: 6
+    read: 226
+    write: 229
+    safety-critical: 2
+    physical: 9
+  human_in_the_loop_required: 2
 operations:
 - path: /v2/annotation_filters
   method: get
@@ -209,13 +209,11 @@ operations:
   operationId: V2_PostArtifactVersionsUpload
   x-agentic-access:
     action-class: acting
-    consequence: physical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
+      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
@@ -533,32 +531,32 @@ operations:
   operationId: V2_PostDatasets2
   x-agentic-access:
     action-class: acting
-    consequence: safety-critical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
+      max-ttl: 900
     escalation:
-      human-in-the-loop: required
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
     audit: required
 - path: /v2/datasets
   method: patch
   operationId: V2_PatchDatasets2
   x-agentic-access:
     action-class: acting
-    consequence: safety-critical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
+      max-ttl: 900
     escalation:
-      human-in-the-loop: required
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
     audit: required
 - path: /v2/datasets/{dataset_id}
   method: get
@@ -1122,18 +1120,12 @@ operations:
   method: post
   operationId: V2_PostTrackAnnotationsSearches2
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/inputs/{input_id}/track_annotations/searches/stream
   method: post
   operationId: V2_StreamAnnotations2
@@ -1365,13 +1357,11 @@ operations:
   operationId: V2_PostModelVersionsUpload
   x-agentic-access:
     action-class: acting
-    consequence: physical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
+      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
@@ -1460,18 +1450,12 @@ operations:
   method: post
   operationId: V2_PostModelOutputs4
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/models/{model_id}/publish
   method: post
   operationId: V2_PostModelVersionsPublish2
@@ -1746,18 +1730,12 @@ operations:
   method: post
   operationId: V2_PostModelOutputs2
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/my_scopes
   method: get
   operationId: V2_MyScopes3
@@ -1813,13 +1791,11 @@ operations:
   operationId: V2_PostPipelineStepVersionsUpload
   x-agentic-access:
     action-class: acting
-    consequence: physical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
+      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
@@ -2196,20 +2172,12 @@ operations:
   method: post
   operationId: V2_PostModelOutputs5
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/users/{user_app_id.user_id_1}/compute_clusters/{compute_cluster_id}/nodepools/{nodepool_id}/runners
   method: post
   operationId: V2_PatchRunners
@@ -3009,32 +2977,32 @@ operations:
   operationId: V2_PostDatasets
   x-agentic-access:
     action-class: acting
-    consequence: safety-critical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
+      max-ttl: 900
     escalation:
-      human-in-the-loop: required
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
     audit: required
 - path: /v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets
   method: patch
   operationId: V2_PatchDatasets
   x-agentic-access:
     action-class: acting
-    consequence: safety-critical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
+      max-ttl: 900
     escalation:
-      human-in-the-loop: required
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
     audit: required
 - path: /v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/datasets/{dataset_id}
   method: get
@@ -3588,18 +3556,12 @@ operations:
   method: post
   operationId: V2_PostTrackAnnotationsSearches
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/inputs/{input_id}/track_annotations/searches/stream
   method: post
   operationId: V2_StreamAnnotations
@@ -3944,18 +3906,12 @@ operations:
   method: post
   operationId: V2_PostModelOutputs3
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/outputs/generate
   method: post
   operationId: V2_GenerateModelOutputs2
@@ -4298,18 +4254,12 @@ operations:
   method: post
   operationId: V2_PostModelOutputs
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/users/{user_app_id.user_id}/apps/{user_app_id.app_id}/models/{model_id}/versions/{version_id}/outputs/generate
   method: post
   operationId: V2_GenerateModelOutputs
@@ -5007,13 +4957,11 @@ operations:
   operationId: V2_PostWorkflows
   x-agentic-access:
     action-class: acting
-    consequence: physical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
+      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
@@ -6033,13 +5981,11 @@ operations:
   operationId: V2_PostWorkflows2
   x-agentic-access:
     action-class: acting
-    consequence: physical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
+      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
